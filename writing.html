@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <meta name="description" content="Józsa Dávid. Fiction and narrative. A universe nine volumes deep.">
+  <title>Writing · Józsa Dávid</title>
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.jozsadavid.com/writing.html">
+  <meta property="og:title"       content="Writing · Józsa Dávid">
+  <meta property="og:description" content="Fiction and narrative. A universe nine volumes deep.">
+  <meta property="og:image"       content="https://www.jozsadavid.com/img/diariedades01.jpg">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Writing · Józsa Dávid">
+  <meta name="twitter:description" content="Fiction and narrative. A universe nine volumes deep.">
+  <meta name="twitter:image"      content="https://www.jozsadavid.com/img/diariedades01.jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .w-hero {
+      min-height: 88svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .w-hero__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 55% 25%, #1e1208 0%, var(--bg) 62%);
+      pointer-events: none;
+    }
+
+    .w-hero__inner {
+      position: relative;
+      z-index: 1;
+      padding: clamp(3rem, 6vw, 5rem) var(--gutter) clamp(2rem, 4vw, 3.5rem);
+      padding-left: calc(var(--gutter) * 0.4);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .w-hero__label { display: block; margin-bottom: 0.3rem; margin-left: 1.7em; text-transform: none; }
+
+    .w-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(5.25rem, 14.7vw, 13.65rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      margin-bottom: 3rem;
+    }
+
+    .w-hero__statement {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .w-hero__tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.7vw, 1.2rem);
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .w-hero__meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0.4rem;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .w-hero__meta-item {
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SERIES SECTION SHARED STYLES
+    ══════════════════════════════════════════════════════ */
+    .series {
+      padding: clamp(4rem, 7vw, 6rem) var(--gutter);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .series-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .series-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .series-meta {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .series-desc {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 64ch;
+      margin-bottom: 3rem;
+      padding-top: 1.25rem;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       BOOK ENTRY · shared card layout
+    ══════════════════════════════════════════════════════ */
+    .book-entry {
+      display: grid;
+      grid-template-columns: clamp(130px, 13vw, 190px) 1fr;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      margin-bottom: 2px;
+    }
+
+    .book-cover {
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+      overflow: hidden;
+      background: var(--bg-3);
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .book-cover:hover img { transform: scale(1.04); }
+
+    .book-cover--placeholder {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-style: italic;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .book-body {
+      padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-vol {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .book-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 0.4rem;
+    }
+
+    .book-genre {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* Book quote pull */
+    .book-quote {
+      border-left: 2px solid var(--border-2);
+      padding: 0.6rem 0 0.6rem 1.25rem;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .book-quote p {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.65vw, 1.2rem);
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.72;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       RELATOS OBSCUROS · volume list
+    ══════════════════════════════════════════════════════ */
+    .universe-note {
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 68ch;
+      padding: 1.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+    .universe-note em { color: var(--text); }
+
+    .vol-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* Full vol-entry: number | cover | content */
+    .vol-entry {
+      display: grid;
+      grid-template-columns: 72px clamp(80px, 10vw, 130px) 1fr;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      transition: background 0.2s, border-color 0.2s;
+      overflow: hidden;
+    }
+    .vol-entry:hover { background: var(--bg-3); border-color: var(--border-2); }
+
+    /* Announced: no cover column */
+    .vol-entry--announced {
+      grid-template-columns: 72px 1fr;
+      background: var(--bg);
+      opacity: 0.5;
+    }
+    .vol-entry--announced:hover { opacity: 0.7; }
+
+    .vol-entry--published { background: var(--bg-2); }
+    .vol-entry--wip       { background: var(--bg); }
+
+    /* Number column */
+    .vol-num {
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 0.75rem;
+    }
+
+    .vol-num__text {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .vol-entry--published .vol-num__text { color: var(--accent); }
+    .vol-entry--wip .vol-num__text       { color: var(--text-dim); }
+
+    /* Cover column */
+    .vol-cover {
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg-3);
+      min-height: 200px;
+      position: relative;
+    }
+
+    .vol-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      position: absolute;
+      inset: 0;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .vol-cover:hover img { transform: scale(1.04); }
+
+    .vol-cover__ph {
+      position: absolute;
+      bottom: 0.6rem; left: 0; right: 0;
+      text-align: center;
+      font-family: var(--font-label);
+      font-size: 0.48rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* Content column */
+    .vol-body {
+      padding: 1.8rem 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vol-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .vol-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .vol-entry--announced .vol-title { color: var(--text-muted); }
+
+    .vol-status {
+      font-family: var(--font-label);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .vol-status--pub  { color: var(--accent); }
+    .vol-status--wip  { color: var(--text-dim); }
+    .vol-status--tba  { color: var(--text-muted); }
+
+    .vol-genre {
+      font-family: var(--font-label);
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .vol-quote {
+      border-left: 1px solid var(--border-2);
+      padding-left: 1rem;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .vol-quote p {
+      font-family: var(--font-display);
+      font-size: clamp(0.92rem, 1.5vw, 1.1rem);
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.72;
+    }
+
+    .vol-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .vol-slot {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ── Bio ─────────────────────────────────────────────── */
+    .w-bio {
+      padding: clamp(4rem, 6vw, 5.5rem) var(--gutter);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .w-bio__label { display: block; margin-bottom: 3rem; }
+
+    .w-bio__grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: clamp(3rem, 5vw, 5.5rem);
+      align-items: start;
+    }
+
+    .w-bio__text {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.82;
+    }
+    .w-bio__text p + p  { margin-top: 1em; }
+    .w-bio__text strong { color: var(--text); font-weight: 500; }
+    .w-bio__text em     { color: var(--text); }
+
+    .w-bio__facts { display: flex; flex-direction: column; }
+
+    .w-bio__fact {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .w-bio__fact:first-child { padding-top: 0; }
+    .w-bio__fact:last-child  { border-bottom: none; }
+
+    .w-bio__key {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .w-bio__val {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .w-bio__val a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .w-bio__val a:hover { color: var(--text); }
+
+    /* ── Contact Form ──────────────────────────────────────── */
+    .contact-form {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .contact-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .contact-form__label {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .contact-form__input,
+    .contact-form__textarea {
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 300;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .contact-form__input:focus,
+    .contact-form__textarea:focus {
+      border-color: var(--text-muted);
+      background: var(--bg-3);
+    }
+
+    .contact-form__input::placeholder,
+    .contact-form__textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .contact-form__textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .contact-form__submit {
+      align-self: center;
+      margin-top: 0.5rem;
+    }
+
+    .contact-form__sent {
+      display: none;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-dim);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* ── Cover Lightbox ────────────────────────────────────── */
+    .cover-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+    .cover-modal.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .cover-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .cover-modal__card {
+      position: relative;
+      z-index: 1;
+      transform: rotate(-6deg) scale(0.86);
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .cover-modal.is-open .cover-modal__card {
+      transform: rotate(-2.5deg) scale(1);
+    }
+    .cover-modal__img {
+      display: block;
+      max-height: 88svh;
+      max-width: min(420px, 90vw);
+      width: auto;
+      border-radius: 2px;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.55),
+        0 24px 64px rgba(0, 0, 0, 0.75),
+        0 64px 128px rgba(0, 0, 0, 0.45);
+    }
+    .cover-modal__close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--text-dim);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cover-modal__close:hover { background: rgba(255,255,255,0.18); color: var(--text); }
+
+    /* Trigger hint on cover elements */
+    .cover-trigger {
+      cursor: zoom-in;
+      position: relative;
+    }
+    .cover-trigger::after {
+      content: 'view cover';
+      position: absolute;
+      bottom: 0.7rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--font-label);
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .cover-trigger:hover::after { opacity: 1; }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .w-hero__statement   { grid-template-columns: 1fr; gap: 1.5rem; }
+      .w-hero__meta        { align-items: flex-start; text-align: left; }
+      .book-entry          { grid-template-columns: clamp(100px, 25vw, 150px) 1fr; }
+      .book-cover          { min-height: 200px; }
+      .vol-entry           { grid-template-columns: 56px clamp(70px, 10vw, 100px) 1fr; }
+      .vol-entry--announced { grid-template-columns: 56px 1fr; }
+      .vol-num             { padding: 1rem 0.5rem; }
+      .vol-num__text       { font-size: 1.6rem; }
+      .w-bio__grid         { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .w-hero__statement   { gap: 1.2rem; }
+      .w-hero__title       { font-size: clamp(3.2rem, 17vw, 5rem); }
+      .w-hero__inner       { padding-left: var(--gutter); }
+      .w-hero__label       { margin-left: 0; }
+      .book-entry          { grid-template-columns: 1fr; }
+      .book-cover          { min-height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
+      .book-body           { padding: 1.5rem; }
+      .vol-entry           { grid-template-columns: 48px 1fr; }
+      .vol-entry--announced { grid-template-columns: 48px 1fr; }
+      .vol-cover           { display: none; }
+      .vol-top             { flex-direction: column; gap: 0.2rem; align-items: flex-start; }
+      .series-header       { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    /* ── Animated smoke in hero ─────────────────────────── */
+    .w-hero__bg::before,
+    .w-hero__bg::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+      animation: smokeRise 14s ease-in-out infinite;
+    }
+    .w-hero__bg::before {
+      width: 40vw; height: 55vh;
+      left: 20%; top: 30%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.028) 0%, transparent 70%);
+      animation-duration: 16s;
+    }
+    .w-hero__bg::after {
+      width: 30vw; height: 60vh;
+      left: 45%; top: 10%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.018) 0%, transparent 70%);
+      animation-duration: 11s;
+      animation-delay: -5s;
+    }
+    @keyframes smokeRise {
+      0%   { transform: translateY(0) translateX(0) scaleX(1); opacity: 0.6; }
+      33%  { transform: translateY(-8vh) translateX(2vw) scaleX(1.08); opacity: 1; }
+      66%  { transform: translateY(-18vh) translateX(-1.5vw) scaleX(0.95); opacity: 0.75; }
+      100% { transform: translateY(-28vh) translateX(1vw) scaleX(1.05); opacity: 0; }
+    }
+
+    /* ── Typewriter cursor ──────────────────────────────── */
+    #w-typewriter .tw-cursor {
+      display: inline-block;
+      width: 3px;
+      background: var(--text);
+      margin-left: 4px;
+      vertical-align: baseline;
+      animation: twBlink 0.9s steps(1) infinite;
+    }
+    @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" id="site-nav">
+    <a href="index.html" class="nav-logo">Józsa Dávid</a>
+    <div class="nav-links" id="nav-links">
+      <a href="nolka.html">Nolka</a>
+      <a href="kibo.html">Kibo Visuals</a>
+      <a href="writing.html" class="active">Writing</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="w-hero">
+    <div class="w-hero__bg" aria-hidden="true"></div>
+    <div class="w-hero__inner">
+      <span class="label label--accent w-hero__label">palavras escritas</span>
+        <h1 class="w-hero__title" id="w-typewriter" aria-label="Fiction &amp; Narratives"><span id="w-tw-line1"></span><br><span id="w-tw-line2"></span></h1>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════
+       DIARIEDADES
+  ══════════════════════════════════════════════════════ -->
+  <section class="series" aria-label="Diariedades">
+    <div class="series-header" data-reveal>
+      <h2 class="series-title">Diariedades</h2>
+      <span class="series-meta">Crônicas</span>
+    </div>
+    <!-- Vol 01 -->
+    <div class="book-entry" data-reveal data-reveal-delay="80">
+      <div class="book-cover cover-trigger" data-cover-src="img/diariedades01.jpg" data-cover-alt="Diariedades 01">
+        <img src="img/diariedades01.jpg" alt="Diariedades 01 cover">
+      </div>
+      <div class="book-body">
+        <div class="book-vol">Vol. 01 · Published</div>
+        <h3 class="book-title">Diariedades 01</h3>
+        <div class="book-quote">
+          <p>"Não é pavor só de dentistas. É de qualquer um vestido de branco. Médicos, dentistas, pai-de-santo, noiva em dia de casamento. Se está de branco e quer falar comigo, problema tem."</p>
+        </div>
+        <div>
+          <a href="https://www.amazon.com.br/Diariedades-J%C3%B3zsa-D%C3%A1vid-ebook/dp/B0B39NFML7" target="_blank" rel="noopener" class="btn btn--primary">Buy on Amazon →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vol 02 in progress -->
+    <article class="vol-entry vol-entry--announced" style="margin-top:2px;" data-reveal>
+      <div class="vol-num"><span class="vol-num__text">02</span></div>
+      <div class="vol-body">
+        <div class="vol-top">
+          <h3 class="vol-title">Diariedades 02</h3>
+          <span class="vol-status vol-status--wip">In Progress</span>
+        </div>
+        <div class="vol-quote">
+          <p>&ldquo;A mula sem cabeça é um animal típico do folclore brasileiro. Encontrada geralmente na totalidade branca acinzentada, pode assumir um tom mais escuro e/ou azulado se for avistada no meio da noite, período do dia no qual se torna mais ativa.&rdquo;</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <div style="height:1px;background:var(--border);"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       RELATOS OBSCUROS DA PERVERSIVIDADE HUMANA
+  ══════════════════════════════════════════════════════ -->
+  <section class="series" aria-label="Relatos Obscuros da Perversividade Humana">
+    <div class="series-header" data-reveal>
+      <h2 class="series-title">Relatos Obscuros<br>da Perversividade Humana</h2>
+      <span class="series-meta">Series · 09 Volumes</span>
+    </div>
+
+    <p class="universe-note" data-reveal data-reveal-delay="60">
+      <em>"Vai, vire a página. Leia e absorva. E sofra, se necessário. Ainda é somente ficção..."</em>
+    </p>
+
+    <div class="vol-list" style="margin-top: 2px;">
+
+      <!-- 01 · ADAM · published -->
+      <article class="vol-entry vol-entry--published" data-reveal data-reveal-delay="0">
+        <div class="vol-num"><span class="vol-num__text">01</span></div>
+        <div class="vol-cover cover-trigger" data-cover-src="img/adam.jpg" data-cover-alt="Adam">
+          <img src="img/adam.jpg" alt="Adam cover">
+        </div>
+        <div class="vol-body">
+          <div class="vol-top">
+            <h3 class="vol-title">Adam</h3>
+            <span class="vol-status vol-status--pub">Published</span>
+          </div>
+          <div class="vol-quote">
+            <p>"Diga 'nunca mais', bicho patético. Poe dedicou-te uma obra completa e toda a humanidade te conhece. Nunca mais. Certamente é uma afirmação verdadeira. Nunca mais existirá um corvo como o de Poe. Tampouco existirá outro corvo como você, meu caro."</p>
+          </div>
+          <div class="vol-actions">
+            <a href="https://www.amazon.com.br/Adam-Relatos-Obscuros-Perversividade-Humana-ebook/dp/B0CW1F9T2T" target="_blank" rel="noopener" class="btn btn--primary">Buy on Amazon →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 · A PEQUENA RAQUEL · wip -->
+      <article class="vol-entry vol-entry--wip" data-reveal data-reveal-delay="50">
+        <div class="vol-num"><span class="vol-num__text">02</span></div>
+        <div class="vol-cover">
+          <!-- cover: img/raquel.jpg -->
+          <span class="vol-cover__ph">cover coming</span>
+        </div>
+        <div class="vol-body">
+          <div class="vol-top">
+            <h3 class="vol-title">A Pequena Raquel</h3>
+            <span class="vol-status vol-status--wip">In Progress</span>
+          </div>
+          <div class="vol-quote">
+            <p>"Chamando sua mãe de 'meu sorvete em calda, meu pedacinho do paraíso'?"</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 · DMITRO · wip -->
+      <article class="vol-entry vol-entry--wip" data-reveal data-reveal-delay="80">
+        <div class="vol-num"><span class="vol-num__text">03</span></div>
+        <div class="vol-cover">
+          <!-- cover: img/dmitro.jpg -->
+          <span class="vol-cover__ph">cover coming</span>
+        </div>
+        <div class="vol-body">
+          <div class="vol-top">
+            <h3 class="vol-title">Dmitro</h3>
+            <span class="vol-status vol-status--wip">In Progress</span>
+          </div>
+          <div class="vol-quote">
+            <p>"Hey, você devia sorrir, esse é um lugar legal. Fique feliz, olha só o que nós conquistamos, cara."</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 · TBA -->
+      <article class="vol-entry vol-entry--announced" data-reveal data-reveal-delay="100">
+        <div class="vol-num"><span class="vol-num__text">04</span></div>
+        <div class="vol-body">
+          <div class="vol-top">
+            <h3 class="vol-title" style="color:var(--text-muted);">·</h3>
+            <span class="vol-status vol-status--tba">Coming</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 · O POLICIAL -->
+      <article class="vol-entry vol-entry--announced" data-reveal data-reveal-delay="108">
+        <div class="vol-num"><span class="vol-num__text">05</span></div>
+        <div class="vol-body">
+          <div class="vol-top">
+            <h3 class="vol-title">O Policial</h3>
+            <span class="vol-status vol-status--tba">Announced</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06–09 · In Development -->
+      <article class="vol-entry vol-entry--announced" data-reveal data-reveal-delay="116">
+        <div class="vol-num"><span class="vol-num__text" style="font-size:1rem; letter-spacing:0.04em;">06–09</span></div>
+        <div class="vol-body">
+          <div class="vol-top">
+            <h3 class="vol-title">Volumes 06–09</h3>
+            <span class="vol-status vol-status--tba">In Development</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div style="height:1px;background:var(--border);"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       AS FAR AS I REMEMBER, I ALWAYS WANTED TO BE A COUCH
+       standalone, no section header, placed last
+  ══════════════════════════════════════════════════════ -->
+  <section class="series" aria-label="As far as I remember, I always wanted to be a couch">
+    <div class="book-entry" data-reveal>
+      <div class="book-cover">
+        <!-- cover: img/couch.jpg -->
+        <div class="book-cover--placeholder">cover<br>coming</div>
+      </div>
+      <div class="book-body">
+        <div class="book-vol">Novel · In Progress</div>
+        <h3 class="book-title" style="font-size: clamp(1.1rem, 2.2vw, 1.9rem); line-height: 1.15;">As far as I remember,<br>I always wanted<br>to be a couch</h3>
+        <div class="book-quote">
+          <p>&ldquo;Escuta, você por acaso não viu um sofá passando por aqui? Ou uma casa azul? Essa pergunta foi repetida para todos os que estavam na pizzaria. Não eram muitos, Linda teve de admitir. O movimento de rotina de uma pizzaria meia boca no canto de uma estrada irregular no meio do nada não era grande coisa, o que obrigava o dono do estabelecimento a manter apenas três funcionários pelo preço de dois.&rdquo;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="w-bio" style="border-top: 1px solid var(--border);">
+    <span class="label label--accent w-bio__label">About the author</span>
+    <div class="w-bio__grid">
+      <div class="w-bio__text" data-reveal>
+        <p><strong>Józsa Dávid</strong> is a writer, photographer, journalist and creative director. Always writing, before, during and after everything else.</p>
+        <p>The result is writing that doesn't respect limits. It carries the rhythm of journalism, the framing of photography, the precision of creative direction, and the obsession with detail that comes from years spent behind the bars of one's own conscience.</p>
+      </div>
+      <div class="w-bio__facts" data-reveal data-reveal-delay="100">
+        <div class="w-bio__fact">
+          <span class="w-bio__key">Amazon</span>
+          <span class="w-bio__val">
+            <a href="https://www.amazon.com.br/stores/J%C3%B3zsa-D%C3%A1vid/author/B0B3BS5LPC" target="_blank" rel="noopener">amazon.com.br/author/jozsadavid</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div class="contact-block">
+    <span class="label label--accent contact-block__label">Get in touch</span>
+    <h2 class="contact-block__heading">Literary inquiries</h2>
+    <p class="contact-block__sub">Reviews, interviews, requests, just a silly talk, partnerships, or just to say that something got under your skin.</p>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <input type="hidden" name="_source" value="Writing">
+      <div class="contact-form__field">
+        <label class="contact-form__label" for="cf-name">Name</label>
+        <input class="contact-form__input" type="text" id="cf-name" name="name" placeholder="Your name" required autocomplete="name">
+      </div>
+      <div class="contact-form__field">
+        <label class="contact-form__label" for="cf-email">Email</label>
+        <input class="contact-form__input" type="email" id="cf-email" name="email" placeholder="your@email.com" required autocomplete="email">
+      </div>
+      <div class="contact-form__field">
+        <label class="contact-form__label" for="cf-message">Message</label>
+        <textarea class="contact-form__textarea" id="cf-message" name="message" placeholder="Your message" required></textarea>
+      </div>
+      <div class="contact-form__submit">
+        <button type="submit" class="btn btn--primary">Send →</button>
+      </div>
+      <p class="contact-form__sent" id="cf-sent">Thanks for reaching out. I'll get back to you asap.</p>
+    </form>
+  </div>
+
+  <footer class="site-footer">
+    <span class="site-footer__copy">© 2026 Józsa Dávid</span>
+    <div class="site-footer__links">
+      <a href="index.html">Portal</a>
+      <a href="nolka.html">Nolka</a>
+      <a href="kibo.html">Kibo Visuals</a>
+    </div>
+  </footer>
+
+  <!-- Cover Lightbox -->
+  <div class="cover-modal" id="cover-modal" role="dialog" aria-modal="true" aria-label="Book cover">
+    <div class="cover-modal__backdrop"></div>
+    <div class="cover-modal__card">
+      <img class="cover-modal__img" id="cover-modal-img" src="" alt="">
+      <button class="cover-modal__close" aria-label="Close">&#215;</button>
+    </div>
+  </div>
+
+  <script src="js/ambient.js" defer></script>
+  <script>
+    /* Cover lightbox */
+    (function () {
+      var modal    = document.getElementById('cover-modal');
+      var modalImg = document.getElementById('cover-modal-img');
+      if (!modal) return;
+
+      function openModal(src, alt) {
+        modalImg.src = src;
+        modalImg.alt = alt || '';
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        setTimeout(function () { modalImg.src = ''; }, 400);
+      }
+
+      document.querySelectorAll('.cover-trigger').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var src = el.dataset.coverSrc;
+          if (src) openModal(src, el.dataset.coverAlt || '');
+        });
+      });
+
+      modal.querySelector('.cover-modal__backdrop').addEventListener('click', closeModal);
+      modal.querySelector('.cover-modal__close').addEventListener('click', closeModal);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
+    })();
+
+    /* Contact form */
+    (function () {
+      var FORMSPREE_ID = 'xqenzdpq';
+      var form = document.getElementById('contact-form');
+      var sent = document.getElementById('cf-sent');
+      var btn  = form ? form.querySelector('button[type=submit]') : null;
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(function (res) {
+          if (res.ok) {
+            if (sent) sent.style.display = 'block';
+            form.reset();
+          } else {
+            alert('Something went wrong — please try again.');
+          }
+        })
+        .catch(function () {
+          alert('Could not send message. Check your connection.');
+        })
+        .finally(function () {
+          if (btn) { btn.disabled = false; btn.textContent = 'Send →'; }
+        });
+      });
+    })();
+  </script>
+
+
+  <script>
+  /* ── Typewriter + keyboard sounds for writing hero ── */
+  (function () {
+    var line1El = document.getElementById('w-tw-line1');
+    var line2El = document.getElementById('w-tw-line2');
+    if (!line1El) return;
+
+    var L1 = 'Fiction';
+    var L2 = '& Narratives';
+
+    /* ── Web Audio click synthesiser ──────────────────── */
+    var AudioCtx = window.AudioContext || window.webkitAudioContext;
+    var actx = null;
+    function getCtx() {
+      if (!actx) actx = new AudioCtx();
+      return actx;
+    }
+    function playClick(vol) {
+      try {
+        var ctx = getCtx();
+        var buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.009), ctx.sampleRate);
+        var d   = buf.getChannelData(0);
+        for (var i = 0; i < d.length; i++) {
+          d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 4);
+        }
+        var src  = ctx.createBufferSource();
+        var gain = ctx.createGain();
+        src.buffer = buf;
+        gain.gain.value = (vol || 0.07);
+        src.connect(gain);
+        gain.connect(ctx.destination);
+        src.start();
+      } catch (e) {}
+    }
+
+    /* ── Typewriter engine ─────────────────────────────── */
+    var cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    cursor.style.height = '0.82em';
+
+    function typeText(el, text, baseDelay, cb) {
+      var i = 0;
+      function step() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i);
+          if (i < text.length) playClick(0.06 + Math.random() * 0.04);
+          i++;
+          var jitter = 55 + Math.random() * 65;
+          /* Slight pause on space */
+          if (text[i - 1] === ' ') jitter += 80;
+          setTimeout(step, jitter);
+        } else {
+          if (cb) cb();
+        }
+      }
+      setTimeout(step, baseDelay);
+    }
+
+    /* Kick off on page load */
+    typeText(line1El, L1, 600, function () {
+      /* Move cursor to line 2 */
+      typeText(line2El, L2, 160, function () {
+        /* Append blinking cursor after last word */
+        line2El.appendChild(cursor);
+        /* Fade cursor out after 4s */
+        setTimeout(function () {
+          cursor.style.transition = 'opacity 1s';
+          cursor.style.opacity = '0';
+          setTimeout(function () { cursor.remove(); }, 1200);
+        }, 4000);
+      });
+    });
+
+  }());
+  </script>
+</body>
+</html>

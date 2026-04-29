@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <meta name="description" content="Nolka. Photography by Józsa Dávid. Nature, wildlife, and the light between things.">
+  <title>Nolka · Photography</title>
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.jozsadavid.com/nolka.html">
+  <meta property="og:title"       content="Nolka · Photography by Józsa Dávid">
+  <meta property="og:description" content="Nature, wildlife, and the light between things.">
+  <meta property="og:image"       content="https://www.jozsadavid.com/img/nolka/places/Island_of_Fog.jpg">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Nolka · Photography by Józsa Dávid">
+  <meta name="twitter:description" content="Nature, wildlife, and the light between things.">
+  <meta name="twitter:image"      content="https://www.jozsadavid.com/img/nolka/places/Island_of_Fog.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Space+Mono&display=swap">
+  <style>
+
+    /* ── Nolka theme ──────────────────────────────────────────── */
+    :root {
+      --gap: 6px;
+      --section-pad: clamp(4rem, 7vw, 8rem);
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-label:   'Space Mono', 'Courier New', monospace;
+    }
+
+    /* ── Disable custom cursor on Nolka ────────────────────── */
+    .cursor-dot, .cursor-ring { opacity: 0 !important; pointer-events: none !important; }
+    * { cursor: auto !important; }
+    a, button, [role="button"], .section-hd, .photo-item, .photo-item * { cursor: pointer !important; }
+
+    /* ── Nav: scrolls away on Nolka ─────────────────────────── */
+    .site-nav {
+      position: absolute;
+      width: 100%;
+    }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    .nolka-hero {
+      height: 100svh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .nolka-hero__bg {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+    }
+    @keyframes kenBurns {
+      from { transform: scale(1.0) translateY(0); }
+      to   { transform: scale(1.05) translateY(-1%); }
+    }
+    .nolka-hero__bg img {
+      width: 100%; height: 110%;
+      object-fit: cover;
+      object-position: center 42%;
+      display: block;
+      animation: kenBurns 12s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
+    .nolka-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(245,242,237,1.0)  0%,
+        rgba(245,242,237,0.92) 8%,
+        rgba(245,242,237,0.55) 22%,
+        rgba(245,242,237,0.12) 42%,
+        transparent 65%
+      );
+    }
+    .nolka-hero__content {
+      position: relative; z-index: 1;
+      padding: var(--gutter) var(--gutter) clamp(2.5rem, 5vw, 5rem);
+    }
+    .nolka-hero__logo {
+      display: block;
+      max-width: clamp(220px, 38vw, 560px);
+      width: 100%;
+      height: auto;
+      margin-bottom: 1.2rem;
+      margin-left: clamp(0px, 6vw, 80px);
+    }
+    .nolka-hero__wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 16vw, 16rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      display: none;
+      margin-bottom: 1.2rem;
+    }
+    .nolka-hero__sub {
+      font-family: var(--font-label);
+      font-size: 0.63rem;
+      letter-spacing: 0.28em;
+      color: var(--text-dim);
+    }
+
+    /* ── Statement ──────────────────────────────────────────── */
+    .nolka-statement {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: clamp(2.2rem, 4vw, 3.8rem) var(--gutter);
+    }
+    .nolka-statement__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .nolka-statement__text {
+      font-family: var(--font-display);
+      font-size: clamp(0.82rem, 1.4vw, 1.05rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 64ch;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nolka-statement__text.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nolka-statement__text em { color: var(--text); font-style: italic; }
+
+    /* ══════════════════════════════════════════════════════════
+       PHOTO SECTIONS
+    ══════════════════════════════════════════════════════════ */
+    .photo-section {
+      padding-top: var(--section-pad);
+    }
+    .photo-section--dark {
+      background: #111110;
+      padding-top: clamp(3rem, 5vw, 5rem);
+      padding-bottom: clamp(3rem, 5vw, 5rem);
+    }
+
+    /* ── Section header (collapsible) ───────────────────────── */
+    .section-hd {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 var(--gap) clamp(1.5rem, 2.5vw, 2.2rem);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-hd__ghost {
+      position: absolute;
+      left: calc(var(--gap) + 3rem);
+      top: 50%;
+      transform: translateY(-58%);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 12vw, 11rem);
+      font-weight: 800;
+      font-style: italic;
+      line-height: 1;
+      color: var(--text);
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .photo-section--dark .section-hd__ghost { color: #fff; opacity: 0.05; }
+    .photo-section--dark .section-hd {
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+    .section-hd__num {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .photo-section--dark .section-hd__num { color: rgba(232,227,216,0.3); }
+    .section-hd__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.05;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .photo-section--dark .section-hd__title { color: rgba(232,227,216,0.82); }
+    .section-hd__rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      min-width: 2rem;
+    }
+    .photo-section--dark .section-hd__rule { background: rgba(232,227,216,0.1); }
+    .section-hd__count {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .photo-section--dark .section-hd__count { color: rgba(232,227,216,0.25); }
+    .section-hd__toggle {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .photo-section--dark .section-hd__toggle { border-color: rgba(232,227,216,0.15); }
+    .section-hd:hover .section-hd__toggle { background: var(--bg-2); }
+    .section-hd__toggle svg {
+      width: 10px; height: 10px;
+      fill: none;
+      stroke: var(--text-muted);
+      stroke-width: 1.5;
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .photo-section--dark .section-hd__toggle svg { stroke: rgba(232,227,216,0.35); }
+    .section-hd[aria-expanded="false"] .section-hd__toggle svg { transform: rotate(-90deg); }
+
+    /* ── Collapsible grid wrapper ────────────────────────────── */
+    .grid-wrap {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .grid-wrap.is-collapsed { grid-template-rows: 0fr; }
+    .grid-inner { overflow: hidden; min-height: 0; }
+
+    /* ── Masonry ─────────────────────────────────────────────── */
+    .masonry {
+      column-count: 3;
+      column-gap: var(--gap);
+      padding: 0 var(--gap);
+    }
+    .masonry--soft {
+      column-count: 2;
+      padding: 0 var(--gutter);
+    }
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: var(--gap);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0;
+      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1),
+                  opacity 0.55s ease;
+    }
+    .photo-item img.is-loaded { opacity: 1; }
+    .photo-item:hover img { transform: scale(1.025); }
+
+    /* ── Staggered reveal on section open ───────────────────── */
+    @keyframes itemRise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .photo-item.is-rising {
+      animation: itemRise 0.55s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .photo-item__caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(8,7,6,0.6) 0%, transparent 100%);
+      padding: 2rem 1rem 0.85rem;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .photo-item:hover .photo-item__caption { opacity: 1; }
+    .photo-item__caption span {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: rgba(245,242,237,0.9);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════════════════════════ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: #0a0907;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      touch-action: pan-y;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .lightbox.is-open { opacity: 1; pointer-events: all; }
+    .lb-img-wrap {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 3.5rem 0;
+      min-height: 0;
+    }
+    .lb-img-wrap img {
+      max-width: 100%;
+      max-height: calc(100vh - 7rem);
+      object-fit: contain;
+      display: block;
+      transition: opacity 0.22s;
+      cursor: pointer;
+    }
+    .lb-img-wrap img.lb-loading { opacity: 0; }
+    .lb-bar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      flex-shrink: 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .lb-caption {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(245,242,237,0.55);
+    }
+    .lb-counter {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(245,242,237,0.25);
+    }
+    .lb-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+    }
+    .lb-section-label {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: rgba(245,242,237,0.25);
+    }
+    .lb-close {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      color: rgba(245,242,237,0.5);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lb-close:hover { border-color: rgba(255,255,255,0.4); color: rgba(245,242,237,0.9); }
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(245,242,237,0.4);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .lb-nav:hover { border-color: rgba(255,255,255,0.35); color: rgba(245,242,237,0.9); background: rgba(255,255,255,0.05); }
+    .lb-prev { left: 1.25rem; }
+    .lb-next { right: 1.25rem; }
+    .lb-nav svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+    .lb-prev svg { transform: rotate(180deg); }
+
+    /* ── Contact ────────────────────────────────────────────── */
+    .nolka-contact {
+      background: #0d0c0a;
+      padding: var(--section-pad) var(--gutter);
+    }
+    .nolka-contact__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .nolka-contact__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,242,237,0.82);
+      line-height: 1.05;
+    }
+    .nolka-contact__body {
+      font-size: 0.875rem;
+      color: rgba(245,242,237,0.38);
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+    .nolka-contact__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(245,242,237,0.6);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245,242,237,0.15);
+      padding-bottom: 0.2rem;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .nolka-contact__cta:hover { color: rgba(245,242,237,0.95); border-color: rgba(245,242,237,0.45); }
+    .nolka-contact__cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 0.3s; }
+    .nolka-contact__cta:hover svg { transform: translateX(3px); }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .nolka-footer {
+      background: #0d0c0a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 1.75rem var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .nolka-footer__copy {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      color: rgba(245,242,237,0.2);
+    }
+    .nolka-footer__links { display: flex; gap: 2rem; }
+    .nolka-footer__links a {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,242,237,0.2);
+      transition: color 0.2s;
+    }
+    .nolka-footer__links a:hover { color: rgba(245,242,237,0.6); }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .masonry { column-count: 2; }
+      .nolka-contact__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 560px) {
+      .masonry { column-count: 1; }
+      .masonry--soft { column-count: 1; }
+      /* Declutter the section header — hide preview strip and count on phones */
+      .section-hd__preview { display: none !important; }
+      .section-hd__count   { display: none; }
+      /* Smaller ghost number so it doesn't fight the title */
+      .section-hd__ghost   { font-size: clamp(3rem, 18vw, 5.5rem); }
+      /* Lightbox */
+      .lb-img-wrap { padding: 3.5rem 0.5rem 0.5rem; }
+      .lb-img-wrap img { max-height: calc(100vh - 8rem); }
+      .lb-nav { display: none; }
+      .lb-bar { padding: 0.75rem 1rem; }
+      .nolka-footer { flex-direction: column; text-align: center; }
+      /* Statement text — nudge up slightly on small screens */
+      .nolka-statement__text { font-size: 0.88rem; }
+    }
+
+    /* ── Respect reduced-motion preferences ─────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .nolka-hero__bg img  { animation: none; }
+      .nolka-hero::after   { animation: none; }
+      .nolka-hero__content { animation: none; opacity: 1; transform: none; }
+      .photo-item.is-rising { animation: none; opacity: 1; transform: none; }
+    }
+
+
+    /* ── Hero entrance animation ────────────────────────────── */
+    .nolka-hero__content {
+      animation: heroUp 1.4s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+    }
+    @keyframes heroUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Hero film grain ─────────────────────────────────────── */
+    .nolka-hero::after {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.038;
+      pointer-events: none;
+      z-index: 2;
+      animation: grain 0.6s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%  { transform: translate(0, 0); }
+      20% { transform: translate(-3%, -2%); }
+      40% { transform: translate(2%, 3%); }
+      60% { transform: translate(-2%, 1%); }
+      80% { transform: translate(3%, -3%); }
+    }
+
+
+    /* ── Scroll progress bar ─────────────────────────────────── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--text);
+      z-index: 1001;
+      opacity: 0.35;
+      pointer-events: none;
+      transition: width 0.08s linear;
+    }
+
+    /* ── Section thumbnail preview strip ────────────────────── */
+    .section-hd__preview {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+      flex-shrink: 0;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: opacity 0.45s cubic-bezier(0.16,1,0.3,1),
+                  max-width 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .section-hd[aria-expanded="false"] .section-hd__preview {
+      opacity: 1;
+      max-width: 280px;
+    }
+    .section-hd__preview img {
+      width: 44px;
+      height: 60px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.35) brightness(0.85);
+      flex-shrink: 0;
+      transition: filter 0.35s, transform 0.35s;
+      border-radius: 2px;
+    }
+    .section-hd__preview img:hover {
+      filter: grayscale(0) brightness(1.05);
+      transform: scale(1.1) translateY(-2px);
+    }
+    .photo-section--dark .section-hd__preview img {
+      filter: grayscale(0.35) brightness(0.75);
+    }
+    .photo-section--dark .section-hd__preview img:hover {
+      filter: grayscale(0) brightness(0.95);
+    }
+
+
+    /* ── Contact form ─────────────────────────────────────── */
+    .nolka-form { display: flex; flex-direction: column; gap: 0; }
+    .nolka-form__row { border-bottom: 1px solid rgba(245,242,237,0.1); }
+    .nolka-form__row:first-child { border-top: 1px solid rgba(245,242,237,0.1); }
+    .nolka-form__input {
+      width: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 1rem 0;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(245,242,237,0.65);
+      transition: color 0.2s;
+    }
+    .nolka-form__input::placeholder { color: rgba(245,242,237,0.2); }
+    .nolka-form__input:focus { color: rgba(245,242,237,0.9); }
+    .nolka-form__textarea { resize: none; display: block; padding-top: 1rem; }
+    .nolka-form__btn {
+      margin-top: 1.5rem;
+      background: none;
+      border: 1px solid rgba(245,242,237,0.2);
+      color: rgba(245,242,237,0.55);
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      padding: 0.85rem 2rem;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .nolka-form__btn:hover { border-color: rgba(245,242,237,0.5); color: rgba(245,242,237,0.9); }
+    .nolka-form__sent {
+      display: none;
+      margin-top: 1rem;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(245,242,237,0.4);
+    }
+
+  </style>
+</head>
+<body class="theme-nolka">
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="site-nav" id="site-nav">
+    <a href="index.html" class="nav-logo">Nolka Photography</a>
+    <div class="nav-links" id="nav-links">
+      <a href="writing.html">Writing</a>
+      <a href="nolka.html" class="active">Nolka</a>
+      <a href="kibo.html">Kibo Visuals</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <header class="nolka-hero">
+    <div class="nolka-hero__bg" id="hero-bg">
+      <img src="img/nolka/places/Island_of_Fog.jpg" alt="Forest island in morning fog" fetchpriority="high" loading="eager">
+    </div>
+    <div class="nolka-hero__overlay"></div>
+    <div class="nolka-hero__content">
+      <img class="nolka-hero__logo"
+           src="img/nolka-logo-transparent.png"
+           alt="Nolka"
+           onerror="this.style.display='none'; document.querySelector('.nolka-hero__wordmark').style.display='block';">
+      <span class="nolka-hero__wordmark">Nolka</span>
+      <span class="nolka-hero__sub">Photography by J&oacute;zsa D&aacute;vid</span>
+    </div>
+  </header>
+
+  <!-- ── Statement ─────────────────────────────────────────── -->
+  <div class="nolka-statement">
+    <div class="nolka-statement__inner">
+      <p class="nolka-statement__text">
+        &ldquo;Tempo é essa coisa, coisa das mais valiosas que temos. O tempo simplesmente passa, ele acontece. Poder eternizar fragmentos dessa coisa chamada tempo, ah, taí algo que eu só posso chamar de <em>arte.</em> Não tenho outro nome para isso...&rdquo;
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       PHOTO SECTIONS  —  populated from data/nolka.js
+       To add/remove images: edit data/nolka.js only.
+  ══════════════════════════════════════════════════════════ -->
+
+  <section class="photo-section" id="section-wild">
+    <div class="section-hd" aria-expanded="false" aria-controls="grid-wild" role="button" tabindex="0">
+      <span class="section-hd__ghost" aria-hidden="true">01</span>
+      <span class="section-hd__num">01</span>
+      <h2 class="section-hd__title">Wild Things</h2>
+      <div class="section-hd__rule"></div>
+      <span class="section-hd__count" id="count-wild"></span>
+      <div class="section-hd__preview" id="preview-wild"></div>
+      <div class="section-hd__toggle">
+        <svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </div>
+    </div>
+    <div class="grid-wrap is-collapsed" id="grid-wild">
+      <div class="grid-inner">
+        <div class="masonry" id="masonry-wild" data-section="wild"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-section photo-section--dark" id="section-soft">
+    <div class="section-hd" aria-expanded="false" aria-controls="grid-soft" role="button" tabindex="0">
+      <span class="section-hd__ghost" aria-hidden="true">02</span>
+      <span class="section-hd__num">02</span>
+      <h2 class="section-hd__title">Soft Creatures</h2>
+      <div class="section-hd__rule"></div>
+      <span class="section-hd__count" id="count-soft"></span>
+      <div class="section-hd__preview" id="preview-soft"></div>
+      <div class="section-hd__toggle">
+        <svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </div>
+    </div>
+    <div class="grid-wrap is-collapsed" id="grid-soft">
+      <div class="grid-inner">
+        <div class="masonry masonry--soft" id="masonry-soft" data-section="soft"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-section" id="section-people">
+    <div class="section-hd" aria-expanded="false" aria-controls="grid-people" role="button" tabindex="0">
+      <span class="section-hd__ghost" aria-hidden="true">03</span>
+      <span class="section-hd__num">03</span>
+      <h2 class="section-hd__title">People I know and some I don&apos;t</h2>
+      <div class="section-hd__rule"></div>
+      <span class="section-hd__count" id="count-people"></span>
+      <div class="section-hd__preview" id="preview-people"></div>
+      <div class="section-hd__toggle">
+        <svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </div>
+    </div>
+    <div class="grid-wrap is-collapsed" id="grid-people">
+      <div class="grid-inner">
+        <div class="masonry" id="masonry-people" data-section="people"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-section" id="section-places">
+    <div class="section-hd" aria-expanded="false" aria-controls="grid-places" role="button" tabindex="0">
+      <span class="section-hd__ghost" aria-hidden="true">04</span>
+      <span class="section-hd__num">04</span>
+      <h2 class="section-hd__title">Places &amp; Structures</h2>
+      <div class="section-hd__rule"></div>
+      <span class="section-hd__count" id="count-places"></span>
+      <div class="section-hd__preview" id="preview-places"></div>
+      <div class="section-hd__toggle">
+        <svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </div>
+    </div>
+    <div class="grid-wrap is-collapsed" id="grid-places">
+      <div class="grid-inner">
+        <div class="masonry" id="masonry-places" data-section="places"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ───────────────────────────────────────────── -->
+  <div class="nolka-contact">
+    <div class="nolka-contact__inner">
+      <h2 class="nolka-contact__heading">Commissions,<br>licensing &amp;<br>collaborations.</h2>
+      <form class="nolka-form" id="nolka-form" action="https://formspree.io/f/xqenzdpq" method="POST" novalidate>
+        <input type="hidden" name="_source" value="Nolka">
+        <div class="nolka-form__row">
+          <input class="nolka-form__input" type="text" name="name" placeholder="Name" required autocomplete="name">
+        </div>
+        <div class="nolka-form__row">
+          <input class="nolka-form__input" type="email" name="email" placeholder="Email" required autocomplete="email">
+        </div>
+        <div class="nolka-form__row">
+          <textarea class="nolka-form__input nolka-form__textarea" name="message" rows="4" placeholder="Message" required></textarea>
+        </div>
+        <button class="nolka-form__btn" type="submit">Send &rarr;</button>
+        <p class="nolka-form__sent" id="nolka-form-sent">Thanks for trying to contact me. I'll get back to you asap.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="nolka-footer">
+    <span class="nolka-footer__copy">&copy; J&oacute;zsa D&aacute;vid &middot; Nolka Photography</span>
+    <nav class="nolka-footer__links">
+      <a href="index.html">Home</a>
+      <a href="writing.html">Writing</a>
+      <a href="kibo.html">Kibo Visuals</a>
+    </nav>
+  </footer>
+
+  <!-- ── Lightbox ──────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lb-top-bar">
+      <span class="lb-section-label" id="lb-section"></span>
+      <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
+    </div>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-bar">
+      <span class="lb-caption" id="lb-caption"></span>
+      <span class="lb-counter" id="lb-counter"></span>
+    </div>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous photo">
+      <svg viewBox="0 0 14 14"><polyline points="9,2 5,7 9,12"/></svg>
+    </button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next photo">
+      <svg viewBox="0 0 14 14"><polyline points="5,2 9,7 5,12"/></svg>
+    </button>
+  </div>
+
+  <!-- data/nolka.js sets the global NOLKA_DATA object.
+       To add/remove photos, edit that file only — never touch nolka.html. -->
+  <script src="js/ambient.js" defer></script>
+  <script src="data/nolka.js"></script>
+  <script>
+  (function () {
+
+    /* ── Helpers ─────────────────────────────────────────── */
+    function captionFromSrc(filename) {
+      var name = filename.replace(/\.[^.]+$/, '');   // strip extension
+      name = name.replace(/[-_]+/g, ' ');            // underscores / hyphens → spaces
+      return name.replace(/\s+/g, ' ').trim();
+    }
+
+    /* ── Lightbox ────────────────────────────────────────── */
+    var lb        = document.getElementById('lightbox');
+    var lbImg     = document.getElementById('lb-img');
+    var lbCaption = document.getElementById('lb-caption');
+    var lbCounter = document.getElementById('lb-counter');
+    var lbSection = document.getElementById('lb-section');
+    var lbClose   = document.getElementById('lb-close');
+    var lbPrevBtn = document.getElementById('lb-prev');
+    var lbNextBtn = document.getElementById('lb-next');
+    var lbItems = [], lbIdx = 0;
+
+    function lbOpen(arr, i) {
+      lbItems = arr; lbIdx = i;
+      lbShow(lbIdx);
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+    function lbCloseF() { lb.classList.remove('is-open'); document.body.style.overflow = ''; }
+    function lbShow(i) {
+      var it = lbItems[i];
+      lbImg.classList.add('lb-loading');
+      var tmp = new Image();
+      tmp.onload = function () {
+        lbImg.src = it.src;
+        lbImg.alt = it.caption;
+        lbImg.classList.remove('lb-loading');
+      };
+      tmp.src = it.src;
+      lbCaption.textContent = it.caption;
+      lbCounter.textContent = (i + 1) + ' / ' + lbItems.length;
+      lbSection.textContent = (it.section || '').toUpperCase();
+    }
+    function lbPrev() { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; lbShow(lbIdx); }
+    function lbNext() { lbIdx = (lbIdx + 1) % lbItems.length; lbShow(lbIdx); }
+
+    lbClose.addEventListener('click', lbCloseF);
+    lbPrevBtn.addEventListener('click', lbPrev);
+    lbNextBtn.addEventListener('click', lbNext);
+    lbImg.addEventListener('click', lbNext);
+    lb.addEventListener('click', function (e) { if (e.target === lb) lbCloseF(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape')     lbCloseF();
+      if (e.key === 'ArrowLeft')  lbPrev();
+      if (e.key === 'ArrowRight') lbNext();
+    });
+    var touchX = 0;
+    lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend',   function (e) {
+      var d = touchX - e.changedTouches[0].clientX;
+      if (Math.abs(d) > 50) { if (d > 0) lbNext(); else lbPrev(); }
+    });
+
+    /* ── Section toggle ──────────────────────────────────── */
+    document.querySelectorAll('.section-hd').forEach(function (hd) {
+      var wrap = document.getElementById(hd.getAttribute('aria-controls'));
+      if (!wrap) return;
+      function toggle() {
+        var expanded = hd.getAttribute('aria-expanded') === 'true';
+        hd.setAttribute('aria-expanded', String(!expanded));
+        wrap.classList.toggle('is-collapsed', expanded);
+        if (expanded) return; /* closing — no stagger needed */
+        var items = wrap.querySelectorAll('.photo-item');
+        items.forEach(function (item, i) {
+          item.classList.remove('is-rising');
+          item.style.animationDelay = '';
+          /* force reflow so re-triggering works */
+          void item.offsetWidth;
+          item.style.animationDelay = (i * 28) + 'ms';
+          item.classList.add('is-rising');
+        });
+      }
+      hd.addEventListener('click', toggle);
+      hd.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+
+    /* ── Hero parallax (desktop only — mobile gets Ken Burns without stutter) */
+    var heroBg = document.getElementById('hero-bg');
+    if (heroBg && window.innerWidth > 768) {
+      window.addEventListener('scroll', function () {
+        heroBg.style.transform = 'translateY(' + (window.scrollY * 0.28) + 'px)';
+      }, { passive: true });
+    }
+
+    /* ── Scroll progress bar ─────────────────────────────── */
+    var progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+      }, { passive: true });
+    }
+
+    /* ── Scroll reveal (section headers + contact) ──────── */
+    var revealEls = document.querySelectorAll('.nolka-contact');
+    if (window.IntersectionObserver) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      revealEls.forEach(function (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+        el.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+        io.observe(el);
+      });
+    }
+
+    /* ── Contact form ───────────────────────────────────── */
+    var nolkaForm = document.getElementById('nolka-form');
+    var nolkaSent = document.getElementById('nolka-form-sent');
+    if (nolkaForm) {
+      nolkaForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = nolkaForm.querySelector('button[type=submit]');
+        var data = new FormData(nolkaForm);
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        fetch(nolkaForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(function (r) {
+          if (r.ok) {
+            nolkaSent.style.display = 'block';
+            nolkaSent.textContent = 'Thanks for reaching out. I\'ll get back to you asap.';
+            nolkaForm.reset();
+          } else {
+            nolkaSent.style.display = 'block';
+            nolkaSent.textContent = 'Something went wrong — try again or reach out via Instagram.';
+          }
+        }).catch(function () {
+          nolkaSent.style.display = 'block';
+          nolkaSent.textContent = 'Something went wrong — try again or reach out via Instagram.';
+        }).finally(function () {
+          if (btn) { btn.disabled = false; btn.textContent = 'Send →'; }
+        });
+      });
+    }
+
+    /* ── Statement fade-in on scroll ────────────────────── */
+    var stmtEl = document.querySelector('.nolka-statement__text');
+    if (stmtEl && window.IntersectionObserver) {
+      var stmtObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            stmtObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      stmtObs.observe(stmtEl);
+    }
+
+    /* ── Build photo grids from NOLKA_DATA ───────────────── */
+    if (typeof NOLKA_DATA !== 'undefined') {
+      var BASE = 'img/nolka/';
+
+      function captionFromFile(filename) {
+        var name = filename.replace(/\.[^.]+$/, '');
+        name = name.replace(/[-_]+/g, ' ');
+        return name.replace(/\s+/g, ' ').trim();
+      }
+
+      Object.keys(NOLKA_DATA).forEach(function (key) {
+        var sec    = NOLKA_DATA[key];
+        var grid   = document.getElementById('masonry-' + key);
+        var count  = document.getElementById('count-' + key);
+        var preview = document.getElementById('preview-' + key);
+        if (!grid) return;
+
+        var lbArr = [];
+
+        sec.images.forEach(function (filename, i) {
+          var src     = BASE + key + '/' + filename;
+          var caption = captionFromFile(filename);
+
+          /* lightbox array entry */
+          lbArr.push({ src: src, caption: caption, section: sec.label });
+
+          /* preview strip (first 3 images) */
+          if (preview && i < 3) {
+            var prev = document.createElement('img');
+            prev.src = src; prev.alt = ''; prev.loading = 'lazy';
+            preview.appendChild(prev);
+          }
+
+          /* photo item */
+          var item = document.createElement('div');
+          item.className = 'photo-item';
+          var img = document.createElement('img');
+          img.src = src; img.alt = caption; img.loading = 'lazy';
+          img.onload = function () { img.classList.add('is-loaded'); };
+          if (img.complete) img.classList.add('is-loaded');
+          var cap = document.createElement('div');
+          cap.className = 'photo-item__caption';
+          cap.innerHTML = '<span>' + caption + '</span>';
+          item.appendChild(img);
+          item.appendChild(cap);
+
+          item.addEventListener('click', function () {
+            lbOpen(lbArr, i);
+          });
+
+          grid.appendChild(item);
+        });
+
+        if (count) count.textContent = sec.images.length + ' photos';
+      });
+    }
+
+  }());
+  </script>
+</body>
+</html>
