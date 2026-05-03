@@ -120,7 +120,7 @@
     }
     .nolka-statement__text {
       font-family: var(--font-display);
-      font-size: clamp(0.82rem, 1.4vw, 1.05rem);
+      font-size: clamp(1.05rem, 1.9vw, 1.4rem);
       font-weight: 300;
       font-style: italic;
       color: var(--text-dim);
@@ -625,6 +625,32 @@
       font-style: italic;
       color: rgba(245,242,237,0.4);
     }
+    .nolka-form__actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .nolka-form__actions .nolka-form__btn { margin-top: 0; }
+    .nolka-ig-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,242,237,0.2);
+      border-radius: 50%;
+      color: rgba(245,242,237,0.45);
+      transition: border-color 0.25s, color 0.25s;
+      flex-shrink: 0;
+    }
+    .nolka-ig-link:hover { border-color: rgba(245,242,237,0.55); color: rgba(245,242,237,0.9); }
+    .nolka-ig-link svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .nolka-footer__ig {
+      color: rgba(245,242,237,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nolka-footer__ig:hover { color: rgba(245,242,237,0.85); }
 
   </style>
 </head>
@@ -765,7 +791,16 @@
         <div class="nolka-form__row">
           <textarea class="nolka-form__input nolka-form__textarea" name="message" rows="4" placeholder="Message" required></textarea>
         </div>
-        <button class="nolka-form__btn" type="submit">Send &rarr;</button>
+        <div class="nolka-form__actions">
+          <button class="nolka-form__btn" type="submit">Send &rarr;</button>
+          <a class="nolka-ig-link" href="https://www.instagram.com/nolka_photography/" target="_blank" rel="noopener" aria-label="Nolka on Instagram">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
         <p class="nolka-form__sent" id="nolka-form-sent">Thanks for trying to contact me. I'll get back to you asap.</p>
       </form>
     </div>
@@ -773,9 +808,9 @@
 
   <!-- ── Footer ────────────────────────────────────────────── -->
   <footer class="nolka-footer">
-    <span class="nolka-footer__copy">&copy; J&oacute;zsa D&aacute;vid &middot; Nolka Photography</span>
+    <span class="nolka-footer__copy">&copy; J&oacute;zsa D&aacute;vid &middot; <a href="https://www.instagram.com/nolka_photography/" target="_blank" rel="noopener" class="nolka-footer__ig">Nolka Photography</a></span>
     <nav class="nolka-footer__links">
-      <a href="index.html">Home</a>
+      <a href="index.html">Portal</a>
       <a href="writing.html">Writing</a>
       <a href="kibo.html">Kibo Visuals</a>
     </nav>
@@ -804,6 +839,7 @@
 
   <!-- data/nolka.js sets the global NOLKA_DATA object.
        To add/remove photos, edit that file only — never touch nolka.html. -->
+  <script>window.__disableSounds = true;</script>
   <script src="js/ambient.js" defer></script>
   <script src="data/nolka.js"></script>
   <script>

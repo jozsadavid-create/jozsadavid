@@ -87,7 +87,7 @@
      AudioContext is created lazily after first interaction.
   ══════════════════════════════════════════════════════════ */
   let audioCtx = null;
-  let soundEnabled = true;
+  let soundEnabled = !window.__disableSounds;
 
   function getAudio() {
     if (!audioCtx) {

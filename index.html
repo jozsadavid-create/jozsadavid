@@ -201,9 +201,9 @@
     }
     .index-name__sub {
       font-family: var(--font-label);
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       letter-spacing: 0.28em;
-      color: rgba(232, 227, 216, 0.15);
+      color: rgba(232, 227, 216, 0.28);
       margin-top: 1rem;
     }
 
@@ -439,6 +439,7 @@
     <span>hover to explore</span>
   </div>
 
+  <script>window.__disableSounds = true;</script>
   <script src="js/ambient.js" defer></script>
   <script>
     (function () {
@@ -558,9 +559,7 @@
       var hintGone = false;
 
       portals.forEach(function (p) {
-        /* Sound on hover */
         p.addEventListener('mouseenter', function () {
-          if (hovered !== p) { hovered = p; playHover(); }
           /* Auto-hide hint on first portal hover */
           if (!hintGone && hintEl) {
             hintGone = true;
