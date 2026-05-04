@@ -183,6 +183,27 @@
       padding: 0 var(--gutter) 1rem;
       border-bottom: 1px solid var(--border);
       margin-bottom: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ghost typographic scale text */
+    .strip-ghost {
+      position: absolute;
+      right: -0.04em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.045;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      line-height: 1;
     }
     .kibo-archviz__strip-label {
       font-family: var(--font-label);
@@ -640,16 +661,20 @@
     .lb-img-wrap img.lb-loading { opacity: 0; }
     .lb-bar {
       width: 100%; display: flex; align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem; flex-shrink: 0;
+      justify-content: center;
+      position: relative;
+      padding: 1.1rem 1.5rem; flex-shrink: 0;
       border-top: 1px solid rgba(255,255,255,0.06);
     }
     .lb-caption {
       font-family: var(--font-label);
-      font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(240,236,229,0.69);
+      font-size: 0.86rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(240,236,229,0.72);
+      text-align: center;
     }
     .lb-counter {
+      position: absolute;
+      right: 1.5rem;
       font-family: var(--font-label);
       font-size: 0.54rem; letter-spacing: 0.18em;
       color: rgba(240,236,229,0.18);
@@ -666,13 +691,13 @@
       color: rgba(240,236,229,0.18);
     }
     .lb-close {
-      background: none; border: 1px solid rgba(255,255,255,0.14);
+      background: none; border: 1px solid rgba(255,255,255,0.32);
       border-radius: 50%; width: 36px; height: 36px;
-      color: rgba(240,236,229,0.4); font-size: 1rem;
+      color: rgba(240,236,229,0.72); font-size: 1rem;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: border-color 0.2s, color 0.2s;
     }
-    .lb-close:hover { border-color: rgba(255,255,255,0.38); color: rgba(240,236,229,0.9); }
+    .lb-close:hover { border-color: rgba(255,255,255,0.65); color: rgba(240,236,229,0.98); }
     .lb-nav {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: none; border: 1px solid rgba(255,255,255,0.1);
@@ -990,9 +1015,9 @@
   <nav class="site-nav" id="site-nav">
     <a href="index.html" class="nav-logo">Józsa Dávid</a>
     <div class="nav-links" id="nav-links">
-      <a href="writing.html">Writing</a>
       <a href="nolka.html">Nolka</a>
       <a href="kibo.html" class="active">Kibo Visuals</a>
+      <a href="writing.html">Writing</a>
     </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1033,6 +1058,7 @@
     <div class="kibo-archviz__strip" id="gallery-exteriors">
       <div class="kibo-archviz__strip-hd">
         <span class="kibo-archviz__strip-label">Exteriors</span>
+        <span class="strip-ghost" aria-hidden="true">Exteriors</span>
       </div>
       <div class="strip-collapsible">
       <div class="kibo-filmstrip" id="strip-exteriors" data-section="Exteriors">
@@ -1049,6 +1075,7 @@
     <div class="kibo-archviz__strip" id="gallery-interiors">
       <div class="kibo-archviz__strip-hd">
         <span class="kibo-archviz__strip-label">Interiors</span>
+        <span class="strip-ghost" aria-hidden="true">Interiors</span>
       </div>
       <div class="strip-collapsible">
       <div class="kibo-filmstrip" id="strip-interiors" data-section="Interiors">
@@ -1066,6 +1093,7 @@
       <div class="kibo-archviz__strip-hd">
         <span class="kibo-archviz__strip-label">Creative Direction</span>
         <span class="kibo-archviz__strip-desc">Shaping outcome beyond execution, visual language, guidance and training to frame a singular vision across teams...</span>
+        <span class="strip-ghost" aria-hidden="true">Direction</span>
         <button class="strip-toggle is-collapsed" aria-expanded="false" aria-label="Toggle Creative Direction gallery">
           <svg viewBox="0 0 36 36">
             <circle class="strip-toggle__ring" cx="18" cy="18" r="16" transform="rotate(-90 18 18)"/>
@@ -1096,6 +1124,7 @@
   <section class="kibo-gallery" id="gallery-art">
     <div class="kibo-archviz__strip-hd">
       <span class="kibo-archviz__strip-label">Art</span>
+      <span class="strip-ghost" aria-hidden="true">Art</span>
     </div>
     <div class="strip-collapsible">
     <div class="kibo-film-rail" id="film-rail-top"></div>
@@ -1214,13 +1243,13 @@
       </form>
 
       <div class="contact-social">
-        <a href="https://www.instagram.com/kibovisuals/" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="3"/><circle cx="8" cy="8" r="3"/><circle cx="11.5" cy="4.5" r="0.8" fill="currentColor" stroke="none"/></svg>
-          kibovisuals
-        </a>
         <a href="https://www.linkedin.com/in/jozsadavid/" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="2"/><line x1="5" y1="7" x2="5" y2="12"/><line x1="5" y1="4.5" x2="5" y2="5.2"/><path d="M8 7v5m0-3c0-1.5 4-2 4 1v2"/></svg>
           jozsadavid
+        </a>
+        <a href="https://www.instagram.com/kibovisuals/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="3"/><circle cx="8" cy="8" r="3"/><circle cx="11.5" cy="4.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+          kibovisuals
         </a>
       </div>
     </div>
@@ -1925,6 +1954,26 @@
         });
       });
     }
+
+    /* ── Page transition overlay ────────────────────────────── */
+    var kiboOverlay = document.createElement('div');
+    kiboOverlay.className = 'page-transition-overlay';
+    document.body.appendChild(kiboOverlay);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        kiboOverlay.classList.add('is-out');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (!link) return;
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto') ||
+          href.startsWith('http') || href.startsWith('//') || link.target === '_blank') return;
+      e.preventDefault();
+      kiboOverlay.classList.remove('is-out');
+      setTimeout(function () { window.location.href = href; }, 450);
+    });
 
   }());
   </script>

@@ -332,6 +332,67 @@ body.theme-kibo  .cursor-ring  { border-color: #787672; }
 .cursor-dot.is-click           { width: 3px; height: 3px; }
 .cursor-ring.is-click          { width: 18px; height: 18px; opacity: 1; }
 
+/* ── Cursor context variants ────────────────────────────────── */
+
+/* Nolka — camera AF focus box (difference blend = visible on any bg) */
+body.theme-nolka .cursor-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: white;
+  mix-blend-mode: difference;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+body.theme-nolka .cursor-ring {
+  border-radius: 0;
+  width: 30px; height: 30px;
+  border: 1.5px solid white;
+  opacity: 0.75;
+  mix-blend-mode: difference;
+  transition:
+    width 0.2s var(--ease),
+    height 0.2s var(--ease),
+    opacity 0.18s,
+    box-shadow 0.18s;
+}
+body.theme-nolka .cursor-ring.is-hover {
+  width: 36px; height: 36px;
+  border-radius: 0;
+  opacity: 1;
+}
+/* Focus locked — green flash on click */
+body.theme-nolka .cursor-ring.is-click {
+  border-color: #4ade80;
+  box-shadow: 0 0 10px rgba(74,222,128,0.5);
+  width: 28px; height: 28px;
+  opacity: 1;
+}
+body.theme-nolka .cursor-dot.is-hover  { opacity: 0.4; }
+body.theme-nolka .cursor-dot.is-click  { background: #4ade80; }
+
+/* Writing — native system cursor (the classic arrow) */
+@media (pointer: fine) {
+  body.theme-writing,
+  body.theme-writing * { cursor: default !important; }
+  body.theme-writing a,
+  body.theme-writing button,
+  body.theme-writing [role="button"] { cursor: pointer !important; }
+}
+body.theme-writing .cursor-dot,
+body.theme-writing .cursor-ring { opacity: 0 !important; pointer-events: none !important; }
+
+/* ── Page transition overlay ────────────────────────────────── */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: #050503;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page-transition-overlay.is-out { opacity: 0; }
+
 /* ── Film grain overlay ─────────────────────────────────────── */
 .film-grain {
   position: fixed;

@@ -155,10 +155,11 @@
   window.snd = { hover: playHover, click: playClick, portal: playPortalEnter };
 
   // Wire all interactive elements
+  const clickSoundEnabled = !window.__disableClickSound;
   if (!isTouch) {
     document.querySelectorAll('a, button, [role="button"]').forEach(el => {
       el.addEventListener('mouseenter', playHover);
-      el.addEventListener('mousedown',  playClick);
+      if (clickSoundEnabled) el.addEventListener('mousedown', playClick);
     });
 
     // Portal hover: different sound
@@ -251,5 +252,39 @@
       });
     });
   }
+
+  /* ══════════════════════════════════════════════════════════
+     PAGE TRANSITIONS
+     Full-page overlay fades out on load, fades in before
+     navigating to any internal page link.
+  ══════════════════════════════════════════════════════════ */
+  const overlay = document.createElement('div');
+  overlay.className = 'page-transition-overlay';
+  document.body.appendChild(overlay);
+
+  // Fade out on load (starts opaque, goes transparent)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      overlay.classList.add('is-out');
+    });
+  });
+
+  // Fade in on internal navigation
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (
+      !href ||
+      href.startsWith('#') ||
+      href.startsWith('mailto') ||
+      href.startsWith('http') ||
+      href.startsWith('//') ||
+      link.target === '_blank'
+    ) return;
+    e.preventDefault();
+    overlay.classList.remove('is-out');
+    setTimeout(() => { window.location.href = href; }, 450);
+  });
 
 })();
