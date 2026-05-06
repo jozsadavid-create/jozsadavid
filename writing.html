@@ -780,6 +780,16 @@
     }
     @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+    /* ── Passage mode (post-typewriter) ──────────────────── */
+    .w-hero__title.passage-mode {
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      line-height: 1.0;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      font-style: italic;
+      font-weight: 300;
+    }
+
   </style>
 </head>
 <body class="theme-writing">
@@ -878,7 +888,7 @@
             <span class="vol-status vol-status--pub">Published</span>
           </div>
           <div class="vol-quote">
-            <p>"Diga 'nunca mais', bicho patético. Poe dedicou-te uma obra completa e toda a humanidade te conhece. Nunca mais. Certamente é uma afirmação verdadeira. Nunca mais existirá um corvo como o de Poe. Tampouco existirá outro corvo como você, meu caro."</p>
+            <p>"Diga "nunca mais", bicho patético. Poe dedicou-te uma obra completa e toda a humanidade te conhece por conta desse feito. Eu mesmo conheço-te por causa disso. Fui obrigado a ler tal poema em meus enfadonhos tempos de escola e nem por isso passei a gostar de você, a simpatizar contigo. Talvez consigas reverter isso agora. Diga "nunca mais" e estará feito."</p>
           </div>
           <div class="vol-actions">
             <a href="https://www.amazon.com.br/Adam-Relatos-Obscuros-Perversividade-Humana-ebook/dp/B0CW1F9T2T" target="_blank" rel="noopener" class="btn btn--primary">Buy on Amazon →</a>
@@ -987,7 +997,7 @@
       <div class="w-bio__text" data-reveal>
         <p><strong>Józsa Dávid</strong> is a writer, photographer, journalist and creative director. Always writing, before, during and after everything else.</p>
         <p>The result is writing that doesn't respect limits. It carries the rhythm of journalism, the framing of photography, the precision of creative direction, and the obsession with detail that comes from years spent behind the bars of one's own conscience.</p>
-        <p style="margin-top: 2em; padding-top: 1.5em; border-top: 1px solid var(--border); color: var(--text-dim);">I've started writing before the internet was a thing. Every word is mine. No AI was, were or will be used, consulted, or invited anywhere near my writing: not in the past, not now, not ever. What you read is the direct and unfiltered output of one brain. My brain. Blame only me.<br><br><span style="display: block; text-align: right; padding-right: 30%;">Cheers!</span></p>
+        <p style="margin-top: 2em; padding-top: 1.5em; border-top: 1px solid var(--border); color: var(--text-dim);">"I've started writing before the internet was a thing. Every word is mine. No AI was, were or will be used, consulted, or invited anywhere near my writing: not in the past, not now, not ever. What you read is the direct and unfiltered output of one brain. My brain. Blame only me."<br><br><span style="display: block; text-align: right; padding-right: 30%;">Cheers!</span></p>
       </div>
       <div class="w-bio__facts" data-reveal data-reveal-delay="100">
         <img class="w-bio__photo" src="img/writer/jd.jpg" alt="Józsa Dávid">
@@ -1151,21 +1161,22 @@
       } catch (e) {}
     }
 
-    /* ── Typewriter engine ─────────────────────────────── */
+    /* ── Typewriter engine (spd: 1 = normal, 0.5 = faster) ── */
     var cursor = document.createElement('span');
     cursor.className = 'tw-cursor';
     cursor.style.height = '0.82em';
 
-    function typeText(el, text, baseDelay, cb) {
+    function typeText(el, text, baseDelay, cb, spd) {
+      spd = spd || 1;
       var i = 0;
       function step() {
         if (i <= text.length) {
           el.textContent = text.slice(0, i);
           if (i < text.length) playClick(0.06 + Math.random() * 0.04);
           i++;
-          var jitter = 55 + Math.random() * 65;
-          /* Slight pause on space */
-          if (text[i - 1] === ' ') jitter += 80;
+          var jitter = (55 + Math.random() * 65) * spd;
+          if (text[i - 1] === ' ')  jitter += 60 * spd;
+          if ('.!?,;:…'.indexOf(text[i - 1]) >= 0) jitter += 90 * spd;
           setTimeout(step, jitter);
         } else {
           if (cb) cb();
@@ -1174,18 +1185,70 @@
       setTimeout(step, baseDelay);
     }
 
+    /* ── Backspace engine ──────────────────────────────────── */
+    function backspaceText(el, cb) {
+      function step() {
+        var txt = el.textContent;
+        if (txt.length > 0) {
+          el.textContent = txt.slice(0, -1);
+          playClick(0.032 + Math.random() * 0.022);
+          setTimeout(step, 20 + Math.random() * 25);
+        } else {
+          if (cb) cb();
+        }
+      }
+      step();
+    }
+
+    /* ── Passages pool (random on each load) ──────────────── */
+    var PASSAGES = [
+      'Não é pavor só de dentistas. É de qualquer um vestido de branco. Médicos, dentistas, pai-de-santo, noiva em dia de casamento. Se está de branco e quer falar comigo, problema tem.',
+      'Diga “nunca mais”, bicho patético. Poe dedicou-te uma obra completa e toda a humanidade te conhece por conta desse feito. Eu mesmo conheço-te por causa disso. Fui obrigado a ler tal poema em meus enfadonhos tempos de escola e nem por isso passei a gostar de você, a simpatizar contigo. Talvez consigas reverter isso agora. Diga “nunca mais” e estará feito.',
+      'Vai, vire a página. Leia e absorva. E sofra, se necessário. Ainda é somente ficção...',
+      'A mula sem cabeça é um animal típico do folclore brasileiro. Encontrada geralmente na totalidade branca acinzentada, pode assumir um tom mais escuro e/ou azulado se for avistada no meio da noite, período do dia no qual se torna mais ativa.',
+      'Chamando sua mãe de meu sorvete em calda, meu pedacinho do paraíso?'
+    ];
+    var heroPassage = PASSAGES[Math.floor(Math.random() * PASSAGES.length)];
+
     /* Kick off on page load */
     typeText(line1El, L1, 600, function () {
-      /* Move cursor to line 2 */
       typeText(line2El, L2, 160, function () {
-        /* Append blinking cursor after last word */
+        /* Cursor appears after typing */
         line2El.appendChild(cursor);
-        /* Fade cursor out after 4s */
+
+        /* 500ms pause, then backspace */
         setTimeout(function () {
-          cursor.style.transition = 'opacity 1s';
-          cursor.style.opacity = '0';
-          setTimeout(function () { cursor.remove(); }, 1200);
-        }, 4000);
+          cursor.remove();
+          cursor.style.opacity   = '';
+          cursor.style.transition = '';
+
+          /* Erase line2 character by character, then line1 */
+          backspaceText(line2El, function () {
+            var titleEl = document.getElementById('w-typewriter');
+            /* Remove the <br> between lines */
+            var brEl = titleEl.querySelector('br');
+            if (brEl) brEl.remove();
+
+            backspaceText(line1El, function () {
+              /* Apply passage-mode font size while the field is empty */
+              titleEl.classList.add('passage-mode');
+              titleEl.setAttribute('aria-label', heroPassage);
+
+              /* Reinsert cursor as sibling of line1El so typeText won't blow it away */
+              titleEl.insertBefore(cursor, line2El);
+
+              /* Short breath, then type the passage */
+              typeText(line1El, heroPassage, 120, function () {
+                /* Passage complete — blink cursor a moment then fade it */
+                setTimeout(function () {
+                  cursor.style.transition = 'opacity 1s';
+                  cursor.style.opacity    = '0';
+                  setTimeout(function () { cursor.remove(); }, 1200);
+                }, 3500);
+              }, 0.55); /* 0.55× speed → snappier typing */
+            });
+          });
+        }, 500);
       });
     });
 
