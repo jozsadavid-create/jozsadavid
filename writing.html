@@ -739,7 +739,7 @@
       transition: width 0.08s linear;
     }
 
-    /* ── Animated smoke in hero ─────────────────────────── */
+        /* ── Animated softbox in hero ─────────────────────────── */
     .w-hero__bg::before,
     .w-hero__bg::after {
       content: '';
@@ -767,6 +767,17 @@
       33%  { transform: translateY(-8vh) translateX(2vw) scaleX(1.08); opacity: 1; }
       66%  { transform: translateY(-18vh) translateX(-1.5vw) scaleX(0.95); opacity: 0.75; }
       100% { transform: translateY(-28vh) translateX(1vw) scaleX(1.05); opacity: 0; }
+    }
+
+    /* ── Rule above label ───────────────────────────────── */
+    .w-hero__label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--text-dim);
+      margin-bottom: 0.75rem;
+      opacity: 0.55;
     }
 
     /* ── Typewriter cursor ──────────────────────────────── */
@@ -824,7 +835,6 @@
     <div class="series-header" data-reveal>
       <h2 class="series-title">Diariedades</h2>
       <span class="series-meta">Crônicas</span>
-      <span class="series-ghost" aria-hidden="true">Diariedades</span>
     </div>
     <!-- Vol 01 -->
     <div class="book-entry" data-reveal data-reveal-delay="80">
@@ -858,7 +868,6 @@
     </article>
   </section>
 
-  <div style="height:1px;background:var(--border);"></div>
 
   <!-- ══════════════════════════════════════════════════════
        RELATOS OBSCUROS DA PERVERSIVIDADE HUMANA
@@ -867,7 +876,6 @@
     <div class="series-header" data-reveal>
       <h2 class="series-title">Relatos Obscuros<br>da Perversividade Humana</h2>
       <span class="series-meta">Series · 09 Volumes</span>
-      <span class="series-ghost" aria-hidden="true">Relatos</span>
     </div>
 
     <p class="universe-note" data-reveal data-reveal-delay="60">
@@ -968,7 +976,6 @@
     </div>
   </section>
 
-  <div style="height:1px;background:var(--border);"></div>
 
   <!-- ══════════════════════════════════════════════════════
        AS FAR AS I REMEMBER, I ALWAYS WANTED TO BE A COUCH
