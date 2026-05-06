@@ -16,6 +16,7 @@
   <meta name="twitter:title"      content="Kibo Visuals · Józsa Dávid">
   <meta name="twitter:description" content="CGI and creative direction. Nearly two decades. One discipline.">
   <meta name="twitter:image"      content="https://www.jozsadavid.com/img/kibo/Exteriors/MOZSES_Neom_Mansions_Arrival.jpg">
+  <link rel="canonical" href="https://www.jozsadavid.com/kibo.html">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -796,6 +797,19 @@
     }
     @keyframes bar-slide-in { to { transform: translateY(0); } }
 
+    /* ── Nav adaptation for bright hero images ─────────────── */
+    .site-nav.nav--light-hero:not(.scrolled) .nav-logo,
+    .site-nav.nav--light-hero:not(.scrolled) .nav-links a {
+      color: rgba(13,12,10,0.72);
+    }
+    .site-nav.nav--light-hero:not(.scrolled) .nav-links a:hover,
+    .site-nav.nav--light-hero:not(.scrolled) .nav-links a.active {
+      color: #0d0c0a;
+    }
+    .site-nav.nav--light-hero:not(.scrolled) .nav-links a::after {
+      background: #0d0c0a;
+    }
+
     /* ══════════════════════════════════════════════════════════
        FILMSTRIP EDGE VIGNETTE
     ══════════════════════════════════════════════════════════ */
@@ -1030,7 +1044,6 @@
   <header class="kibo-hero">
     <div class="kibo-hero__bg" id="hero-bg" role="presentation"></div>
     <div class="kibo-hero__overlay" role="presentation"></div>
-    <div class="kibo-hero__bar kibo-hero__bar--top"    role="presentation"></div>
     <div class="kibo-hero__bar kibo-hero__bar--bottom" role="presentation"></div>
     <div class="kibo-hero__content">
       <img class="kibo-hero__logo-img"
@@ -1532,6 +1545,36 @@
       if (heroPool.length > 0) {
         var pick = heroPool[Math.floor(Math.random() * heroPool.length)];
         heroBg.style.backgroundImage = "url('" + pick.replace(/\\/g, '/').replace(/'/g, "\\'") + "')";
+
+        /* ── Nav text: adapt to hero brightness ─────────────── */
+        (function(src) {
+          var probe = new Image();
+          probe.crossOrigin = 'anonymous';
+          probe.onload = function() {
+            try {
+              var canvas = document.createElement('canvas');
+              canvas.width = 120; canvas.height = 50;
+              var ctx2d = canvas.getContext('2d');
+              /* Sample top-right region where nav links sit */
+              ctx2d.drawImage(probe,
+                Math.floor(probe.naturalWidth * 0.5), 0,
+                Math.floor(probe.naturalWidth * 0.5), Math.floor(probe.naturalHeight * 0.12),
+                0, 0, 120, 50
+              );
+              var px = ctx2d.getImageData(0, 0, 120, 50).data;
+              var lum = 0;
+              for (var i = 0; i < px.length; i += 4) {
+                lum += px[i] * 0.299 + px[i+1] * 0.587 + px[i+2] * 0.114;
+              }
+              lum /= (px.length / 4);
+              if (lum > 148) {
+                var nav = document.getElementById('site-nav');
+                if (nav) nav.classList.add('nav--light-hero');
+              }
+            } catch(e) { /* tainted canvas — skip */ }
+          };
+          probe.src = src;
+        }(pick));
 
         /* ── Hero image credit ──────────────────────────────── */
         var creditEl = document.getElementById('hero-credit');
