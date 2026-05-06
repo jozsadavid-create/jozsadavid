@@ -393,6 +393,9 @@ body.theme-writing .cursor-ring { opacity: 0 !important; pointer-events: none !i
 }
 .page-transition-overlay.is-out { opacity: 0; }
 
+/* Nolka is a light theme — transition through near-white instead of black */
+body.theme-nolka .page-transition-overlay { background: #f5f2ed; }
+
 /* ── Film grain overlay ─────────────────────────────────────── */
 .film-grain {
   position: fixed;

@@ -729,6 +729,16 @@
       .series-header       { grid-template-columns: 1fr; gap: 0.5rem; }
     }
 
+    /* ── Scroll progress bar ───────────────────────────── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 1px; width: 0%;
+      background: var(--accent);
+      z-index: 1001; opacity: 0.45;
+      pointer-events: none;
+      transition: width 0.08s linear;
+    }
+
     /* ── Animated smoke in hero ─────────────────────────── */
     .w-hero__bg::before,
     .w-hero__bg::after {
@@ -773,6 +783,8 @@
   </style>
 </head>
 <body class="theme-writing">
+
+  <div class="scroll-progress" id="scroll-progress"></div>
 
   <nav class="site-nav" id="site-nav">
     <a href="index.html" class="nav-logo">Józsa Dávid</a>
@@ -1177,6 +1189,16 @@
       });
     });
 
+  }());
+
+  /* ── Scroll progress bar ─────────────────────────────── */
+  (function () {
+    var prog = document.getElementById('scroll-progress');
+    if (!prog) return;
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+    }, { passive: true });
   }());
   </script>
 </body>
