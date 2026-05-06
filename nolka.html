@@ -425,9 +425,9 @@
     }
     .lb-caption {
       font-family: var(--font-display);
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-style: italic;
-      color: rgba(245,242,237,0.55);
+      color: rgba(245,242,237,0.72);
     }
     .lb-counter {
       font-family: var(--font-label);
@@ -479,6 +479,29 @@
     .lb-next { right: 1.25rem; }
     .lb-nav svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
     .lb-prev svg { transform: rotate(180deg); }
+
+    /* ── Hero caption (image title, bottom-right) ──────────── */
+    .nolka-hero__caption {
+      position: absolute;
+      bottom: clamp(2rem, 4vw, 3.5rem);
+      right: var(--gutter);
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dim);
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+      animation: heroCaptionIn 1.1s cubic-bezier(0.16,1,0.3,1) 2s forwards;
+    }
+    .hero--dark-vignette .nolka-hero__caption {
+      color: rgba(245,242,237,0.65);
+    }
+    @keyframes heroCaptionIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     /* ── Contact ────────────────────────────────────────────── */
     .nolka-contact {
@@ -813,6 +836,7 @@
       <span class="nolka-hero__wordmark">Nolka</span>
       <span class="nolka-hero__sub">Photography by J&oacute;zsa D&aacute;vid</span>
     </div>
+    <span id="hero-caption" class="nolka-hero__caption" aria-hidden="true"></span>
   </header>
 
   <!-- ── Statement ─────────────────────────────────────────── -->
@@ -1064,6 +1088,17 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
     });
+
+    /* ── Hero caption from filename ─────────────────────────── */
+    var heroCaptionEl = document.getElementById('hero-caption');
+    var heroImgEl = document.getElementById('hero-img');
+    if (heroCaptionEl && heroImgEl) {
+      var captionText = heroImgEl.src.split('/').pop()
+        .replace(/\.[^.]+$/, '')
+        .replace(/[-_]+/g, ' ')
+        .trim();
+      heroCaptionEl.textContent = captionText;
+    }
 
     /* ── Hero parallax (desktop only — mobile gets Ken Burns without stutter) */
     var heroBg = document.getElementById('hero-bg');
