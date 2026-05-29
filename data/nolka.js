@@ -45,6 +45,7 @@ var NOLKA_DATA = {
       "Osprey_Perch.jpg",
       "Eagle_BW.jpg",
       "Dark_Horses.jpg",
+      "Pigeons_at_St._Petersburg.jpg",
     ]
   },
 
@@ -53,6 +54,7 @@ var NOLKA_DATA = {
     num   : "02",
     dark  : true,
     images: [
+      "Mamushka_Joy.jpg",
       "Fritz_Full_Run.jpg",
       "Street_Dog_Mural.jpg",
       "Gui_Verona.jpg",
@@ -93,10 +95,9 @@ var NOLKA_DATA = {
       "Rodrygo_Feitoza.jpg",
       "Apu.jpg",
       "ShortParis_Concert02.jpg",
-      "Dandelion_Joy.jpg",
-      "Shadow_Portrait_I.jpg",
-      "Shadow_Portrait_II.jpg",
-      "Portrait_in_Light.jpg",
+      "Yarik.jpg",
+      "Sistrushka.jpg",
+      "Mamushka.jpg",
     ]
   },
 
@@ -138,8 +139,7 @@ var NOLKA_DATA = {
       "Dead_Letters.jpg",
       "Solar.jpg",
       "Full_Speed_Underground.jpg",
-      "Pigeons_at_the_Gate.jpg",
-      "Pink_Courtyard.jpg",
+      "Pink_Courtyard_at_St._Petersburg.jpg",
     ]
   }
 
