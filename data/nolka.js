@@ -42,6 +42,9 @@ var NOLKA_DATA = {
       "400-2.8.jpg",
       "Urban_fly.jpg",
       "Black_Woodpecker.jpg",
+      "Osprey_Perch.jpg",
+      "Eagle_BW.jpg",
+      "Dark_Horses.jpg",
     ]
   },
 
@@ -90,6 +93,10 @@ var NOLKA_DATA = {
       "Rodrygo_Feitoza.jpg",
       "Apu.jpg",
       "ShortParis_Concert02.jpg",
+      "Dandelion_Joy.jpg",
+      "Shadow_Portrait_I.jpg",
+      "Shadow_Portrait_II.jpg",
+      "Portrait_in_Light.jpg",
     ]
   },
 
@@ -131,6 +138,8 @@ var NOLKA_DATA = {
       "Dead_Letters.jpg",
       "Solar.jpg",
       "Full_Speed_Underground.jpg",
+      "Pigeons_at_the_Gate.jpg",
+      "Pink_Courtyard.jpg",
     ]
   }
 
