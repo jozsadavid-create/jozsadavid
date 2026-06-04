@@ -54,7 +54,6 @@ var NOLKA_DATA = {
     num   : "02",
     dark  : true,
     images: [
-      "Mamushka_Joy.jpg",
       "Fritz_Full_Run.jpg",
       "Street_Dog_Mural.jpg",
       "Gui_Verona.jpg",
@@ -65,6 +64,7 @@ var NOLKA_DATA = {
       "Maine_Coon_Glare.jpg",
       "Summer.jpg",
       "Picur.jpg",
+      "Mamushka_Joy.jpg",
     ]
   },
 
