@@ -46,6 +46,8 @@ var NOLKA_DATA = {
       "Cape_Seal_bw.jpg",
       "Cape_Seal_Gossip.jpg",
       "Pigeons_at_St._Petersburg.jpg",
+      "Old_Bull_Kruger.jpg",
+      "Spiral_Horns_Kruger.jpg",
     ]
   },
 
@@ -115,6 +117,7 @@ var NOLKA_DATA = {
       "Table_Mountain_Arms_Open.jpg",
       "Cape_Town_Blue_Hour.jpg",
       "Cape_Point.jpg",
+      "Conservationist_Silhouettes_Kruger.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
       "Corsica_Bay_at_Dusk.jpg",
