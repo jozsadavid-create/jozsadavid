@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <meta name="robots" content="noindex">
+  <title>404 · Józsa Dávid</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    body {
+      overflow: hidden;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100svh;
+    }
+    @media (max-width: 700px) {
+      body { overflow: auto; cursor: auto; }
+    }
+
+    /* Ghost number */
+    .err-number {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      font-family: var(--font-display);
+      font-size: clamp(18rem, 40vw, 36rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1;
+      color: rgba(232, 227, 216, 0.032);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      letter-spacing: -0.04em;
+    }
+
+    /* Main content block */
+    .err-content {
+      position: relative;
+      z-index: 5;
+      text-align: left;
+      max-width: 48ch;
+      padding: var(--gutter);
+      animation: err-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+    @keyframes err-reveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .err-label {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .err-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    .err-attribution {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .err-note {
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .err-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s, gap 0.3s var(--ease);
+    }
+    .err-back:hover {
+      color: var(--text);
+      gap: 1.1rem;
+    }
+    .err-back-line {
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.3s var(--ease);
+    }
+    .err-back:hover .err-back-line { width: 36px; }
+
+    /* Fade transition */
+    .err-fade {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 1, 1);
+    }
+    .err-fade.is-fading { opacity: 1; pointer-events: all; }
+
+    /* Custom cursor */
+    .err-cursor {
+      position: fixed;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      border: 1px solid rgba(240,236,229,0.5);
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%,-50%);
+      opacity: 0;
+      transition: opacity 0.3s, width 0.22s, height 0.22s, border-color 0.22s;
+    }
+    .err-cursor.is-visible  { opacity: 1; }
+    .err-cursor.is-hovering { width: 24px; height: 24px; border-color: rgba(240,236,229,0.25); }
+
+    @media (max-width: 700px) {
+      .err-number { display: none; }
+      .err-content { padding: var(--gutter); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="err-fade" id="err-fade"></div>
+  <div class="err-cursor" id="err-cursor" aria-hidden="true"></div>
+
+  <nav class="site-nav" id="site-nav">
+    <a href="index.html" class="nav-logo">Józsa Dávid</a>
+    <div class="nav-links" id="nav-links">
+      <a href="nolka.html">Nolka</a>
+      <a href="kibo.html">Kibo Visuals</a>
+      <a href="writing.html">Writing</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="err-number" aria-hidden="true">404</div>
+
+  <main class="err-content">
+    <span class="err-label">Page not found</span>
+
+    <p class="err-quote">
+      &ldquo;Viestes na surdina, na calada da noite,
+      aconchegar-te em mim, perturbar meu sono,
+      me fazer miser&aacute;vel.&rdquo;
+    </p>
+    <p class="err-attribution">Valentina &middot; Relatos Obscuros da Perversividade Humana</p>
+
+    <p class="err-note">
+      This page wandered off. The ones that exist are back at the portal.
+    </p>
+
+    <a href="index.html" class="err-back" id="err-back">
+      <span class="err-back-line"></span>Return
+    </a>
+  </main>
+
+  <script>window.__disableSounds = true;</script>
+  <script src="js/ambient.js" defer></script>
+  <script>
+    (function () {
+      var fade   = document.getElementById('err-fade');
+      var cursor = document.getElementById('err-cursor');
+      var back   = document.getElementById('err-back');
+
+      /* Fade transition on return link */
+      back.addEventListener('click', function (e) {
+        e.preventDefault();
+        var href = back.getAttribute('href');
+        fade.classList.add('is-fading');
+        setTimeout(function () { window.location.href = href; }, 420);
+      });
+
+      /* Custom cursor */
+      var curX = -100, curY = -100, tgX = -100, tgY = -100;
+      document.addEventListener('mousemove', function (e) {
+        tgX = e.clientX; tgY = e.clientY;
+        cursor.classList.add('is-visible');
+      });
+      document.addEventListener('mouseleave', function () { cursor.classList.remove('is-visible'); });
+      document.addEventListener('mouseover', function (e) {
+        if (e.target.closest('a,button')) cursor.classList.add('is-hovering');
+      });
+      document.addEventListener('mouseout', function (e) {
+        if (e.target.closest('a,button')) cursor.classList.remove('is-hovering');
+      });
+      (function tick() {
+        curX += (tgX - curX) * 0.13;
+        curY += (tgY - curY) * 0.13;
+        cursor.style.left = curX + 'px';
+        cursor.style.top  = curY + 'px';
+        requestAnimationFrame(tick);
+      }());
+    }());
+  </script>
+</body>
+</html>
