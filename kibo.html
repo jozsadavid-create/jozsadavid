@@ -2220,6 +2220,7 @@
       if (!href || href.startsWith('#') || href.startsWith('mailto') ||
           href.startsWith('http') || href.startsWith('//') || link.target === '_blank') return;
       e.preventDefault();
+      document.body.style.overflow = '';
       kiboOverlay.classList.remove('is-out');
       setTimeout(function () { window.location.href = href; }, 450);
     });

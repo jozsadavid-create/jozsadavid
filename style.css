@@ -446,12 +446,28 @@ body.theme-nolka .page-transition-overlay { background: #f5f2ed; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 0.5rem;
     z-index: 190;
   }
   .nav-links.open { display: flex; }
-  .nav-links a    { font-size: 0.8rem; letter-spacing: 0.28em; }
-  .nav-toggle     { display: flex; }
+
+  /* Large tap targets for mobile nav links — each link is ~44px tall */
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.28em;
+    padding: 0.85rem 2rem;
+    touch-action: manipulation;
+  }
+
+  /* Adequate touch target for hamburger button */
+  .nav-toggle {
+    display: flex;
+    min-height: 44px;
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
 
   .site-footer { flex-direction: column; text-align: center; }
 }

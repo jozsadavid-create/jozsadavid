@@ -283,6 +283,7 @@
       link.target === '_blank'
     ) return;
     e.preventDefault();
+    document.body.style.overflow = '';
     overlay.classList.remove('is-out');
     setTimeout(() => { window.location.href = href; }, 450);
   });
