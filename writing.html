@@ -729,6 +729,104 @@
       .series-header       { grid-template-columns: 1fr; gap: 0.5rem; }
     }
 
+    /* ── Audiobook note ────────────────────────────────────────── */
+    .w-audiobook-note {
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      opacity: 0.62;
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Newsletter ─────────────────────────────────────────────── */
+    .w-newsletter {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+    }
+    .w-newsletter__wrap {
+      padding: clamp(3rem, 6vw, 5rem) var(--gutter);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .w-newsletter__heading {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin: 0.5rem 0 0;
+      color: var(--text);
+    }
+    .w-newsletter__sub {
+      font-family: var(--font-label);
+      font-size: 0.73rem;
+      letter-spacing: 0.07em;
+      color: var(--text-dim);
+      margin-top: 1rem;
+      max-width: 42ch;
+      line-height: 1.75;
+    }
+    .w-newsletter__field { display: flex; }
+    .w-newsletter__input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--text);
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .w-newsletter__input:focus { border-color: var(--accent); }
+    .w-newsletter__btn {
+      background: var(--accent);
+      color: #0a0906;
+      border: none;
+      padding: 0.65rem 1.4rem;
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .w-newsletter__btn:hover { opacity: 0.82; }
+    .w-newsletter__sent {
+      display: none;
+      font-family: var(--font-label);
+      font-size: 0.73rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-top: 0.9rem;
+    }
+    @media (max-width: 640px) {
+      .w-newsletter__wrap { grid-template-columns: 1fr; }
+    }
+
+    /* ── Lang toggle ────────────────────────────────────────────── */
+    .lang-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.55rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-toggle:hover { border-color: var(--border-2); color: var(--text-dim); }
+
     /* ── Scroll progress bar ───────────────────────────── */
     .scroll-progress {
       position: fixed; top: 0; left: 0;
@@ -814,6 +912,7 @@
       <a href="kibo.html">Kibo Visuals</a>
       <a href="writing.html" class="active">Writing</a>
     </div>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Mudar idioma">EN</button>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -827,7 +926,6 @@
         <h1 class="w-hero__title" id="w-typewriter" aria-label="Fiction &amp; Narratives"><span id="w-tw-line1"></span><br><span id="w-tw-line2"></span></h1>
     </div>
   </header>
-
   <!-- ══════════════════════════════════════════════════════
        DIARIEDADES
   ══════════════════════════════════════════════════════ -->
@@ -842,14 +940,15 @@
         <img src="img/diariedades01.jpg" alt="Diariedades 01 cover">
       </div>
       <div class="book-body">
-        <div class="book-vol">Vol. 01 · Published</div>
+        <div class="book-vol" data-i18n="diari01-vol">Vol. 01 · Publicado</div>
         <h3 class="book-title">Diariedades 01</h3>
         <div class="book-quote">
           <p>"Não é pavor só de dentistas. É de qualquer um vestido de branco. Médicos, dentistas, pai-de-santo, noiva em dia de casamento. Se está de branco e quer falar comigo, problema tem."</p>
         </div>
         <div>
-          <a href="https://www.amazon.com.br/Diariedades-J%C3%B3zsa-D%C3%A1vid-ebook/dp/B0B39NFML7" target="_blank" rel="noopener" class="btn btn--primary">Buy on Amazon →</a>
+          <a href="https://www.amazon.com.br/Diariedades-J%C3%B3zsa-D%C3%A1vid-ebook/dp/B0B39NFML7" target="_blank" rel="noopener" class="btn btn--primary" data-i18n="btn-amazon">Comprar na Amazon →</a>
         </div>
+        <p class="w-audiobook-note" data-i18n="audiobook-note">Audiobook em produção, lançamento em breve.</p>
       </div>
     </div>
 
@@ -859,7 +958,7 @@
       <div class="vol-body">
         <div class="vol-top">
           <h3 class="vol-title">Diariedades 02</h3>
-          <span class="vol-status vol-status--wip">In Progress</span>
+          <span class="vol-status vol-status--wip" data-i18n="status-wip">Em progresso</span>
         </div>
         <div class="vol-quote">
           <p>&ldquo;A mula sem cabeça é um animal típico do folclore brasileiro. Encontrada geralmente na totalidade branca acinzentada, pode assumir um tom mais escuro e/ou azulado se for avistada no meio da noite, período do dia no qual se torna mais ativa.&rdquo;</p>
@@ -875,7 +974,7 @@
   <section class="series" aria-label="Relatos Obscuros da Perversividade Humana">
     <div class="series-header" data-reveal>
       <h2 class="series-title">Relatos Obscuros<br>da Perversividade Humana</h2>
-      <span class="series-meta">Series · 09 Volumes</span>
+      <span class="series-meta" data-i18n="relatos-meta">Série · 09 Volumes</span>
     </div>
 
     <p class="universe-note" data-reveal data-reveal-delay="60">
@@ -893,13 +992,13 @@
         <div class="vol-body">
           <div class="vol-top">
             <h3 class="vol-title">Adam</h3>
-            <span class="vol-status vol-status--pub">Published</span>
+            <span class="vol-status vol-status--pub" data-i18n="status-pub">Publicado</span>
           </div>
           <div class="vol-quote">
             <p>"Diga "nunca mais", bicho patético. Poe dedicou-te uma obra completa e toda a humanidade te conhece por conta desse feito."</p>
           </div>
           <div class="vol-actions">
-            <a href="https://www.amazon.com.br/Adam-Relatos-Obscuros-Perversividade-Humana-ebook/dp/B0CW1F9T2T" target="_blank" rel="noopener" class="btn btn--primary">Buy on Amazon →</a>
+            <a href="https://www.amazon.com.br/Adam-Relatos-Obscuros-Perversividade-Humana-ebook/dp/B0CW1F9T2T" target="_blank" rel="noopener" class="btn btn--primary" data-i18n="btn-amazon">Comprar na Amazon →</a>
           </div>
         </div>
       </article>
@@ -914,7 +1013,7 @@
         <div class="vol-body">
           <div class="vol-top">
             <h3 class="vol-title">A Pequena Raquel</h3>
-            <span class="vol-status vol-status--wip">In Progress</span>
+            <span class="vol-status vol-status--wip" data-i18n="status-wip">Em progresso</span>
           </div>
           <div class="vol-quote">
             <p>"Chamando sua mãe de 'meu sorvete em calda, meu pedacinho do paraíso'?"</p>
@@ -932,7 +1031,7 @@
         <div class="vol-body">
           <div class="vol-top">
             <h3 class="vol-title">Dmitro</h3>
-            <span class="vol-status vol-status--wip">In Progress</span>
+            <span class="vol-status vol-status--wip" data-i18n="status-wip">Em progresso</span>
           </div>
           <div class="vol-quote">
             <p>"Hey, você devia sorrir, esse é um lugar legal. Fique feliz, olha só o que nós conquistamos, cara."</p>
@@ -945,8 +1044,8 @@
         <div class="vol-num"><span class="vol-num__text">04</span></div>
         <div class="vol-body">
           <div class="vol-top">
-            <h3 class="vol-title" style="color:var(--text-muted);">·</h3>
-            <span class="vol-status vol-status--tba">Coming</span>
+            <h3 class="vol-title" style="color:var(--text-muted);">Vol. 04</h3>
+            <span class="vol-status vol-status--tba" data-i18n="status-coming">Em breve</span>
           </div>
         </div>
       </article>
@@ -957,7 +1056,7 @@
         <div class="vol-body">
           <div class="vol-top">
             <h3 class="vol-title">O Policial</h3>
-            <span class="vol-status vol-status--tba">Announced</span>
+            <span class="vol-status vol-status--tba" data-i18n="status-announced">Anunciado</span>
           </div>
         </div>
       </article>
@@ -968,14 +1067,13 @@
         <div class="vol-body">
           <div class="vol-top">
             <h3 class="vol-title">Volumes 06–09</h3>
-            <span class="vol-status vol-status--tba">In Development</span>
+            <span class="vol-status vol-status--tba" data-i18n="status-dev">Em desenvolvimento</span>
           </div>
         </div>
       </article>
 
     </div>
   </section>
-
 
   <!-- ══════════════════════════════════════════════════════
        AS FAR AS I REMEMBER, I ALWAYS WANTED TO BE A COUCH
@@ -988,7 +1086,7 @@
         <div class="book-cover--placeholder">cover<br>coming</div>
       </div>
       <div class="book-body">
-        <div class="book-vol">Novel · In Progress</div>
+        <div class="book-vol" data-i18n="couch-vol">Romance · Em progresso</div>
         <h3 class="book-title" style="font-size: clamp(1.1rem, 2.2vw, 1.9rem); line-height: 1.15;">As far as I remember,<br>I always wanted<br>to be a couch</h3>
         <div class="book-quote">
           <p>&ldquo;Escuta, você por acaso não viu um sofá passando por aqui? Ou uma casa azul? Essa pergunta foi repetida para todos os que estavam na pizzaria. Não eram muitos, Linda teve de admitir. O movimento de rotina de uma pizzaria meia boca no canto de uma estrada irregular no meio do nada não era grande coisa, o que obrigava o dono do estabelecimento a manter apenas três funcionários pelo preço de dois.&rdquo;</p>
@@ -999,7 +1097,7 @@
 
   <!-- Bio -->
   <section class="w-bio" style="border-top: 1px solid var(--border);">
-    <span class="label label--accent w-bio__label">About the author</span>
+    <span class="label label--accent w-bio__label" data-i18n="bio-label">Sobre o autor</span>
     <div class="w-bio__grid">
       <div class="w-bio__text" data-reveal>
         <p><strong>Józsa Dávid</strong> is a writer, photographer, journalist and creative director. Always writing, before, during and after everything else.</p>
@@ -1018,30 +1116,50 @@
     </div>
   </section>
 
+  <section class="w-newsletter">
+    <div class="w-newsletter__wrap">
+      <div>
+        <span class="label label--accent">newsletter</span>
+        <h2 class="w-newsletter__heading">Antes de<br>todo mundo.</h2>
+      </div>
+      <div>
+        <p class="w-newsletter__sub" data-i18n="nl-sub">Lançamentos, bastidores, relatos que não cabem nos livros. Receba em primeira mão.</p>
+        <form id="newsletter-form" novalidate>
+          <input type="hidden" name="_source" value="Newsletter">
+          <div class="w-newsletter__field">
+            <input class="w-newsletter__input" type="email" name="email" placeholder="o seu e-mail" required autocomplete="email" aria-label="Seu e-mail">
+            <button type="submit" class="w-newsletter__btn" data-i18n="btn-subscribe">Inscrever →</button>
+          </div>
+          <p class="w-newsletter__sent" id="nl-sent" data-i18n="nl-thanks">Obrigado. Você está dentro.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <div class="contact-block">
-    <span class="label label--accent contact-block__label">Get in touch</span>
-    <h2 class="contact-block__heading">Literary inquiries</h2>
-    <p class="contact-block__sub">Reviews, interviews, requests, just a silly talk, partnerships, or just to say that something got under your skin.</p>
+    <span class="label label--accent contact-block__label" data-i18n="contact-label">Fale comigo</span>
+    <h2 class="contact-block__heading" data-i18n="contact-heading">Inquietações literárias</h2>
+    <p class="contact-block__sub" data-i18n="contact-sub">Resenhas, entrevistas, parcerias, ou só pra dizer que algo ficou na sua cabeça.</p>
 
     <form class="contact-form" id="contact-form" novalidate>
       <input type="hidden" name="_source" value="Writing">
       <div class="contact-form__field">
-        <label class="contact-form__label" for="cf-name">Name</label>
-        <input class="contact-form__input" type="text" id="cf-name" name="name" placeholder="Your name" required autocomplete="name">
+        <label class="contact-form__label" for="cf-name" data-i18n="form-name">Nome</label>
+        <input class="contact-form__input" type="text" id="cf-name" name="name" placeholder="Seu nome" data-i18n-ph="ph-name" required autocomplete="name">
       </div>
       <div class="contact-form__field">
-        <label class="contact-form__label" for="cf-email">Email</label>
+        <label class="contact-form__label" for="cf-email" data-i18n="form-email">E-mail</label>
         <input class="contact-form__input" type="email" id="cf-email" name="email" placeholder="your@email.com" required autocomplete="email">
       </div>
       <div class="contact-form__field">
-        <label class="contact-form__label" for="cf-message">Message</label>
-        <textarea class="contact-form__textarea" id="cf-message" name="message" placeholder="Your message" required></textarea>
+        <label class="contact-form__label" for="cf-message" data-i18n="form-msg">Mensagem</label>
+        <textarea class="contact-form__textarea" id="cf-message" name="message" placeholder="Sua mensagem" data-i18n-ph="ph-msg" required></textarea>
       </div>
       <div class="contact-form__submit">
-        <button type="submit" class="btn btn--primary">Send →</button>
+        <button type="submit" class="btn btn--primary" data-i18n="btn-send">Enviar →</button>
       </div>
-      <p class="contact-form__sent" id="cf-sent">Thanks for reaching out. I'll get back to you asap.</p>
+      <p class="contact-form__sent" id="cf-sent" data-i18n="cf-sent">Obrigado pela mensagem. Respondo em breve.</p>
     </form>
   </div>
 
@@ -1134,14 +1252,134 @@
 
 
   <script>
+    (function () {
+      var FORMSPREE_ID = 'xqenzdpq';
+      var form = document.getElementById('newsletter-form');
+      var sent = document.getElementById('nl-sent');
+      var btn  = form ? form.querySelector('button[type=submit]') : null;
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        if (btn) { btn.disabled = true; btn.textContent = 'Um momento…'; }
+        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+          method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+        })
+        .then(function (res) {
+          if (res.ok) { if (sent) sent.style.display = 'block'; form.reset(); }
+          else { alert('Algo correu mal. Tenta de novo.'); }
+        })
+        .catch(function () { alert('Não foi possível enviar.'); })
+        .finally(function () {
+          if (btn) { btn.disabled = false; btn.textContent = 'Inscrever →'; }
+        });
+      });
+    }());
+  </script>
+
+  <script>
+  /* ── Language toggle (PT-BR default, EN via button) ── */
+  (function () {
+    var DICT = {
+      en: {
+        'bio-label':       'About the author',
+        'contact-label':   'Get in touch',
+        'contact-heading': 'Literary inquiries',
+        'contact-sub':     'Reviews, interviews, requests, just a silly talk, partnerships, or just to say that something got under your skin.',
+        'form-name':       'Name',
+        'form-email':      'Email',
+        'form-msg':        'Message',
+        'btn-send':        'Send →',
+        'btn-amazon':      'Buy on Amazon →',
+        'btn-subscribe':   'Subscribe →',
+        'status-pub':      'Published',
+        'status-wip':      'In Progress',
+        'status-coming':   'Coming',
+        'status-announced':'Announced',
+        'status-dev':      'In Development',
+        'diari01-vol':     'Vol. 01 · Published',
+        'couch-vol':       'Novel · In Progress',
+        'relatos-meta':    'Series · 09 Volumes',
+        'universe-heading':'The universe.',
+        'universe-sub':    'all books, all threads',
+        'nl-sub':          "Releases, behind the scenes, stories that don't fit in the books. Get them first.",
+        'nl-thanks':       "Thank you. You're in.",
+        'cf-sent':         "Thanks for reaching out. I'll get back to you asap.",
+        'audiobook-note':  'Audiobook in production, coming soon.',
+      },
+      pt: {
+        'bio-label':       'Sobre o autor',
+        'contact-label':   'Fale comigo',
+        'contact-heading': 'Inquietações literárias',
+        'contact-sub':     'Resenhas, entrevistas, parcerias, ou só pra dizer que algo ficou na sua cabeça.',
+        'form-name':       'Nome',
+        'form-email':      'E-mail',
+        'form-msg':        'Mensagem',
+        'btn-send':        'Enviar →',
+        'btn-amazon':      'Comprar na Amazon →',
+        'btn-subscribe':   'Inscrever →',
+        'status-pub':      'Publicado',
+        'status-wip':      'Em progresso',
+        'status-coming':   'Em breve',
+        'status-announced':'Anunciado',
+        'status-dev':      'Em desenvolvimento',
+        'diari01-vol':     'Vol. 01 · Publicado',
+        'couch-vol':       'Romance · Em progresso',
+        'relatos-meta':    'Série · 09 Volumes',
+        'universe-heading':'O universo.',
+        'universe-sub':    'todos os livros, todos os fios',
+        'nl-sub':          'Lançamentos, bastidores, relatos que não cabem nos livros. Receba em primeira mão.',
+        'nl-thanks':       'Obrigado. Você está dentro.',
+        'cf-sent':         'Obrigado pela mensagem. Respondo em breve.',
+        'audiobook-note':  'Audiobook em produção, lançamento em breve.',
+      }
+    };
+    var PH = {
+      en: { 'ph-name': 'Your name', 'ph-msg': 'Your message' },
+      pt: { 'ph-name': 'Seu nome',  'ph-msg': 'Sua mensagem' }
+    };
+
+    var btn = document.getElementById('lang-toggle');
+    var currentLang = localStorage.getItem('w-lang') || 'pt';
+
+    function applyLang(lang) {
+      var d = DICT[lang], p = PH[lang];
+      if (!d) return;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (d[key] !== undefined) el.textContent = d[key];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-ph');
+        if (p[key] !== undefined) el.setAttribute('placeholder', p[key]);
+      });
+      if (btn) btn.textContent = lang === 'pt' ? 'EN' : 'PT';
+      document.documentElement.setAttribute('data-lang', lang);
+      currentLang = lang;
+      try { localStorage.setItem('w-lang', lang); } catch (e) {}
+    }
+
+    if (btn) btn.addEventListener('click', function () {
+      applyLang(currentLang === 'pt' ? 'en' : 'pt');
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { applyLang(currentLang); });
+    } else {
+      applyLang(currentLang);
+    }
+  }());
+  </script>
+
+  <script>
   /* ── Typewriter + keyboard sounds for writing hero ── */
   (function () {
     var line1El = document.getElementById('w-tw-line1');
     var line2El = document.getElementById('w-tw-line2');
     if (!line1El) return;
 
-    var L1 = 'Fiction';
-    var L2 = '& Narratives';
+    var L1 = 'Ficção';
+    var L2 = '& Narrativas';
 
     /* ── Web Audio click synthesiser ──────────────────── */
     var AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -1249,13 +1487,11 @@
 
               /* Short breath, then type the passage */
               typeText(line1El, heroPassage, 120, function () {
-                /* Passage complete — blink cursor a moment then fade it */
-                setTimeout(function () {
-                  cursor.style.transition = 'opacity 1s';
-                  cursor.style.opacity    = '0';
-                  setTimeout(function () { cursor.remove(); }, 1200);
-                }, 3500);
-              }, 0.55); /* 0.55× speed → snappier typing */
+                /* Passage complete: fade cursor quickly */
+                cursor.style.transition = 'opacity 0.5s';
+                cursor.style.opacity    = '0';
+                setTimeout(function () { cursor.remove(); }, 600);
+              }, 0.55); /* 0.55x speed */
             });
           });
         }, 500);

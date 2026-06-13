@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon.png" type="image/png">
-  <meta name="description" content="Kibo Visuals — CGI and creative direction by Józsa Dávid. Computer graphics, art direction and production across luxury markets. More than pretty renders.">
+  <meta name="description" content="Kibo Visuals: CGI and creative direction by Józsa Dávid. Computer graphics, art direction and production across luxury markets. More than pretty renders.">
   <title>Kibo Visuals · Józsa Dávid</title>
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://www.jozsadavid.com/kibo.html">
@@ -525,13 +525,13 @@
     ══════════════════════════════════════════════════════════ */
     .approach {
       padding: var(--section-pad) var(--gutter);
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
+      background: #f5f2ed;
+      border-top: 1px solid rgba(0,0,0,0.08);
     }
     .approach__inner {
       max-width: 68ch;
       margin: 0 auto;
-      border-left: 1px solid rgba(240,236,229,0.12);
+      border-left: 1px solid rgba(0,0,0,0.1);
       padding-left: clamp(1.5rem, 3vw, 2.5rem);
     }
     .approach__heading {
@@ -541,7 +541,7 @@
       font-style: italic;
       text-transform: none;
       letter-spacing: 0;
-      color: var(--text);
+      color: #100f0b;
       line-height: 1.05;
       margin-bottom: 1.75rem;
     }
@@ -549,7 +549,7 @@
       font-family: var(--font-body);
       font-size: 0.88rem;
       font-weight: 300;
-      color: var(--text-dim);
+      color: #4a4846;
       line-height: 1.88;
     }
     .approach__text p + p { margin-top: 0.9em; }
@@ -1025,21 +1025,21 @@
     }
     .kibo-copyright__text {
       font-family: var(--font-label);
-      font-size: 0.47rem;
-      letter-spacing: 0.2em;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      opacity: 0.36;
+      color: var(--text-dim);
+      opacity: 0.82;
       line-height: 1.9;
     }
     .kibo-copyright__year {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 0.72rem;
+      font-size: 0.9rem;
       font-weight: 300;
       font-style: italic;
       letter-spacing: 0.1em;
-      color: var(--text-muted);
-      opacity: 0.3;
+      color: var(--text-dim);
+      opacity: 0.72;
       flex-shrink: 0;
     }
 
@@ -1062,6 +1062,119 @@
       .contact-social { flex-direction: column; gap: 1.25rem; }
       .kibo-archviz__strip-desc { display: none; }
     }
+
+    /* ══════════════════════════════════════════════════════════
+       MANIFESTO — "Directed, not generated"
+    ══════════════════════════════════════════════════════════ */
+    .kibo-manifesto {
+      padding: var(--section-pad) var(--gutter);
+      border-top: 1px solid var(--border);
+    }
+    .kibo-manifesto__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+    .kibo-manifesto__label {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(212,175,100,0.7);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .kibo-manifesto__heading {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 5.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 0.92;
+    }
+    .kibo-manifesto__heading em {
+      font-style: normal;
+      color: var(--text-dim);
+    }
+    .kibo-manifesto__body {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.88;
+      padding-top: 0.35rem;
+    }
+    .kibo-manifesto__body p + p { margin-top: 0.9em; }
+    @media (max-width: 700px) {
+      .kibo-manifesto__inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════════════════════ */
+    .kibo-services {
+      padding: var(--section-pad) var(--gutter);
+      border-top: 1px solid var(--border);
+    }
+    .kibo-services__inner { max-width: var(--max-w); margin: 0 auto; }
+    .kibo-services__heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+    .kibo-services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+    .kibo-service {
+      padding: 1.75rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.28s;
+    }
+    .kibo-service:hover { background: var(--bg-2); }
+    .kibo-service__num {
+      font-family: var(--font-label);
+      font-size: 0.52rem;
+      letter-spacing: 0.26em;
+      color: rgba(212,175,100,0.55);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .kibo-service__title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text);
+      margin-bottom: 0.65rem;
+      line-height: 1.2;
+    }
+    .kibo-service__desc {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.78;
+    }
+    @media (max-width: 900px) {
+      .kibo-services__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .kibo-services__grid { grid-template-columns: 1fr; }
+    }
+
 
   </style>
 </head>
@@ -1101,6 +1214,7 @@
     </div>
     <span class="kibo-hero__credit" id="hero-credit" aria-hidden="true"></span>
   </header>
+
 
   <!-- ══════════════════════════════════════════════════════
        ARCHVIZ — Exteriors · Interiors · Creative Direction
@@ -1205,7 +1319,7 @@
       <div class="kibo-career__body">
         <div>
           <p class="kibo-career__bio">
-            I started my professional path in Brasil as a journalist and 3d as a hobby. The hobby expanded and took over. Built a career across some of the world's most demanding Archviz studios: from five and a half years at an emerging Brick Visual, one of the world's leading CGI powerhouses, to collaborating with Mozses, a reference that elevates the overall quality of traditional 3d in the industry. All these led me to my current positions, leading smaller boutique studios like ThinkLab. All in all, I've been a bit everywhere.
+            I started in Brazil as a journalist. 3D was the hobby that took over. Built a career across some of the world's most demanding archviz studios, five and a half years at Brick Visual, one of the world's leading CGI powerhouses; extended collaborations with Mozses, a studio that defines what traditional 3D can reach. All of it led here: leading boutique studios, directing from the inside.
           </p>
           <p class="kibo-career__bio" style="margin-top: 0.75em;">
             Every studio added something different, a new technique, a new skill. Every project sharpened the discipline. Today, as a multidisciplinary Creative Director, the work still begins the same way it always has: with passion.
@@ -1260,16 +1374,65 @@
     <div class="approach__inner">
       <h2 class="approach__heading js-reveal">More than<br>pretty renders…</h2>
       <div class="approach__text">
-        <p>3d graphics for me started as fun projects and became a discipline. Years directing other creatives or making the productions myself taught me a way of thinking that combines the technical precision of a Senior Artist with the visual instinct of a photographer and the knowledge in excellence of the markets.</p>
+        <p>3D for me started as fun projects and became a discipline. Years directing other creatives, and doing the work myself, taught me a way of thinking that combines the technical precision of a senior artist, the visual instinct of a photographer, and a deep understanding of what demanding markets expect at their highest level.</p>
         <p>To render is always a decision. And every decision is intentional.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── Light band ────────────────────────────────────────── -->
+
+  <!-- ══════════════════════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════════════════════════ -->
+  <section class="kibo-services">
+    <div class="kibo-services__inner">
+      <h2 class="kibo-services__heading js-reveal">What I can do for you,<br>your project or your team:</h2>
+      <div class="kibo-services__grid">
+
+        <div class="kibo-service">
+          <span class="kibo-service__num">01</span>
+          <h3 class="kibo-service__title">Full Production</h3>
+          <p class="kibo-service__desc">End-to-end CGI &mdash; concept, modelling, lighting, rendering, post. All creative and technical decisions owned by Kibo, from brief to final delivery.</p>
+        </div>
+
+        <div class="kibo-service">
+          <span class="kibo-service__num">02</span>
+          <h3 class="kibo-service__title">Art Direction</h3>
+          <p class="kibo-service__desc">Consultant or embedded director. Shaping the visual outcome, framing the brief, reviewing every stage &mdash; without replacing your team.</p>
+        </div>
+
+        <div class="kibo-service">
+          <span class="kibo-service__num">03</span>
+          <h3 class="kibo-service__title">Creative Direction Retainer</h3>
+          <p class="kibo-service__desc">Ongoing partnership to align visual language across a studio or agency. Consistent standards, maintained over time.</p>
+        </div>
+
+        <div class="kibo-service">
+          <span class="kibo-service__num">04</span>
+          <h3 class="kibo-service__title">Team Training</h3>
+          <p class="kibo-service__desc">Intensive or embedded sessions: technical pipeline, lighting logic, compositional standards. Raises the ceiling, not just the floor.</p>
+        </div>
+
+        <div class="kibo-service">
+          <span class="kibo-service__num">05</span>
+          <h3 class="kibo-service__title">Post-Production &amp; Finishing</h3>
+          <p class="kibo-service__desc">Colour grading, retouching, compositing and delivery prep. The final mile &mdash; where renders become images.</p>
+        </div>
+
+        <div class="kibo-service">
+          <span class="kibo-service__num">06</span>
+          <h3 class="kibo-service__title">Workshops &amp; Speaking</h3>
+          <p class="kibo-service__desc">Archviz aesthetics, directing CGI teams, visual storytelling in 3D. Industry events, studio workshops, and educational programmes.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Statement ──────────────────────────────────────────── -->
   <div class="kibo-light-band">
     <div class="kibo-light-band__inner">
-      <p class="kibo-light-band__text js-reveal">I don't use generative AI for authorship. Creative work should be directed, composed, and decided: technically, aesthetically, in process. Tools support the craft. They never replace intent.</p>
+      <p class="kibo-light-band__text">I don&rsquo;t use generative AI for authorship. Creative work should be directed, composed, and decided: technically, aesthetically, in process. Tools support the craft. They never replace intent.</p>
     </div>
   </div>
 
@@ -1314,7 +1477,7 @@
   <!-- ── Cinematic copyright notice ──────────────────────────── -->
   <div class="kibo-copyright">
     <div class="kibo-copyright__inner">
-      <span class="kibo-copyright__text">All imagery, creative direction &amp; CGI &copy; Józsa Dávid&nbsp;/&nbsp;Kibo Visuals. All rights reserved. Unauthorized reproduction prohibited.</span>
+      <span class="kibo-copyright__text">All imagery, Creative Direction &amp; CGI &copy; Józsa Dávid&nbsp;/&nbsp;Kibo Visuals. All rights reserved. Unauthorized reproduction prohibited.</span>
       <span class="kibo-copyright__year">MMXXVI</span>
     </div>
   </div>
@@ -1894,11 +2057,11 @@
             status.classList.add('visible');
             form.reset();
           } else {
-            status.textContent = 'Something went wrong — try again or reach out via LinkedIn.';
+            status.textContent = 'Something went wrong. Try again or reach out via LinkedIn.';
             status.classList.add('visible');
           }
         }).catch(function () {
-          status.textContent = 'Something went wrong — try again or reach out via LinkedIn.';
+          status.textContent = 'Something went wrong. Try again or reach out via LinkedIn.';
           status.classList.add('visible');
         }).finally(function () {
           if (btn) { btn.disabled = false; btn.innerHTML = 'Send <svg viewBox="0 0 14 7"><line x1="0" y1="3.5" x2="11" y2="3.5"/><polyline points="7.5,1 11,3.5 7.5,6"/></svg>'; }
@@ -1974,7 +2137,7 @@
       var revealEls = document.querySelectorAll(
         '.kibo-archviz__intro, .kibo-archviz__strip-hd, .kibo-section-hd, ' +
         '.kibo-career__head, .kibo-career__body, ' +
-        '.kibo-contact, .approach, .kibo-light-band'
+        '.kibo-contact, .approach, .kibo-manifesto, .kibo-services'
       );
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {

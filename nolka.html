@@ -784,6 +784,132 @@
       .site-nav { position: fixed; }
     }
 
+    /* ── Hero positioning line ──────────────────────────────── */
+    .nolka-hero__position {
+      font-family: var(--font-label);
+      font-size: 0.63rem;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.75;
+      display: block;
+      max-width: 52ch;
+    }
+    .hero--dark-vignette .nolka-hero__position { color: rgba(245,242,237,0.32); }
+
+    /* ── Statement EN shadow ─────────────────────────────────── */
+    .nolka-statement__en {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 64ch;
+      margin-top: 1.4rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.9s 0.18s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s 0.18s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nolka-statement__en.is-visible { opacity: 0.52; transform: translateY(0); }
+    .nolka-statement__en em { font-style: italic; }
+
+    /* ── Documentary teaser ──────────────────────────────────── */
+    .nolka-doc-teaser {
+      background: #111110;
+      padding: clamp(3.5rem, 6vw, 6rem) var(--gutter);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nolka-doc-teaser__inner { max-width: var(--max-w); margin: 0 auto; }
+    .nolka-doc-teaser__label {
+      font-family: var(--font-label);
+      font-size: 0.56rem;
+      letter-spacing: 0.3em;
+      color: rgba(245,242,237,0.22);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1.4rem;
+    }
+    .nolka-doc-teaser__title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 9vw, 9rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,242,237,0.1);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+    .nolka-doc-teaser__sub {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,242,237,0.42);
+      line-height: 1.5;
+    }
+
+    /* ── Offer cards ─────────────────────────────────────────── */
+    .nolka-offer-cards { display: flex; flex-direction: column; }
+    .nolka-offer-card {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(245,242,237,0.09);
+    }
+    .nolka-offer-card:first-child { border-top: 1px solid rgba(245,242,237,0.09); }
+    .nolka-offer-card__num {
+      font-family: var(--font-label);
+      font-size: 0.54rem;
+      letter-spacing: 0.24em;
+      color: rgba(245,242,237,0.2);
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+    .nolka-offer-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,242,237,0.82);
+      margin-bottom: 0.45rem;
+      line-height: 1.1;
+    }
+    .nolka-offer-card__desc {
+      font-size: 0.78rem;
+      color: rgba(245,242,237,0.32);
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+    .nolka-offer-card__cta {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,242,237,0.38);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nolka-offer-card__cta:hover { color: rgba(245,242,237,0.85); }
+
+    /* ── Gear strip ──────────────────────────────────────────── */
+    .nolka-gear {
+      padding: 1.1rem var(--gutter);
+      border-top: 1px solid var(--border);
+    }
+    .nolka-gear__inner { max-width: var(--max-w); margin: 0 auto; }
+    .nolka-gear__text {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      line-height: 2;
+      display: block;
+    }
+
+
   </style>
 </head>
 <body class="theme-nolka">
@@ -839,7 +965,8 @@
            alt="Nolka"
            onerror="this.style.display='none'; document.querySelector('.nolka-hero__wordmark').style.display='block';">
       <span class="nolka-hero__wordmark">Nolka</span>
-      <span class="nolka-hero__sub">Photography by J&oacute;zsa D&aacute;vid</span>
+      <span class="nolka-hero__sub">Photography</span>
+      <p class="nolka-hero__position">Wildlife, Documentary &amp; everyday captures: from Kenya to the Russian taiga and everywhere in between.</p>
     </div>
     <span id="hero-caption" class="nolka-hero__caption" aria-hidden="true"></span>
   </header>
@@ -849,6 +976,11 @@
     <div class="nolka-statement__inner">
       <p class="nolka-statement__text">
         &ldquo;Tempo é essa coisa, coisa das mais valiosas que temos. O tempo simplesmente passa, ele acontece. Poder eternizar fragmentos dessa coisa chamada tempo, ah, taí algo que eu só posso chamar de <em>arte.</em> Não tenho outro nome para isso...&rdquo;
+      </p>
+      <p class="nolka-statement__en">
+        &ldquo;Time is the most valuable thing we have. It simply passes, it happens.
+        To immortalise fragments of this thing called time: that is something
+        I can only call <em>art.</em> I have no other name for it&hellip;&rdquo;
       </p>
     </div>
   </div>
@@ -934,11 +1066,44 @@
     </div>
   </section>
 
+
+  <!-- ── Documentary teaser ──────────────────────────────── -->
+  <div class="nolka-doc-teaser">
+    <div class="nolka-doc-teaser__inner">
+      <span class="nolka-doc-teaser__label">In development</span>
+      <span class="nolka-doc-teaser__title">AM-310</span>
+      <p class="nolka-doc-teaser__sub">A return to Manaus. Documentary.</p>
+    </div>
+  </div>
+
   <!-- ── Contact ───────────────────────────────────────────── -->
   <div class="nolka-contact">
     <div class="nolka-contact__inner">
       <div class="nolka-contact__left">
-        <h2 class="nolka-contact__heading">Commissions,<br>licensing &amp;<br>collaborations.</h2>
+        <div class="nolka-offer-cards">
+
+          <div class="nolka-offer-card">
+            <span class="nolka-offer-card__num">01</span>
+            <h3 class="nolka-offer-card__title">Licensing</h3>
+            <p class="nolka-offer-card__desc">Editorial &amp; commercial use.<br>Single image or archive access.</p>
+            <a href="#nolka-form" class="nolka-offer-card__cta" data-topic="Licensing — editorial &amp; commercial use">Enquire &rarr;</a>
+          </div>
+
+          <div class="nolka-offer-card">
+            <span class="nolka-offer-card__num">02</span>
+            <h3 class="nolka-offer-card__title">Prints</h3>
+            <p class="nolka-offer-card__desc">Limited edition fine art prints.<br>Signed &amp; numbered.</p>
+            <a href="#nolka-form" class="nolka-offer-card__cta" data-topic="Print enquiry — limited edition">Request &rarr;</a>
+          </div>
+
+          <div class="nolka-offer-card">
+            <span class="nolka-offer-card__num">03</span>
+            <h3 class="nolka-offer-card__title">Assignments</h3>
+            <p class="nolka-offer-card__desc">Editorial &amp; expedition work.<br>Wildlife, documentary, reportage.</p>
+            <a href="#nolka-form" class="nolka-offer-card__cta" data-topic="Assignment — editorial / expedition work">Discuss &rarr;</a>
+          </div>
+
+        </div>
       </div>
       <div class="nolka-contact__right">
       <form class="nolka-form" id="nolka-form" action="https://formspree.io/f/xqenzdpq" method="POST" novalidate>
@@ -966,6 +1131,14 @@
         <p class="nolka-form__sent" id="nolka-form-sent">Thanks for trying to contact me. I'll get back to you asap.</p>
       </form>
       </div><!-- /nolka-contact__right -->
+    </div>
+  </div>
+
+  <!-- ── Gear strip ──────────────────────────────────────── -->
+  <div class="nolka-gear">
+    <div class="nolka-gear__inner">
+      <span class="nolka-gear__text">Canon 1D II &middot; 7D II &middot; R5</span>
+      <span class="nolka-gear__text">Fujifilm X-T2 &middot; X-T200</span>
     </div>
   </div>
 
@@ -1162,11 +1335,11 @@
             nolkaForm.reset();
           } else {
             nolkaSent.style.display = 'block';
-            nolkaSent.textContent = 'Something went wrong — try again or reach out via Instagram.';
+            nolkaSent.textContent = 'Something went wrong. Try again or reach out via Instagram.';
           }
         }).catch(function () {
           nolkaSent.style.display = 'block';
-          nolkaSent.textContent = 'Something went wrong — try again or reach out via Instagram.';
+          nolkaSent.textContent = 'Something went wrong. Try again or reach out via Instagram.';
         }).finally(function () {
           if (btn) { btn.disabled = false; btn.textContent = 'Send →'; }
         });
@@ -1174,8 +1347,8 @@
     }
 
     /* ── Statement fade-in on scroll ────────────────────── */
-    var stmtEl = document.querySelector('.nolka-statement__text');
-    if (stmtEl && window.IntersectionObserver) {
+    var stmtEls = document.querySelectorAll('.nolka-statement__text, .nolka-statement__en');
+    if (stmtEls.length && window.IntersectionObserver) {
       var stmtObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
           if (e.isIntersecting) {
@@ -1184,7 +1357,7 @@
           }
         });
       }, { threshold: 0.15 });
-      stmtObs.observe(stmtEl);
+      stmtEls.forEach(function (el) { stmtObs.observe(el); });
     }
 
     /* ── Build photo grids from NOLKA_DATA ───────────────── */
@@ -1243,6 +1416,30 @@
         if (count) count.textContent = sec.images.length + ' photos';
       });
     }
+
+  /* ── Offer card CTAs: pre-fill form + smooth scroll ── */
+    document.querySelectorAll('.nolka-offer-card__cta').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var topic   = link.getAttribute('data-topic') || '';
+        var msgField  = document.querySelector('#nolka-form [name="message"]');
+        var nameField = document.querySelector('#nolka-form [name="name"]');
+        var formEl    = document.getElementById('nolka-form');
+        if (msgField && topic) {
+          msgField.value = topic + '\n\n';
+          /* move cursor to end so user can type straight after */
+          msgField.setSelectionRange(msgField.value.length, msgField.value.length);
+        }
+        if (formEl) {
+          formEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(function () {
+            /* focus name field if empty, otherwise message */
+            var focusTarget = (nameField && nameField.value === '') ? nameField : msgField;
+            if (focusTarget) focusTarget.focus();
+          }, 550);
+        }
+      });
+    });
 
   }());
   </script>
