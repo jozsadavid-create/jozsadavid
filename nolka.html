@@ -1643,8 +1643,8 @@
 
     /* -- +18 Password Gate ----------------------------------------------- */
     (function () {
-      var STORED_KEY = 'nolka-18-unlocked';
       var PASS_HASH  = 'bmFzdHk='; /* btoa('nasty') */
+      var _unlocked  = false; /* session-only — resets on every page load */
 
       var gOverlay = document.getElementById('gate-overlay');
       var gForm    = document.getElementById('gate-form');
@@ -1654,10 +1654,8 @@
       var g18Hd    = document.getElementById('sub18-hd');
       var g18Wrap  = document.getElementById('grid-plus18');
 
-      function isUnlocked() {
-        try { return localStorage.getItem(STORED_KEY) === '1'; } catch (e) { return false; }
-      }
-      function storeUnlock() { try { localStorage.setItem(STORED_KEY, '1'); } catch (e) {} }
+      function isUnlocked() { return _unlocked; }
+      function storeUnlock() { _unlocked = true; }
       function markUnlocked() { if (g18Hd) g18Hd.classList.add('is-unlocked'); }
       function openGate() {
         if (!gOverlay) return;
@@ -1687,8 +1685,6 @@
           });
         }
       }
-
-      if (isUnlocked()) markUnlocked();
 
       if (g18Hd) {
         function handleGateClick() {
