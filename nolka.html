@@ -910,6 +910,140 @@
     }
 
 
+    /* -- +18 Subcategory (inside People section) ------------------------- */
+    .sub18-hd {
+      display: flex;
+      align-items: center;
+      padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
+      margin-top: clamp(1.5rem, 3vw, 2.5rem);
+      background: #1a1916;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      user-select: none;
+      gap: 0.9rem;
+      transition: background 0.2s;
+    }
+    .sub18-hd:hover { background: #232321; }
+    .sub18-hd__toggle {
+      width: 26px; height: 26px;
+      border: 1px solid rgba(232,227,216,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+    .sub18-hd:hover .sub18-hd__toggle { border-color: rgba(232,227,216,0.3); }
+    .sub18-hd .icon-lock {
+      width: 12px; height: 12px;
+      fill: none; stroke: rgba(232,227,216,0.5); stroke-width: 1.5;
+    }
+    .sub18-hd .icon-chevron {
+      width: 10px; height: 6px;
+      fill: none; stroke: rgba(232,227,216,0.5); stroke-width: 1.5;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sub18-hd:not(.is-unlocked) .icon-chevron { display: none; }
+    .sub18-hd.is-unlocked .icon-lock { display: none; }
+    .sub18-hd[aria-expanded="true"] .icon-chevron { transform: rotate(180deg); }
+    .sub18-hd__num {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(232,227,216,0.25);
+    }
+    .sub18-hd__title {
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(232,227,216,0.65);
+      flex: 1;
+    }
+    .sub18-hd__badge {
+      font-family: var(--font-label);
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(232,227,216,0.28);
+    }
+    .sub18-wrap {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.6s cubic-bezier(0.16,1,0.3,1);
+      background: #111110;
+    }
+    .sub18-wrap.is-collapsed { grid-template-rows: 0fr; }
+    .sub18-inner { overflow: hidden; min-height: 0; }
+    .sub18-inner .masonry {
+      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3rem);
+    }
+    .gate-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5,5,3,0.7);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .gate-overlay.is-open { display: flex; }
+    .gate-modal {
+      background: #f5f2ed;
+      color: #0d0c0a;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.75rem, 5vw, 2.75rem);
+      max-width: 340px;
+      width: calc(100% - 2rem);
+      text-align: center;
+      position: relative;
+      animation: gateIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes gateIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .gate-close {
+      position: absolute; top: 1rem; right: 1.25rem;
+      font-size: 1.3rem; line-height: 1;
+      background: none; border: none;
+      color: #8a8880; cursor: pointer; padding: 0.3rem;
+      transition: color 0.2s;
+    }
+    .gate-close:hover { color: #0d0c0a; }
+    .gate-lock-icon {
+      margin: 0 auto 1.5rem;
+      width: 44px; height: 44px;
+      border: 1px solid #d8d4cc; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gate-lock-icon svg { width: 20px; height: 20px; stroke: #5c5a56; fill: none; stroke-width: 1.5; }
+    .gate-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem; font-weight: 300; font-style: italic;
+      color: #0d0c0a; margin-bottom: 0.4rem;
+    }
+    .gate-sub { font-size: 0.8rem; color: #5c5a56; line-height: 1.65; margin-bottom: 1.5rem; }
+    .gate-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .gate-input {
+      width: 100%; border: 1px solid #d8d4cc; padding: 0.7rem 1rem;
+      font-size: 0.88rem; background: #fff; color: #0d0c0a;
+      font-family: var(--font-body); outline: none;
+      transition: border-color 0.2s; -webkit-appearance: none; border-radius: 0;
+    }
+    .gate-input:focus { border-color: #5c5a56; }
+    .gate-btn {
+      font-family: var(--font-label); font-size: 0.62rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 0.78rem 1.5rem; background: #0d0c0a; color: #f5f2ed;
+      border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .gate-btn:hover { background: #2c2c28; }
+    .gate-error {
+      display: none; margin-top: 0.6rem; font-size: 0.74rem;
+      color: #b04040; font-family: var(--font-label); letter-spacing: 0.1em;
+    }
+
   </style>
 </head>
 <body class="theme-nolka">
@@ -1043,6 +1177,21 @@
     <div class="grid-wrap is-collapsed" id="grid-people">
       <div class="grid-inner">
         <div class="masonry" id="masonry-people" data-section="people"></div>
+        <!-- +18 subcategory -->
+        <div class="sub18-hd" id="sub18-hd" role="button" tabindex="0" aria-expanded="false" aria-controls="grid-plus18">
+          <div class="sub18-hd__toggle">
+            <svg class="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <svg class="icon-chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+          </div>
+          <span class="sub18-hd__num">03 /</span>
+          <span class="sub18-hd__title">+18</span>
+          <span class="sub18-hd__badge">private collection</span>
+        </div>
+        <div class="sub18-wrap is-collapsed" id="grid-plus18">
+          <div class="sub18-inner">
+            <div class="masonry" id="masonry-plus18" data-section="plus18"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1175,6 +1324,23 @@
 
   <!-- data/nolka.js sets the global NOLKA_DATA object.
        To add/remove photos, edit that file only — never touch nolka.html. -->
+  <!-- ++ +18 Password Gate (must be in DOM before script runs) ++ -->
+  <div class="gate-overlay" id="gate-overlay" role="dialog" aria-modal="true" aria-label="Private collection">
+    <div class="gate-modal">
+      <button class="gate-close" id="gate-close" aria-label="Close">&times;</button>
+      <div class="gate-lock-icon">
+        <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      </div>
+      <h3 class="gate-title">Private Collection</h3>
+      <p class="gate-sub">This series is restricted.<br>Enter the password to view.</p>
+      <form class="gate-form" id="gate-form" autocomplete="off">
+        <input class="gate-input" type="password" id="gate-input" placeholder="password" autocomplete="new-password">
+        <button class="gate-btn" type="submit">Unlock</button>
+      </form>
+      <p class="gate-error" id="gate-error">Incorrect password.</p>
+    </div>
+  </div>
+
   <script>window.__disableSounds = true;</script>
   <script src="js/ambient.js" defer></script>
   <script src="data/nolka.js"></script>
@@ -1413,7 +1579,7 @@
           grid.appendChild(item);
         });
 
-        if (count) count.textContent = sec.images.length + ' photos';
+        if (count && sec.images.length > 0) count.textContent = sec.images.length + ' photos';
       });
     }
 
@@ -1441,7 +1607,89 @@
       });
     });
 
+    /* -- +18 Password Gate ----------------------------------------------- */
+    (function () {
+      var STORED_KEY = 'nolka-18-unlocked';
+      var PASS_HASH  = 'bmFzdHk='; /* btoa('nasty') */
+
+      var gOverlay = document.getElementById('gate-overlay');
+      var gForm    = document.getElementById('gate-form');
+      var gInput   = document.getElementById('gate-input');
+      var gErr     = document.getElementById('gate-error');
+      var gClose   = document.getElementById('gate-close');
+      var g18Hd    = document.getElementById('sub18-hd');
+      var g18Wrap  = document.getElementById('grid-plus18');
+
+      function isUnlocked() {
+        try { return localStorage.getItem(STORED_KEY) === '1'; } catch (e) { return false; }
+      }
+      function storeUnlock() { try { localStorage.setItem(STORED_KEY, '1'); } catch (e) {} }
+      function markUnlocked() { if (g18Hd) g18Hd.classList.add('is-unlocked'); }
+      function openGate() {
+        if (!gOverlay) return;
+        gOverlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        if (gInput) { gInput.value = ''; setTimeout(function () { gInput.focus(); }, 80); }
+        if (gErr)   gErr.style.display = 'none';
+      }
+      function closeGate() {
+        if (!gOverlay) return;
+        gOverlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+      function doToggle() {
+        if (!g18Hd || !g18Wrap) return;
+        var expanded = g18Hd.getAttribute('aria-expanded') === 'true';
+        g18Hd.setAttribute('aria-expanded', String(!expanded));
+        g18Wrap.classList.toggle('is-collapsed', expanded);
+        if (!expanded) {
+          var items = g18Wrap.querySelectorAll('.photo-item');
+          items.forEach(function (item, i) {
+            item.classList.remove('is-rising');
+            item.style.animationDelay = '';
+            void item.offsetWidth;
+            item.style.animationDelay = (i * 28) + 'ms';
+            item.classList.add('is-rising');
+          });
+        }
+      }
+
+      if (isUnlocked()) markUnlocked();
+
+      if (g18Hd) {
+        function handleGateClick() {
+          if (isUnlocked()) { doToggle(); } else { openGate(); }
+        }
+        g18Hd.addEventListener('click', handleGateClick);
+        g18Hd.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGateClick(); }
+        });
+      }
+
+      if (gClose)   gClose.addEventListener('click', closeGate);
+      if (gOverlay) gOverlay.addEventListener('click', function (e) {
+        if (e.target === gOverlay) closeGate();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && gOverlay && gOverlay.classList.contains('is-open')) closeGate();
+      });
+
+      if (gForm) {
+        gForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var val = gInput ? gInput.value : '';
+          if (btoa(val) === PASS_HASH) {
+            storeUnlock(); markUnlocked(); closeGate(); doToggle();
+          } else {
+            if (gErr)   gErr.style.display = 'block';
+            if (gInput) { gInput.value = ''; gInput.focus(); }
+          }
+        });
+      }
+    }());
+
   }());
   </script>
+
 </body>
 </html>

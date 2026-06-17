@@ -144,6 +144,24 @@ var NOLKA_DATA = {
       "Full_Speed_Underground.jpg",
       "Pink_Courtyard_at_St._Petersburg.jpg",
     ]
+  },
+
+  /* ------------------------------------------------------------------
+     +18 / Boudoir & Erotic Photography
+     To add photos:
+       1. Drop files into  img/nolka/plus18/
+       2. Add filenames to the list below (same pattern as other sections)
+     ------------------------------------------------------------------ */
+  plus18: {
+    label : "+18",
+    num   : "05",
+    dark  : true,
+    images: [
+      "teaser01.jpg",
+      "teaser02.jpg",
+      "teaser03.jpg",
+      "teaser04.jpg"
+    ]
   }
 
 };
