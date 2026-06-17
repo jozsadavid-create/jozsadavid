@@ -598,6 +598,9 @@
       .section-hd__count   { display: none; }
       /* Smaller ghost number so it doesn't fight the title */
       .section-hd__ghost   { font-size: clamp(3rem, 18vw, 5.5rem); }
+      /* +18 strip — hide badge and ghost on phones to avoid crowding */
+      .sub18-hd__badge  { display: none; }
+      .sub18-hd__ghost  { display: none; }
       /* Lightbox */
       .lb-img-wrap { padding: 3.5rem 0.5rem 0.5rem; }
       .lb-img-wrap img { max-height: calc(100vh - 8rem); }
