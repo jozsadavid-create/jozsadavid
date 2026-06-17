@@ -910,73 +910,101 @@
     }
 
 
-    /* -- +18 Subcategory (inside People section) ------------------------- */
+    /* -- +18 Strip (dark band between People and Places) ------------------ */
     .sub18-hd {
       display: flex;
       align-items: center;
-      padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
-      margin-top: clamp(1.5rem, 3vw, 2.5rem);
-      background: #1a1916;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      gap: 1.5rem;
+      padding: clamp(0.9rem, 1.8vw, 1.4rem) var(--gutter);
       cursor: pointer;
       user-select: none;
-      gap: 0.9rem;
+      position: relative;
+      overflow: hidden;
+      background: #111110;
       transition: background 0.2s;
     }
-    .sub18-hd:hover { background: #232321; }
+    .sub18-hd:hover { background: #161614; }
+    .sub18-hd__ghost {
+      position: absolute;
+      left: calc(var(--gutter) + 3rem);
+      top: 50%;
+      transform: translateY(-58%);
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800;
+      font-style: italic;
+      line-height: 1;
+      color: #fff;
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .sub18-hd__num {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: rgba(232,227,216,0.3);
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .sub18-hd__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.7rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(232,227,216,0.82);
+      line-height: 1.05;
+      flex-shrink: 0;
+      margin: 0;
+      position: relative; z-index: 1;
+    }
+    .sub18-hd__rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(232,227,216,0.1);
+      min-width: 2rem;
+    }
+    .sub18-hd__badge {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: rgba(232,227,216,0.25);
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
     .sub18-hd__toggle {
-      width: 26px; height: 26px;
+      width: 28px; height: 28px;
       border: 1px solid rgba(232,227,216,0.15);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      transition: border-color 0.2s;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative; z-index: 1;
     }
-    .sub18-hd:hover .sub18-hd__toggle { border-color: rgba(232,227,216,0.3); }
+    .sub18-hd:hover .sub18-hd__toggle { background: #1a1a18; border-color: rgba(232,227,216,0.3); }
     .sub18-hd .icon-lock {
-      width: 12px; height: 12px;
-      fill: none; stroke: rgba(232,227,216,0.5); stroke-width: 1.5;
+      width: 10px; height: 10px;
+      fill: none; stroke: rgba(232,227,216,0.35); stroke-width: 1.5;
     }
     .sub18-hd .icon-chevron {
-      width: 10px; height: 6px;
-      fill: none; stroke: rgba(232,227,216,0.5); stroke-width: 1.5;
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      width: 10px; height: 10px;
+      fill: none; stroke: rgba(232,227,216,0.35); stroke-width: 1.5;
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
     }
     .sub18-hd:not(.is-unlocked) .icon-chevron { display: none; }
     .sub18-hd.is-unlocked .icon-lock { display: none; }
-    .sub18-hd[aria-expanded="true"] .icon-chevron { transform: rotate(180deg); }
-    .sub18-hd__num {
-      font-family: var(--font-label);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(232,227,216,0.25);
-    }
-    .sub18-hd__title {
-      font-family: var(--font-label);
-      font-size: 0.7rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(232,227,216,0.65);
-      flex: 1;
-    }
-    .sub18-hd__badge {
-      font-family: var(--font-label);
-      font-size: 0.55rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(232,227,216,0.28);
-    }
+    .sub18-hd[aria-expanded="false"] .icon-chevron { transform: rotate(-90deg); }
     .sub18-wrap {
       display: grid;
       grid-template-rows: 1fr;
       transition: grid-template-rows 0.6s cubic-bezier(0.16,1,0.3,1);
-      background: #111110;
+      background: #0d0c0a;
     }
     .sub18-wrap.is-collapsed { grid-template-rows: 0fr; }
     .sub18-inner { overflow: hidden; min-height: 0; }
-    .sub18-inner .masonry {
-      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3rem);
-    }
+    .sub18-inner .masonry { padding: clamp(1.5rem, 3vw, 2.5rem) 0; }
     .gate-overlay {
       display: none;
       position: fixed;
@@ -1177,24 +1205,27 @@
     <div class="grid-wrap is-collapsed" id="grid-people">
       <div class="grid-inner">
         <div class="masonry" id="masonry-people" data-section="people"></div>
-        <!-- +18 subcategory -->
-        <div class="sub18-hd" id="sub18-hd" role="button" tabindex="0" aria-expanded="false" aria-controls="grid-plus18">
-          <div class="sub18-hd__toggle">
-            <svg class="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-            <svg class="icon-chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
-          </div>
-          <span class="sub18-hd__num">03 /</span>
-          <span class="sub18-hd__title">+18</span>
-          <span class="sub18-hd__badge">private collection</span>
-        </div>
-        <div class="sub18-wrap is-collapsed" id="grid-plus18">
-          <div class="sub18-inner">
-            <div class="masonry" id="masonry-plus18" data-section="plus18"></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
+
+  <!-- +18 strip — dark band between People and Places, always visible -->
+  <div class="sub18-hd" id="sub18-hd" role="button" tabindex="0" aria-expanded="false" aria-controls="grid-plus18">
+    <span class="sub18-hd__ghost" aria-hidden="true">+18</span>
+    <span class="sub18-hd__num">03 /</span>
+    <h3 class="sub18-hd__title">+18</h3>
+    <div class="sub18-hd__rule"></div>
+    <span class="sub18-hd__badge">private</span>
+    <div class="sub18-hd__toggle">
+      <svg class="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <svg class="icon-chevron" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+    </div>
+  </div>
+  <div class="sub18-wrap is-collapsed" id="grid-plus18">
+    <div class="sub18-inner">
+      <div class="masonry" id="masonry-plus18" data-section="plus18"></div>
+    </div>
+  </div>
 
   <section class="photo-section" id="section-places">
     <div class="section-hd" aria-expanded="false" aria-controls="grid-places" role="button" tabindex="0">
