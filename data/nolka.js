@@ -143,6 +143,7 @@ var NOLKA_DATA = {
       "Solar.jpg",
       "Full_Speed_Underground.jpg",
       "Pink_Courtyard_at_St._Petersburg.jpg",
+      "Cape_Point_Lighthouse_SouthAfrica.jpg",
     ]
   },
 
