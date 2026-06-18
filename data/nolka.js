@@ -117,6 +117,7 @@ var NOLKA_DATA = {
       "Table_Mountain_Arms_Open.jpg",
       "Cape_Town_Blue_Hour.jpg",
       "Cape_Point.jpg",
+      "Cape_Point_Lighthouse_SouthAfrica.jpg",
       "Conservationist_Silhouettes_Kruger.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
@@ -143,7 +144,6 @@ var NOLKA_DATA = {
       "Solar.jpg",
       "Full_Speed_Underground.jpg",
       "Pink_Courtyard_at_St._Petersburg.jpg",
-      "Cape_Point_Lighthouse_SouthAfrica.jpg",
     ]
   },
 
