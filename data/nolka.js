@@ -109,6 +109,7 @@ var NOLKA_DATA = {
     dark  : false,
     images: [
       "Tata-Before_the_World_Wakes.jpg",
+      "Corsica_Plage_Santa_Giulia_Sunset.jpg",
       "Island_of_Fog.jpg",
       "Golden_Parliament_Budapest.jpg",
       "Nepliget-Abandoned_with_Color.jpg",
@@ -121,7 +122,6 @@ var NOLKA_DATA = {
       "Cape_Point_Lighthouse_SouthAfrica.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
-      "Corsica_Bay_at_Dusk.jpg",
       "Corsica_Night-Palm.jpg",
       "Premantura_from_Above.jpg",
       "Premantura_Turquoise.jpg",
@@ -143,6 +143,8 @@ var NOLKA_DATA = {
       "Dead_Letters.jpg",
       "Solar.jpg",
       "Full_Speed_Underground.jpg",
+      "TheDaveShow_LP_Concert.jpg",
+      "LP_Concert.jpg",
       "Pink_Courtyard_at_St._Petersburg.jpg",
     ]
   },
