@@ -108,13 +108,14 @@ var NOLKA_DATA = {
     num   : "04",
     dark  : false,
     images: [
+      /* — Hungary — */
       "Tata-Before_the_World_Wakes.jpg",
-      "Corsica_Plage_Santa_Giulia_Sunset.jpg",
       "Island_of_Fog.jpg",
       "Golden_Parliament_Budapest.jpg",
       "Nepliget-Abandoned_with_Color.jpg",
       "Airskater.jpg",
       "Frozen_Delta.jpg",
+      /* — South Africa — */
       "Table_Mountain_Arms_Open.jpg",
       "Cape_Town_Blue_Hour.jpg",
       "Conservationist_Silhouettes_Kruger.jpg",
@@ -122,14 +123,14 @@ var NOLKA_DATA = {
       "Cape_Point_Lighthouse_SouthAfrica.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
-      "Corsica_Night-Palm.jpg",
-      "Premantura_from_Above.jpg",
-      "Premantura_Turquoise.jpg",
-      "Last_Swim_of_Summer.jpg",
+      /* — Portugal — */
       "Cintra_watching.jpg",
       "Portuguese-traditions.jpg",
       "Tivoli_at_Night.jpg",
-      "ShortParis_Concert_Night.jpg",
+      /* — France / Corsica — */
+      "Corsica_Plage_Santa_Giulia_Sunset.jpg",
+      "Corsica_Night-Palm.jpg",
+      /* — Northern Europe — */
       "Copenhagen_building_curves.jpg",
       "Copenhagada_bw.jpg",
       "Liverpool_Liverbird.jpg",
@@ -143,9 +144,16 @@ var NOLKA_DATA = {
       "Dead_Letters.jpg",
       "Solar.jpg",
       "Full_Speed_Underground.jpg",
+      /* — Concerts — */
+      "ShortParis_Concert_Night.jpg",
       "TheDaveShow_LP_Concert.jpg",
       "LP_Concert.jpg",
+      /* — Russia — */
       "Pink_Courtyard_at_St._Petersburg.jpg",
+      /* — Croatia — */
+      "Last_Swim_of_Summer.jpg",
+      "Premantura_from_Above.jpg",
+      "Premantura_Turquoise.jpg",
     ]
   },
 
