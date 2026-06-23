@@ -132,8 +132,8 @@ var NOLKA_DATA = {
       "London_National_History_Museum.jpg",
       "The_Gold_Balloon.jpg",
       /* — Black & white (strong first, weaker last) — */
-      "Conservationist_Silhouettes_Kruger.jpg",
       "Copenhagada_bw.jpg",
+      "Conservationist_Silhouettes_Kruger.jpg",
       "Calatrava_and_the_Kid.jpg",
       "Corsica_Night-Palm.jpg",
       "Dead_Letters.jpg",
