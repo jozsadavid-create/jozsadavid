@@ -118,9 +118,9 @@ var NOLKA_DATA = {
       /* — South Africa — */
       "Table_Mountain_Arms_Open.jpg",
       "Cape_Town_Blue_Hour.jpg",
-      "Conservationist_Silhouettes_Kruger.jpg",
-      "Cape_Point.jpg",
       "Cape_Point_Lighthouse_SouthAfrica.jpg",
+      "Cape_Point.jpg",
+      "Conservationist_Silhouettes_Kruger.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
       /* — Portugal — */
@@ -148,6 +148,7 @@ var NOLKA_DATA = {
       "ShortParis_Concert_Night.jpg",
       "TheDaveShow_LP_Concert.jpg",
       "LP_Concert.jpg",
+      "LP-Concert_FaintVibes.jpg",
       /* — Russia — */
       "Pink_Courtyard_at_St._Petersburg.jpg",
       /* — Croatia — */
