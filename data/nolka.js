@@ -112,10 +112,10 @@ var NOLKA_DATA = {
       "Tata-Before_the_World_Wakes.jpg",
       "Corsica_Plage_Santa_Giulia_Sunset.jpg",
       "Island_of_Fog.jpg",
-      /* — Color & life — */
-      "Portuguese-traditions.jpg",
-      "Airskater.jpg",
-      "Nepliget-Abandoned_with_Color.jpg",
+      /* — Strong shots pulled forward — */
+      "Red_Beacon_Night.jpg",
+      "Cape_Town_Blue_Hour.jpg",
+      "Frozen_Delta.jpg",
       /* — Golden / warm night — */
       "Rooftop_Chimneys.jpg",
       "Golden_Parliament_Budapest.jpg",
@@ -131,31 +131,32 @@ var NOLKA_DATA = {
       /* — Warm interiors & detail — */
       "London_National_History_Museum.jpg",
       "The_Gold_Balloon.jpg",
-      "Cintra_watching.jpg",
-      /* — Black & white — */
+      /* — Black & white (strong first, weaker last) — */
       "Conservationist_Silhouettes_Kruger.jpg",
       "Copenhagada_bw.jpg",
       "Calatrava_and_the_Kid.jpg",
+      "Corsica_Night-Palm.jpg",
       "Dead_Letters.jpg",
       "Pigeon_Uprising.jpg",
-      /* — Dusk / dramatic cool — */
-      "Cape_Town_Blue_Hour.jpg",
-      "Frozen_Delta.jpg",
-      "Corsica_Night-Palm.jpg",
       /* — Night urban & transit — */
       "Copenhagen_building_curves.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
       "Red_Beret_Descending.jpg",
       "Full_Speed_Underground.jpg",
+      /* — Urban street (moved back) — */
+      "Airskater.jpg",
+      "Nepliget-Abandoned_with_Color.jpg",
       /* — Concerts — */
       "ShortParis_Concert_Night.jpg",
       "TheDaveShow_LP_Concert.jpg",
       "LP_Concert.jpg",
       /* — Wind down — */
       "Pink_Courtyard_at_St._Petersburg.jpg",
-      "Red_Beacon_Night.jpg",
       "Last_Swim_of_Summer.jpg",
+      /* — Portugal close — */
+      "Cintra_watching.jpg",
+      "Portuguese-traditions.jpg",
       /* — Croatia close — */
       "Premantura_from_Above.jpg",
       "Premantura_Turquoise.jpg",
