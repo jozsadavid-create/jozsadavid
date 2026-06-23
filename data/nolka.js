@@ -108,51 +108,55 @@ var NOLKA_DATA = {
     num   : "04",
     dark  : false,
     images: [
-      /* — Hungary — */
+      /* — Atmospheric openers — */
       "Tata-Before_the_World_Wakes.jpg",
+      "Corsica_Plage_Santa_Giulia_Sunset.jpg",
       "Island_of_Fog.jpg",
-      "Golden_Parliament_Budapest.jpg",
-      "Nepliget-Abandoned_with_Color.jpg",
+      /* — Color & life — */
+      "Portuguese-traditions.jpg",
       "Airskater.jpg",
-      "Frozen_Delta.jpg",
-      /* — South Africa — */
-      "Table_Mountain_Arms_Open.jpg",
-      "Cape_Town_Blue_Hour.jpg",
+      "Nepliget-Abandoned_with_Color.jpg",
+      /* — Golden / warm night — */
+      "Rooftop_Chimneys.jpg",
+      "Golden_Parliament_Budapest.jpg",
+      "Tivoli_at_Night.jpg",
+      "Solar.jpg",
+      /* — Orange silhouette bridge — */
+      "LP-Concert_FaintVibes.jpg",
+      /* — Bright blue sky — */
       "Cape_Point_Lighthouse_SouthAfrica.jpg",
       "Cape_Point.jpg",
+      "Table_Mountain_Arms_Open.jpg",
+      "Liverpool_Liverbird.jpg",
+      /* — Warm interiors & detail — */
+      "London_National_History_Museum.jpg",
+      "The_Gold_Balloon.jpg",
+      "Cintra_watching.jpg",
+      /* — Black & white — */
       "Conservationist_Silhouettes_Kruger.jpg",
+      "Copenhagada_bw.jpg",
+      "Calatrava_and_the_Kid.jpg",
+      "Dead_Letters.jpg",
+      "Pigeon_Uprising.jpg",
+      /* — Dusk / dramatic cool — */
+      "Cape_Town_Blue_Hour.jpg",
+      "Frozen_Delta.jpg",
+      "Corsica_Night-Palm.jpg",
+      /* — Night urban & transit — */
+      "Copenhagen_building_curves.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
-      /* — Portugal — */
-      "Cintra_watching.jpg",
-      "Portuguese-traditions.jpg",
-      "Tivoli_at_Night.jpg",
-      /* — France / Corsica — */
-      "Corsica_Plage_Santa_Giulia_Sunset.jpg",
-      "Corsica_Night-Palm.jpg",
-      /* — Northern Europe — */
-      "Copenhagen_building_curves.jpg",
-      "Copenhagada_bw.jpg",
-      "Liverpool_Liverbird.jpg",
-      "London_National_History_Museum.jpg",
-      "Calatrava_and_the_Kid.jpg",
-      "Pigeon_Uprising.jpg",
       "Red_Beret_Descending.jpg",
-      "The_Gold_Balloon.jpg",
-      "Red_Beacon_Night.jpg",
-      "Rooftop_Chimneys.jpg",
-      "Dead_Letters.jpg",
-      "Solar.jpg",
       "Full_Speed_Underground.jpg",
       /* — Concerts — */
       "ShortParis_Concert_Night.jpg",
       "TheDaveShow_LP_Concert.jpg",
       "LP_Concert.jpg",
-      "LP-Concert_FaintVibes.jpg",
-      /* — Russia — */
+      /* — Wind down — */
       "Pink_Courtyard_at_St._Petersburg.jpg",
-      /* — Croatia — */
+      "Red_Beacon_Night.jpg",
       "Last_Swim_of_Summer.jpg",
+      /* — Croatia close — */
       "Premantura_from_Above.jpg",
       "Premantura_Turquoise.jpg",
     ]
