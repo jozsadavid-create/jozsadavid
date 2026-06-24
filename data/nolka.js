@@ -121,8 +121,6 @@ var NOLKA_DATA = {
       "Golden_Parliament_Budapest.jpg",
       "Tivoli_at_Night.jpg",
       "Solar.jpg",
-      /* — Orange silhouette bridge — */
-      "LP-Concert_FaintVibes.jpg",
       /* — Bright blue sky — */
       "Cape_Point_Lighthouse_SouthAfrica.jpg",
       "Cape_Point.jpg",
@@ -131,14 +129,14 @@ var NOLKA_DATA = {
       /* — Warm interiors & detail — */
       "London_National_History_Museum.jpg",
       "The_Gold_Balloon.jpg",
-      /* — Black & white (strong first, weaker last) — */
-      "Copenhagada_bw.jpg",
-      "Conservationist_Silhouettes_Kruger.jpg",
+      /* — Black & white — */
       "Calatrava_and_the_Kid.jpg",
       "Corsica_Night-Palm.jpg",
       "Dead_Letters.jpg",
       "Pigeon_Uprising.jpg",
       /* — Night urban & transit — */
+      "Copenhagada_bw.jpg",
+      "Conservationist_Silhouettes_Kruger.jpg",
       "Copenhagen_building_curves.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
@@ -150,6 +148,7 @@ var NOLKA_DATA = {
       /* — Concerts — */
       "ShortParis_Concert_Night.jpg",
       "TheDaveShow_LP_Concert.jpg",
+      "LP-Concert_FaintVibes.jpg",
       "LP_Concert.jpg",
       /* — Wind down — */
       "Pink_Courtyard_at_St._Petersburg.jpg",
