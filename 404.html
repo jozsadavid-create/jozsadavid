@@ -7,6 +7,9 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <meta name="robots" content="noindex">
   <title>404 · Józsa Dávid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Inter:wght@300;400&display=swap">
   <link rel="stylesheet" href="style.css">
   <style>
 
@@ -117,6 +120,24 @@
     }
     .err-back:hover .err-back-line { width: 36px; }
 
+    /* Direct portal links */
+    .err-portals {
+      display: flex;
+      gap: 1.75rem;
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .err-portals a {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.25s;
+    }
+    .err-portals a:hover { color: var(--text); }
+
     /* Fade transition */
     .err-fade {
       position: fixed;
@@ -187,6 +208,12 @@
     <a href="index.html" class="err-back" id="err-back">
       <span class="err-back-line"></span>Return
     </a>
+
+    <nav class="err-portals" aria-label="Portals">
+      <a href="nolka.html">Nolka</a>
+      <a href="kibo.html">Kibo Visuals</a>
+      <a href="writing.html">Writing</a>
+    </nav>
   </main>
 
   <script>window.__disableSounds = true;</script>

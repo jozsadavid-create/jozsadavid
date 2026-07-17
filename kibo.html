@@ -63,7 +63,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@300;400&family=Plus+Jakarta+Sans:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
 
     /* ── Override typefaces for Kibo ────────────────────────── */
@@ -454,6 +454,14 @@
       transition: opacity 0.38s;
     }
     .kibo-filmstrip__item:hover .strip-overlay { opacity: 1; }
+    /* Touch devices have no hover — keep captions visible with a lighter scrim */
+    @media (hover: none) {
+      .strip-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(2,2,2,0.55) 0%, transparent 28%);
+      }
+      .strip-caption { transform: translateY(0); }
+    }
     .strip-caption {
       font-family: var(--font-label);
       font-size: 0.56rem;
@@ -1043,56 +1051,6 @@
     }
 
     /* ══════════════════════════════════════════════════════════
-       MANIFESTO — "Directed, not generated"
-    ══════════════════════════════════════════════════════════ */
-    .kibo-manifesto {
-      padding: var(--section-pad) var(--gutter);
-      border-top: 1px solid var(--border);
-    }
-    .kibo-manifesto__inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 8rem);
-      align-items: start;
-    }
-    .kibo-manifesto__label {
-      font-family: var(--font-label);
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(212,175,100,0.7);
-      display: block;
-      margin-bottom: 1.5rem;
-    }
-    .kibo-manifesto__heading {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.4rem, 5.5vw, 5.5rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      line-height: 0.92;
-    }
-    .kibo-manifesto__heading em {
-      font-style: normal;
-      color: var(--text-dim);
-    }
-    .kibo-manifesto__body {
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--text-dim);
-      line-height: 1.88;
-      padding-top: 0.35rem;
-    }
-    .kibo-manifesto__body p + p { margin-top: 0.9em; }
-    @media (max-width: 700px) {
-      .kibo-manifesto__inner { grid-template-columns: 1fr; gap: 2rem; }
-    }
-
-    /* ══════════════════════════════════════════════════════════
        SERVICES
     ══════════════════════════════════════════════════════════ */
     .kibo-services {
@@ -1512,8 +1470,9 @@
         item.className = 'kibo-filmstrip__item';
         item.dataset.src = src;
         item.dataset.caption = cap;
+        var thumb = src.replace(/^img\//, 'img/thumbs/'); /* grid derivative; data-src keeps full-res */
         item.innerHTML =
-          '<img src="' + src + '" alt="' + cap + '" loading="lazy">' +
+          '<img src="' + thumb + '" alt="' + cap + '" loading="lazy" onerror="this.onerror=null;this.src=this.parentNode.dataset.src;">' +
           '<div class="strip-overlay"><span class="strip-caption">' + cap + '</span></div>';
         strip.appendChild(item);
       });
@@ -1533,8 +1492,9 @@
         item.className = 'kibo-filmstrip__item';
         item.dataset.src = src;
         item.dataset.caption = cap;
+        var thumb = src.replace(/^img\//, 'img/thumbs/'); /* grid derivative; data-src keeps full-res */
         item.innerHTML =
-          '<img src="' + src + '" alt="' + cap + '" loading="lazy">' +
+          '<img src="' + thumb + '" alt="' + cap + '" loading="lazy" onerror="this.onerror=null;this.src=this.parentNode.dataset.src;">' +
           '<div class="strip-overlay"><span class="strip-caption">' + cap + '</span></div>';
         strip.appendChild(item);
       });
@@ -1554,8 +1514,9 @@
         item.className = 'kibo-filmstrip__item';
         item.dataset.src = src;
         item.dataset.caption = cap;
+        var thumb = src.replace(/^img\//, 'img/thumbs/'); /* grid derivative; data-src keeps full-res */
         item.innerHTML =
-          '<img src="' + src + '" alt="' + cap + '" loading="lazy">' +
+          '<img src="' + thumb + '" alt="' + cap + '" loading="lazy" onerror="this.onerror=null;this.src=this.parentNode.dataset.src;">' +
           '<div class="strip-overlay"><span class="strip-caption">' + cap + '</span></div>';
         strip.appendChild(item);
       });
@@ -1575,8 +1536,9 @@
         item.className = 'kibo-filmstrip__item';
         item.dataset.src = src;
         item.dataset.caption = cap;
+        var thumb = src.replace(/^img\//, 'img/thumbs/'); /* grid derivative; data-src keeps full-res */
         item.innerHTML =
-          '<img src="' + src + '" alt="' + cap + '" loading="lazy">' +
+          '<img src="' + thumb + '" alt="' + cap + '" loading="lazy" onerror="this.onerror=null;this.src=this.parentNode.dataset.src;">' +
           '<div class="strip-overlay"><span class="strip-caption">' + cap + '</span></div>';
         strip.appendChild(item);
       });
@@ -1886,6 +1848,15 @@
 
       /* Auto-scroll — pauses on hover/touch, resumes after delay */
       var autoPaused = false, autoTimer = null;
+
+      /* Perf: skip auto-scroll work entirely while the strip is off-screen.
+         Purely a background optimisation — behaviour on screen is unchanged. */
+      var stripVisible = true;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          stripVisible = entries[0].isIntersecting;
+        }, { rootMargin: '120px' }).observe(strip);
+      }
       function autoResume() { autoPaused = false; }
       function autoPause(ms) { autoPaused = true; clearTimeout(autoTimer); autoTimer = setTimeout(autoResume, ms || 2000); }
       strip.addEventListener('mouseenter',  function () { autoPause(99999); }); /* pause while hovered */
@@ -1899,7 +1870,7 @@
       setTimeout(function () {
         var acc = 0; /* sub-pixel accumulator — avoids browser rounding-to-zero */
         (function autoTick() {
-          if (!autoPaused) {
+          if (!autoPaused && stripVisible) {
             var half = strip.scrollWidth / 2;
             if (half > 0 && half > strip.clientWidth) {
               acc += 0.44;           /* desired visual speed: ~26px/s at 60fps   */
@@ -1956,6 +1927,12 @@
       lbCaption.textContent = it.caption || '';
       lbCounter.textContent = (i + 1) + ' / ' + lbItems.length;
       lbSection.textContent = (it.section || '').toUpperCase();
+      /* preload neighbours so prev/next feel instant */
+      if (lbItems.length > 1) {
+        [(i + 1) % lbItems.length, (i - 1 + lbItems.length) % lbItems.length].forEach(function (j) {
+          var pre = new Image(); pre.src = lbItems[j].src;
+        });
+      }
       if (!dir) {
         /* On open — no slide, simple fade-in via CSS opacity */
         lbImg.style.cssText = '';
@@ -2079,10 +2056,19 @@
     var filmRailTop = document.getElementById('film-rail-top');
     var filmRailBot = document.getElementById('film-rail-bot');
     if (artStrip && filmRailTop && filmRailBot) {
+      /* Perf: skip rail style writes while the Art strip is off-screen */
+      var railVisible = true;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          railVisible = entries[0].isIntersecting;
+        }, { rootMargin: '120px' }).observe(artStrip);
+      }
       (function filmSync () {
-        var x = -(artStrip.scrollLeft % 52);
-        filmRailTop.style.setProperty('--film-x', x + 'px');
-        filmRailBot.style.setProperty('--film-x',  x + 'px');
+        if (railVisible) {
+          var x = -(artStrip.scrollLeft % 52);
+          filmRailTop.style.setProperty('--film-x', x + 'px');
+          filmRailBot.style.setProperty('--film-x',  x + 'px');
+        }
         requestAnimationFrame(filmSync);
       }());
     }
@@ -2101,7 +2087,7 @@
       var revealEls = document.querySelectorAll(
         '.kibo-archviz__intro, .kibo-archviz__strip-hd, .kibo-section-hd, ' +
         '.kibo-career__head, .kibo-career__body, ' +
-        '.kibo-contact, .approach, .kibo-manifesto, .kibo-services'
+        '.kibo-contact, .approach, .kibo-services'
       );
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {

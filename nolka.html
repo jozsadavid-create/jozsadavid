@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Space+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Inter:wght@300;400&family=Space+Mono&display=swap">
   <style>
 
     /* ── Nolka theme ──────────────────────────────────────────── */
@@ -1074,6 +1074,18 @@
       display: none; margin-top: 0.6rem; font-size: 0.74rem;
       color: #b04040; font-family: var(--font-label); letter-spacing: 0.1em;
     }
+    /* Wrong password — modal shakes */
+    @keyframes gateShake {
+      0%, 100% { transform: translateX(0); }
+      15%      { transform: translateX(-9px); }
+      30%      { transform: translateX(7px); }
+      45%      { transform: translateX(-5px); }
+      60%      { transform: translateX(3px); }
+      75%      { transform: translateX(-2px); }
+    }
+    .gate-modal.is-shake {
+      animation: gateShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
 
   </style>
 </head>
@@ -1250,7 +1262,7 @@
   </section>
 
 
-  <!-- ── Documentary teaser ──────────────────────────────── -->
+  <!-- ── Documentary teaser — temporarily removed. To restore, uncomment the block below. ──
   <div class="nolka-doc-teaser">
     <div class="nolka-doc-teaser__inner">
       <span class="nolka-doc-teaser__label">In development</span>
@@ -1258,6 +1270,8 @@
       <p class="nolka-doc-teaser__sub">A return to Manaus. Documentary.</p>
     </div>
   </div>
+  -->
+
 
   <!-- ── Contact ───────────────────────────────────────────── -->
   <div class="nolka-contact">
@@ -1420,6 +1434,12 @@
       lbCaption.textContent = it.caption;
       lbCounter.textContent = (i + 1) + ' / ' + lbItems.length;
       lbSection.textContent = (it.section || '').toUpperCase();
+      /* preload neighbours so prev/next feel instant */
+      if (lbItems.length > 1) {
+        [(i + 1) % lbItems.length, (i - 1 + lbItems.length) % lbItems.length].forEach(function (j) {
+          var pre = new Image(); pre.src = lbItems[j].src;
+        });
+      }
     }
     function lbPrev() { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; lbShow(lbIdx); }
     function lbNext() { lbIdx = (lbIdx + 1) % lbItems.length; lbShow(lbIdx); }
@@ -1580,24 +1600,27 @@
         var lbArr = [];
 
         sec.images.forEach(function (filename, i) {
-          var src     = BASE + key + '/' + filename;
+          var src     = BASE + key + '/' + filename;                  /* full-res — lightbox */
+          var thumb   = 'img/thumbs/nolka/' + key + '/' + filename;   /* derivative — grid  */
           var caption = captionFromFile(filename);
 
-          /* lightbox array entry */
+          /* lightbox array entry — always full resolution */
           lbArr.push({ src: src, caption: caption, section: sec.label });
 
           /* preview strip (first 3 images) */
           if (preview && i < 3) {
             var prev = document.createElement('img');
-            prev.src = src; prev.alt = ''; prev.loading = 'lazy';
+            prev.src = thumb; prev.alt = ''; prev.loading = 'lazy';
+            prev.onerror = function () { prev.onerror = null; prev.src = src; };
             preview.appendChild(prev);
           }
 
-          /* photo item */
+          /* photo item — thumb in grid, falls back to original if thumb missing */
           var item = document.createElement('div');
           item.className = 'photo-item';
           var img = document.createElement('img');
-          img.src = src; img.alt = caption; img.loading = 'lazy';
+          img.src = thumb; img.alt = caption; img.loading = 'lazy';
+          img.onerror = function () { img.onerror = null; img.src = src; };
           img.onload = function () { img.classList.add('is-loaded'); };
           if (img.complete) img.classList.add('is-loaded');
           var cap = document.createElement('div');
@@ -1713,6 +1736,13 @@
           } else {
             if (gErr)   gErr.style.display = 'block';
             if (gInput) { gInput.value = ''; gInput.focus(); }
+            /* shake the modal */
+            var gModal = gOverlay ? gOverlay.querySelector('.gate-modal') : null;
+            if (gModal) {
+              gModal.classList.remove('is-shake');
+              void gModal.offsetWidth; /* force reflow so the animation can restart */
+              gModal.classList.add('is-shake');
+            }
           }
         });
       }

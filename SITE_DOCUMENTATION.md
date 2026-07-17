@@ -53,7 +53,6 @@ jozsadavid.com/
 │
 ├── data/
 │   ├── nolka.js            ← Nolka image lists (edit to add/remove/reorder photos)
-│   ├── nolka.json          ← (legacy, unused — ignore)
 │   ├── kibo_exteriors.js   ← Kibo Exteriors image list
 │   ├── kibo_interiors.js   ← Kibo Interiors image list
 │   ├── kibo_cd.js          ← Kibo Creative Direction image list
@@ -63,6 +62,7 @@ jozsadavid.com/
 │   └── ambient.js          ← Shared ambient/sound logic (portal page)
 │
 └── img/
+    ├── thumbs/             ← AUTO-GENERATED grid thumbnails (mirrors nolka/ + kibo/ folders — see "Thumbnails" section)
     ├── nolka-logo.jpg / nolka-logo-transparent.png / nolka-logo-white.jpg
     ├── kibo-logo.jpg / kibo-logo-transparent.png / kibo-logo-light.jpg
     ├── adam.jpg             ← Book cover (Writing page)
@@ -165,8 +165,9 @@ var NOLKA_DATA = {
 
 **To add a photo:**
 1. Drop the `.jpg` file into the correct folder under `img/nolka/<section>/`
-2. Add the filename to the `images` array in `data/nolka.js` at the position you want it to appear
-3. That's it. Commit and push.
+2. Generate its thumbnail into `img/thumbs/nolka/<section>/` (see the "Thumbnails" section below). If you skip this, the site still works — the grid just loads the heavy original for that photo.
+3. Add the filename to the `images` array in `data/nolka.js` at the position you want it to appear
+4. Commit and push.
 
 **To remove a photo:**
 1. Delete the filename from the array in `data/nolka.js`
@@ -175,9 +176,16 @@ var NOLKA_DATA = {
 **To reorder photos:**
 Move lines within the `images` array. The masonry grid renders them in the order listed.
 
+### Notes on removed / dormant blocks
+
+- **AM-310 documentary teaser**: commented out in `nolka.html` (July 2026). Search for "Documentary teaser" and uncomment the block to restore it; its CSS (`.nolka-doc-teaser…`) is still in place.
+- **`data/nolka.json`**: legacy file, removed from the repo (moved to `_to_delete/`).
+
 ### The +18 Section and Password Gate
 
 The `plus18` section sits between People and Places as a standalone collapsible element. It is protected by a password gate.
+
+A wrong password shakes the modal (`.gate-modal.is-shake`, keyframes `gateShake` — pure CSS, retriggered from the submit handler).
 
 **Password:** `nasty`
 The password is stored as a base64 hash (`bmFzdHk=`) in `nolka.html`. It is verified client-side using `btoa()`. **This is not cryptographically secure — it is an access deterrent, not encryption.**
@@ -219,6 +227,41 @@ Most other images in the portfolio sit at 2250px — the previous standard. Thes
 
 **CRITICAL — do not use PIL's `LOAD_TRUNCATED_IMAGES = True`** when overwriting originals. It causes partial reads that silently corrupt the file. Always open fresh originals, never re-save already-compressed exports back through PIL.
 
+### Thumbnails (grid derivatives) — applies to BOTH Nolka and Kibo
+
+Since July 2026 the grids and filmstrips load lightweight derivatives from
+`img/thumbs/…` (max 1400px long side, JPEG quality 80). The folder structure
+mirrors the originals exactly:
+
+| Original | Thumbnail |
+|---|---|
+| `img/nolka/wild/Photo.jpg` | `img/thumbs/nolka/wild/Photo.jpg` |
+| `img/kibo/Exteriors/Render.jpg` | `img/thumbs/kibo/Exteriors/Render.jpg` |
+
+Lightboxes and the Kibo hero always load the **full-resolution original**.
+If a thumbnail is missing, the page silently falls back to the original via an
+`onerror` handler — nothing breaks, that one image just loads slower.
+
+**When adding a new image, generate its thumbnail (Python/PIL):**
+```python
+import os, shutil
+from PIL import Image, ImageOps
+src = 'img/nolka/wild/New_Photo.jpg'              # the original you just added
+dst = src.replace('img/', 'img/thumbs/', 1)       # derivative path
+os.makedirs(os.path.dirname(dst), exist_ok=True)
+img = ImageOps.exif_transpose(Image.open(src))
+w, h = img.size
+if max(w, h) > 1400:
+    r = 1400 / max(w, h)
+    img = img.convert('RGB').resize((round(w*r), round(h*r)), Image.LANCZOS)
+    img.save(dst, 'JPEG', quality=80, optimize=True)
+else:
+    shutil.copy2(src, dst)                        # already small — copy as-is
+```
+
+Rules: thumbnails only ever live in `img/thumbs/`; never overwrite an original;
+this derivative resize is the one legitimate re-save (the original stays untouched).
+
 ---
 
 ## 7. kibo.html — CGI Portfolio
@@ -250,8 +293,9 @@ var KIBO_EXTERIORS = [
 
 **To add an image:**
 1. Drop the file into the correct `img/kibo/<Section>/` folder
-2. Add the full relative path to the correct array in the correct data file
-3. Commit and push
+2. Generate its thumbnail into `img/thumbs/kibo/<Section>/` (see the Thumbnails section in §6 — same command). Optional but recommended; missing thumbs fall back to the original.
+3. Add the full relative path to the correct array in the correct data file
+4. Commit and push
 
 **To remove:** Delete the entry from the array (and optionally the file).
 **To reorder:** Move lines within the array.
@@ -268,6 +312,12 @@ This is purely organisational. The site reads whatever filename is in the array.
 ### Creative Direction section
 
 The Creative Direction strip has a "toggle" button (`Direction`) that collapses/expands the gallery. This is the only section with that behaviour. It is driven by a `<button class="toggle-btn">` that a scroll-linked JS function handles. No changes needed unless redesigning.
+
+### Built-in performance behaviours (July 2026)
+
+- Filmstrips and the Art film-rail **pause all auto-scroll work while off-screen** (IntersectionObserver; purely background — on-screen behaviour is unchanged).
+- Both lightboxes (Nolka + Kibo) **preload the previous/next full-res image** so arrow navigation feels instant.
+- On touch devices (`hover: none`) filmstrip **captions are always visible** with a lighter gradient, since there is no hover.
 
 ### Kibo image standards
 
@@ -355,7 +405,13 @@ Find the `<article class="vol-entry ...">` block by its volume number or title a
 
 ### Language note
 
-The writing page mixes Portuguese and English intentionally. Book content (titles, quotes, status labels) is in Portuguese (pt-BR). The bio and contact section are in English. The `data-i18n` attributes on some elements are remnants of a language-switching system that is no longer active — they are harmless.
+The writing page mixes Portuguese and English intentionally. Book content (titles, quotes) is in Portuguese (pt-BR); the bio is in English.
+
+**The language toggle IS active:** the `EN`/`PT` button in the nav (`#lang-toggle`) swaps every element carrying a `data-i18n` attribute using the `DICT` object defined in an inline script near the bottom of `writing.html`. The choice persists via `localStorage` key `w-lang` (default: `pt`). To add a new translatable label: give the element a `data-i18n="your-key"` attribute and add `your-key` entries to **both** the `en` and `pt` dictionaries.
+
+### Series progress strip
+
+Above the Relatos vol-list sits a compact 9-dot progress strip (`.vol-progress`). When a volume's status changes, update the modifier class on its item: `vol-progress__item--pub` (published, filled gold), `vol-progress__item--wip` (in progress, half dot), or no modifier (announced/coming, empty dot). Keep it in sync with the `vol-entry` status classes below it.
 
 ---
 
@@ -408,15 +464,17 @@ The `sitemap.xml` in the root lists all four pages. Update it if new pages are e
 
 ## 12. Fonts
 
-Loaded from Google Fonts. All pages use:
-- **DM Mono** — labels, small caps, metadata
-- **Inter** — body text (global default)
+Loaded from Google Fonts via `<link>` tags in each page's `<head>` (NOT via `@import` in style.css — that was removed in July 2026 because it created a render-blocking chain). Each page loads only the families it uses:
 
-Kibo additionally loads:
-- **Syne** — display/headings
-- **Plus Jakarta Sans** — body text (overrides Inter for kibo.html only)
+| Page | Families loaded |
+|---|---|
+| `index.html` | Cormorant Garamond, DM Mono, Inter |
+| `writing.html` | Cormorant Garamond, DM Mono, Inter |
+| `404.html` | Cormorant Garamond, DM Mono, Inter |
+| `nolka.html` | Fraunces, Space Mono, Inter |
+| `kibo.html` | Syne, Plus Jakarta Sans, Cormorant Garamond (italic 300, for section headers), DM Mono |
 
-**Cormorant Garamond** is referenced in Kibo's CSS for section headers but is not explicitly loaded via a `<link>` — it falls back to Georgia. If you want it to render correctly, add it to the Google Fonts link in `kibo.html`.
+If you add a page, copy the two `preconnect` lines + the fonts `<link>` from an existing page. If you use a new font/weight anywhere, add it to that page's fonts URL.
 
 ---
 
@@ -425,8 +483,9 @@ Kibo additionally loads:
 ### Add a photo to Nolka
 1. Resize to 2800px max side, JPEG quality 88
 2. Drop into `img/nolka/<section>/`
-3. Add filename to `data/nolka.js` in the right `images` array
-4. `git add . && git commit -m "add photo" && git push`
+3. Generate thumbnail into `img/thumbs/nolka/<section>/` (§6 Thumbnails)
+4. Add filename to `data/nolka.js` in the right `images` array
+5. `git add . && git commit -m "add photo" && git push`
 
 ### Remove a photo from Nolka
 1. Delete filename from `data/nolka.js`
@@ -434,8 +493,9 @@ Kibo additionally loads:
 
 ### Add a render to Kibo
 1. Drop file into `img/kibo/<Section>/`
-2. Add full path `"img/kibo/<Section>/filename.jpg"` to the correct data file
-3. `git add . && git commit && git push`
+2. Generate thumbnail into `img/thumbs/kibo/<Section>/` (§6 Thumbnails)
+3. Add full path `"img/kibo/<Section>/filename.jpg"` to the correct data file
+4. `git add . && git commit && git push`
 
 ### Change the +18 password
 1. In a browser console: `btoa('newpassword')` → copy the output

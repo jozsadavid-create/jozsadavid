@@ -80,6 +80,9 @@
     ]
   }
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Inter:wght@300;400&display=swap">
   <link rel="stylesheet" href="style.css">
   <style>
 
@@ -475,6 +478,63 @@
       font-style: italic;
       color: var(--text-muted);
       font-size: 0.875rem;
+    }
+
+    /* ── Series progress strip ─────────────────────────────── */
+    .vol-progress {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.9rem, 2vw, 1.6rem);
+      flex-wrap: wrap;
+      padding: 1.4rem 0 1.6rem;
+    }
+    .vol-progress__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .vol-progress__dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: 1px solid var(--text-muted);
+      background: transparent;
+      flex-shrink: 0;
+    }
+    .vol-progress__item--pub .vol-progress__dot {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .vol-progress__item--wip .vol-progress__dot {
+      border-color: var(--accent-2);
+      background: linear-gradient(90deg, var(--accent-2) 50%, transparent 50%);
+    }
+    .vol-progress__num {
+      font-family: var(--font-label);
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+    .vol-progress__item--pub .vol-progress__num { color: var(--accent); }
+    .vol-progress__item--wip .vol-progress__num { color: var(--text-dim); }
+    .vol-progress__legend {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .vol-progress__key {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-label);
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    @media (max-width: 600px) {
+      .vol-progress__legend { margin-left: 0; width: 100%; margin-top: 0.5rem; }
     }
 
     /* ── Bio ─────────────────────────────────────────────── */
@@ -984,6 +1044,24 @@
     <p class="universe-note" data-reveal data-reveal-delay="60">
       <em>"Vai, vire a página. Leia e absorva. E sofra, se necessário. Ainda é somente ficção..."</em>
     </p>
+
+    <!-- Series progress — move the --pub / --wip modifier classes as volumes advance -->
+    <div class="vol-progress" data-reveal aria-label="Progresso da série">
+      <div class="vol-progress__item vol-progress__item--pub"><span class="vol-progress__dot"></span><span class="vol-progress__num">01</span></div>
+      <div class="vol-progress__item vol-progress__item--wip"><span class="vol-progress__dot"></span><span class="vol-progress__num">02</span></div>
+      <div class="vol-progress__item vol-progress__item--wip"><span class="vol-progress__dot"></span><span class="vol-progress__num">03</span></div>
+      <div class="vol-progress__item"><span class="vol-progress__dot"></span><span class="vol-progress__num">04</span></div>
+      <div class="vol-progress__item"><span class="vol-progress__dot"></span><span class="vol-progress__num">05</span></div>
+      <div class="vol-progress__item"><span class="vol-progress__dot"></span><span class="vol-progress__num">06</span></div>
+      <div class="vol-progress__item"><span class="vol-progress__dot"></span><span class="vol-progress__num">07</span></div>
+      <div class="vol-progress__item"><span class="vol-progress__dot"></span><span class="vol-progress__num">08</span></div>
+      <div class="vol-progress__item"><span class="vol-progress__dot"></span><span class="vol-progress__num">09</span></div>
+      <div class="vol-progress__legend">
+        <span class="vol-progress__key"><span class="vol-progress__dot" style="background:var(--accent);border-color:var(--accent);"></span><span data-i18n="status-pub">Publicado</span></span>
+        <span class="vol-progress__key"><span class="vol-progress__dot" style="border-color:var(--accent-2);background:linear-gradient(90deg,var(--accent-2) 50%,transparent 50%);"></span><span data-i18n="status-wip">Em progresso</span></span>
+        <span class="vol-progress__key"><span class="vol-progress__dot"></span><span data-i18n="status-coming">Em breve</span></span>
+      </div>
+    </div>
 
     <div class="vol-list" style="margin-top: 2px;">
 
