@@ -193,27 +193,6 @@
       overflow: hidden;
       border-top: 1px solid var(--border);
     }
-    .kibo-archviz__intro {
-      padding: 1rem var(--gutter) 0.75rem;
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-    }
-    .kibo-archviz__eyebrow {
-      font-family: var(--font-label);
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      opacity: 0.45;
-    }
-    .kibo-archviz__total {
-      font-family: var(--font-label);
-      font-size: 0.54rem;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      opacity: 0.55;
-    }
     .kibo-archviz__strip {
       overflow: hidden;
     }
@@ -1220,10 +1199,6 @@
        ARCHVIZ — Exteriors · Interiors · Creative Direction
   ══════════════════════════════════════════════════════════ -->
   <section class="kibo-archviz" id="gallery-archviz">
-    <div class="kibo-archviz__intro">
-      <span class="kibo-archviz__total">103 images</span>
-    </div>
-
     <!-- ── Exteriors ────────────────────────────────────── -->
     <div class="kibo-archviz__strip" id="gallery-exteriors">
       <div class="kibo-archviz__strip-hd">
@@ -1319,7 +1294,7 @@
       <div class="kibo-career__body">
         <div>
           <p class="kibo-career__bio">
-            I started in Brazil as a journalist. 3D was the hobby that took over. Built a career across some of the world's most demanding archviz studios, five and a half years at Brick Visual, one of the world's leading CGI powerhouses; extended collaborations with Mozses, a studio that defines what traditional 3D can reach. All of it led here: leading boutique studios, directing from the inside.
+            I started in Brazil as a journalist. 3D was the hobby that took over. Built a career across some of the world's most demanding archviz studios, five and a half years at Brick Visual, one of the world's leading CGI powerhouses; extended collaborations with Mozses, a studio that defines what traditional 3D can reach. Along the way, projects for Zaha Hadid, Foster + Partners, BIG, KPF, NEOM, Gensler and Snøhetta. All of it led here: leading boutique studios, directing from the inside.
           </p>
           <p class="kibo-career__bio" style="margin-top: 0.75em;">
             Every studio added something different, a new technique, a new skill. Every project sharpened the discipline. Today, as a multidisciplinary Creative Director, the work still begins the same way it always has: with passion.
@@ -1730,17 +1705,6 @@
       } catch (e) {}
     }
 
-    /* ── Dynamic image count ────────────────────────────────── */
-    (function () {
-      var totalEl = document.querySelector('.kibo-archviz__total');
-      if (!totalEl) return;
-      var total = 0;
-      if (typeof KIBO_EXTERIORS !== 'undefined') total += KIBO_EXTERIORS.length;
-      if (typeof KIBO_INTERIORS !== 'undefined') total += KIBO_INTERIORS.length;
-      if (typeof KIBO_CD       !== 'undefined') total += KIBO_CD.length;
-      if (typeof KIBO_ART      !== 'undefined') total += KIBO_ART.length;
-      if (total > 0) totalEl.textContent = total + ' images';
-    }());
 
     /* ── Hero: random image from portfolio ─────────────────── */
     var heroBg = document.getElementById('hero-bg');

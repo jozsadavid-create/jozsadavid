@@ -21,6 +21,7 @@ var NOLKA_DATA = {
       "Blue_Kingfisher_Thorn.jpg",
       "Cardinal_Woodpecker_in_the_Thorns.jpg",
       "Ground_Hornbill.jpg",
+      "Youngster_Southern_Ground-Hornbill.jpg",
       "Lilac_Roller_at_the_Top.jpg",
       "Cape_Vulture.jpg",
       "Pelican_Open_Pouch.jpg",
