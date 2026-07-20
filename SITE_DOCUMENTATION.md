@@ -181,6 +181,17 @@ Move lines within the `images` array. The masonry grid renders them in the order
 - **AM-310 documentary teaser**: commented out in `nolka.html` (July 2026). Search for "Documentary teaser" and uncomment the block to restore it; its CSS (`.nolka-doc-teaser…`) is still in place.
 - **`data/nolka.json`**: legacy file, removed from the repo (moved to `_to_delete/`).
 
+### Ordered masonry
+
+The photo grids are JS-dealt: items go round-robin into `.masonry__col` wrappers, so the order of the `images` array in `data/nolka.js` reads **left-to-right, top-to-bottom** on the page (previously CSS columns filled top-to-bottom per column, scrambling the curation). The ragged organic bottom edge is unchanged. Column counts (3 / 2 / 1, and 2 for Soft Creatures) are decided in `columnsFor()` inside `nolka.html` and re-dealt on resize.
+
+### Deep links (shareable URLs)
+
+- `nolka.html#wild` / `#soft` / `#people` / `#places` — auto-expands and scrolls to that section on load.
+- `nolka.html#wild/12` — additionally opens photo 12 of that section in the lightbox.
+- `nolka.html#plus18` — scrolls to the +18 strip only; the password gate is never bypassed.
+- Opening/closing a section also updates the URL hash, so visitors can copy a shareable link straight from the address bar.
+
 ### The +18 Section and Password Gate
 
 The `plus18` section sits between People and Places as a standalone collapsible element. It is protected by a password gate.
@@ -459,6 +470,8 @@ Each page has:
 - Structured data (`<script type="application/ld+json">`) with Schema.org markup for Person, Book, Organization, WebPage types
 
 The `sitemap.xml` in the root lists all four pages. Update it if new pages are ever added.
+
+Each page also carries a `<meta name="theme-color">` matching its background (`#f5f2ed` Nolka, `#020202` Kibo, `#080806` portal/writing/404) — mobile browsers tint their UI to match. Link previews on Discord/Facebook/Instagram are driven by the existing Open Graph tags.
 
 ---
 

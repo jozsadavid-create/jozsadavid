@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f2ed">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon.png" type="image/png">
   <meta name="description" content="Nolka — Photography by Józsa Dávid. Wild things, soft creatures, people and places. Photographs from five continents.">
@@ -326,14 +327,19 @@
     .grid-wrap.is-collapsed { grid-template-rows: 0fr; }
     .grid-inner { overflow: hidden; min-height: 0; }
 
-    /* ── Masonry ─────────────────────────────────────────────── */
+    /* ── Masonry ─────────────────────────────────────────────
+       JS-ordered: photos are dealt round-robin into .masonry__col
+       wrappers so the curated order in data/nolka.js reads
+       left-to-right. The ragged, organic bottom edge is kept.
+       Column count is decided in JS (3 / 2 / 1 by viewport). ── */
     .masonry {
-      column-count: 3;
-      column-gap: var(--gap);
+      display: flex;
+      gap: var(--gap);
+      align-items: flex-start;
       padding: 0 var(--gap);
     }
+    .masonry__col { flex: 1 1 0; min-width: 0; }
     .masonry--soft {
-      column-count: 2;
       padding: 0 var(--gutter);
     }
     .photo-item {
@@ -585,14 +591,11 @@
 
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 900px) {
-      .masonry { column-count: 2; }
       .nolka-contact__inner { grid-template-columns: 1fr; }
       .nolka-contact__left { padding-right: 0; padding-bottom: 2.5rem; }
       .nolka-contact__right { padding-left: 0; border-left: none; border-top: 1px solid rgba(245,242,237,0.09); padding-top: 2.5rem; }
     }
     @media (max-width: 560px) {
-      .masonry { column-count: 1; }
-      .masonry--soft { column-count: 1; }
       /* Declutter the section header — hide preview strip and count on phones */
       .section-hd__preview { display: none !important; }
       .section-hd__count   { display: none; }
@@ -1466,10 +1469,16 @@
     document.querySelectorAll('.section-hd').forEach(function (hd) {
       var wrap = document.getElementById(hd.getAttribute('aria-controls'));
       if (!wrap) return;
+      var hashKey = (hd.getAttribute('aria-controls') || '').replace(/^grid-/, '');
       function toggle() {
         var expanded = hd.getAttribute('aria-expanded') === 'true';
         hd.setAttribute('aria-expanded', String(!expanded));
         wrap.classList.toggle('is-collapsed', expanded);
+        /* keep the URL shareable — #wild, #soft, #people, #places */
+        try {
+          if (!expanded) history.replaceState(null, '', '#' + hashKey);
+          else if (location.hash === '#' + hashKey) history.replaceState(null, '', location.pathname + location.search);
+        } catch (e) {}
         if (expanded) return; /* closing — no stagger needed */
         var items = wrap.querySelectorAll('.photo-item');
         items.forEach(function (item, i) {
@@ -1590,6 +1599,29 @@
         return name.replace(/\s+/g, ' ').trim();
       }
 
+      /* Ordered masonry: deal items round-robin into columns so the
+         data/nolka.js order reads left-to-right, top-to-bottom. */
+      var LB_BY_KEY = {};
+      var GRIDS = [];
+      function columnsFor(grid) {
+        var w = window.innerWidth;
+        if (w <= 560) return 1;
+        if (grid.classList.contains('masonry--soft')) return 2;
+        if (w <= 900) return 2;
+        return 3;
+      }
+      function distribute(grid, items, cols) {
+        grid.innerHTML = '';
+        var colEls = [];
+        for (var c = 0; c < cols; c++) {
+          var col = document.createElement('div');
+          col.className = 'masonry__col';
+          grid.appendChild(col);
+          colEls.push(col);
+        }
+        items.forEach(function (item, i) { colEls[i % cols].appendChild(item); });
+      }
+
       Object.keys(NOLKA_DATA).forEach(function (key) {
         var sec    = NOLKA_DATA[key];
         var grid   = document.getElementById('masonry-' + key);
@@ -1598,6 +1630,7 @@
         if (!grid) return;
 
         var lbArr = [];
+        var itemEls = [];
 
         sec.images.forEach(function (filename, i) {
           var src     = BASE + key + '/' + filename;                  /* full-res — lightbox */
@@ -1633,11 +1666,47 @@
             lbOpen(lbArr, i);
           });
 
-          grid.appendChild(item);
+          itemEls.push(item);
         });
+
+        distribute(grid, itemEls, columnsFor(grid));
+        GRIDS.push({ grid: grid, items: itemEls });
+        LB_BY_KEY[key] = lbArr;
 
         if (count && sec.images.length > 0) count.textContent = sec.images.length + ' photos';
       });
+
+      /* Re-deal columns when the viewport crosses a breakpoint */
+      var _rsT;
+      window.addEventListener('resize', function () {
+        clearTimeout(_rsT);
+        _rsT = setTimeout(function () {
+          GRIDS.forEach(function (g) {
+            var want = columnsFor(g.grid);
+            if (g.grid.children.length !== want) distribute(g.grid, g.items, want);
+          });
+        }, 150);
+      });
+
+      /* ── Deep links: #wild · #soft · #people · #places (+ optional /N to
+             open photo N in the lightbox, e.g. nolka.html#wild/12) ────── */
+      function openSectionByKey(sKey, photoNum) {
+        var hd = document.querySelector('.section-hd[aria-controls="grid-' + sKey + '"]');
+        if (!hd) return;
+        if (hd.getAttribute('aria-expanded') !== 'true') hd.click();
+        setTimeout(function () { hd.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+        if (photoNum && LB_BY_KEY[sKey] && LB_BY_KEY[sKey][photoNum - 1]) {
+          setTimeout(function () { lbOpen(LB_BY_KEY[sKey], photoNum - 1); }, 500);
+        }
+      }
+      var hashMatch = location.hash.match(/^#(wild|soft|people|places)(?:\/(\d+))?$/);
+      if (hashMatch) {
+        openSectionByKey(hashMatch[1], hashMatch[2] ? parseInt(hashMatch[2], 10) : 0);
+      } else if (location.hash === '#plus18') {
+        /* Private section: scroll to the strip but never bypass the gate */
+        var s18hd = document.getElementById('sub18-hd');
+        if (s18hd) setTimeout(function () { s18hd.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+      }
     }
 
   /* ── Offer card CTAs: pre-fill form + smooth scroll ── */
