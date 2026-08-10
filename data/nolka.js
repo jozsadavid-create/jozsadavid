@@ -41,6 +41,7 @@ var NOLKA_DATA = {
       "Starling_on_the_Wind_Vane.jpg",
       "Magpie_Over_Autumn.jpg",
       "400-2.8.jpg",
+      "Pidgy_BP.jpg",
       "Urban_fly.jpg",
       "Black_Woodpecker.jpg",
       "Martial_Eagle_Perch.jpg",
