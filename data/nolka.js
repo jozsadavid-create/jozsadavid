@@ -98,9 +98,9 @@ var NOLKA_DATA = {
       "Creation_in_Profile.jpg",
       "Half_Shadow_Portrait.jpg",
       "Magyar_Judith.jpg",
-      "Rodrygo_Feitoza.jpg",
-      "Creppy_Reka01.jpg",
       "Apu.jpg",
+      "Rodrygo_Feitoza.jpg.jpg",
+      "Creppy_Reka01.jpg",
       "ShortParis_Concert02.jpg",
       "Yarik.jpg",
       "Sistrushka.jpg",
@@ -161,6 +161,7 @@ var NOLKA_DATA = {
       "Last_Swim_of_Summer.jpg",
       /* — Portugal close — */
       "Cintra_watching.jpg",
+      "ComunistBlock-St_Petersburg.jpg",
       "Portuguese-traditions.jpg",
       /* — Croatia close — */
       "Premantura_from_Above.jpg",
