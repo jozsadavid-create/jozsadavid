@@ -156,6 +156,7 @@ var NOLKA_DATA = {
       "TheDaveShow_LP_Concert.jpg",
       "LP-Concert_FaintVibes.jpg",
       "LP_Concert.jpg",
+      "Aurora_redmoon.jpg",
       /* — Wind down — */
       "Pink_Courtyard_at_St._Petersburg.jpg",
       "Last_Swim_of_Summer.jpg",
