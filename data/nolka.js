@@ -28,6 +28,7 @@ var NOLKA_DATA = {
       "Lilac_Roller_at_the_Top.jpg",
       "Cape_Vulture.jpg",
       "MoonYawn_Open_Pouch.jpg",
+      "DangerousFlatmate_Kruger",
       "Herd_at_the_Riverbed.jpg",
       "Young_Elephant_Scrub.jpg",
       "Wildebeest_BW.jpg",
