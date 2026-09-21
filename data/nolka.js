@@ -86,6 +86,7 @@ var NOLKA_DATA = {
       "First_Light.jpg",
       "Disconnected_at_Sunset.jpg",
       "Two_Faces_Fallen_Leaves.jpg",
+      "KayanGirl_Longneck.jpg",
       "Hay_Bale_Portrait.jpg",
       "Reka_Marfy-forest.jpg",
       "Young_Dancers_Cape_Town.jpg",
