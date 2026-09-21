@@ -108,7 +108,6 @@ var NOLKA_DATA = {
       "Magyar_Judith.jpg",
       "Apu.jpg",
       "Bao_Mahout.jpg",
-      "JulijaZandersone.jpeg",
       "Rodrygo_Feitoza.jpg",
       "Creppy_Reka01.jpg",
       "ShortParis_Concert02.jpg",
