@@ -52,6 +52,7 @@ var NOLKA_DATA = {
       "WhiteCrestedLaughingThrush.jpg",
       "Martial_Eagle_Perch.jpg",
       "Cape_Seal_bw.jpg",
+      "Swallow_Youngster.jpg",
       "Old_Bull_Kruger.jpg",
       "Thai_Water_Buffalo_closeup.jpg",
       "Spiral_Horns_Kruger.jpg",
@@ -133,6 +134,7 @@ var NOLKA_DATA = {
       "KSES_Thailand.jpg",
       "ChiangMai_Gray_Squirrel.jpg",
       "Red_Beacon_Night.jpg",
+      "KSES_Overcast.jpg",
       "Cape_Town_Blue_Hour.jpg",
       "Frozen_Delta.jpg",
       /* — Golden / warm night — */
