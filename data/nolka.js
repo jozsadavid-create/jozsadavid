@@ -16,6 +16,7 @@ var NOLKA_DATA = {
       "Gargi_Feathers.jpg",
       "Swan_Dive.jpg",
       "Swan_After_the_Drink.jpg",
+      "Kruger_Elepho_back.jpg",
       "BoonRott_KSES.jpg",
       "Junior_KSES.jpg",
       "Fake_Stork-Real_Stork.jpg",
