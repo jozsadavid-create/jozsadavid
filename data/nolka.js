@@ -53,6 +53,7 @@ var NOLKA_DATA = {
       "Martial_Eagle_Perch.jpg",
       "Cape_Seal_bw.jpg",
       "Old_Bull_Kruger.jpg",
+      "Thai_Water_Buffalo_closeup.jpg",
       "Spiral_Horns_Kruger.jpg",
       "Pigeons_at_St._Petersburg.jpg",
     ]
