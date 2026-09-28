@@ -73,6 +73,7 @@ var NOLKA_DATA = {
       "Lady.jpeg",
       "GoodGirl_BP.jpg",
       "Morning_pb.jpg",
+      "Corsica_Plague_Santa_Giulia.jpg",
       "Maine_Coon_Glare.jpg",
       "Summer.jpg",
       "Picur.jpg",
