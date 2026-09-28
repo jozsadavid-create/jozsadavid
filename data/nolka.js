@@ -131,9 +131,9 @@ var NOLKA_DATA = {
       "Tata-Before_the_World_Wakes.jpg",
       "Corsica_Plage_Santa_Giulia_Sunset.jpg",
       "Island_of_Fog.jpg",
-      "Alanya_Turkey.jpg",
       /* — Strong shots pulled forward — */
       "KSES_Thailand.jpg",
+      "Alanya_Turkey.jpg",
       "ChiangMai_Gray_Squirrel.jpg",
       "Red_Beacon_Night.jpg",
       "KSES_Overcast.jpg",
