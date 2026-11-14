@@ -207,7 +207,6 @@ var NOLKA_DATA = {
       "teaser02.jpg",
       "teaser03.jpg",
       "teaser05.jpg"
-      "Wales_in_Thailand.jpg"
     ]
   }
 
