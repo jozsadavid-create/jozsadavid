@@ -16,6 +16,7 @@ var KIBO_CD = [
   "img/kibo/Creative_Direction/THINKLAB_Dubai_Islands-Night.jpg",
   "img/kibo/Creative_Direction/THINKLAB_Dubai_Islands-Gym.jpg",
   "img/kibo/Creative_Direction/THINKLAB_Dubai_Islands-Bedroom.jpg",
+  "img/kibo/Creative_Direction/THINKLAB_Tatali_Vilasita_Bedroom.jpg",
   /* THINKLAB - QLand */
   "img/kibo/Creative_Direction/THINKLAB_QLand_Aerial.jpg",
   "img/kibo/Creative_Direction/THINKLAB_QLand_GreenRiver.jpg",
@@ -25,6 +26,7 @@ var KIBO_CD = [
   "img/kibo/Creative_Direction/THINKLAB_Silverboomkloof_Pool_Deck.jpg",
   "img/kibo/Creative_Direction/THINKLAB_Silverboomkloof_Entertainment_Dusk.jpg",
   "img/kibo/Creative_Direction/THINKLAB_Silverboomkloof_Firepit.jpg",
+  "img/kibo/Creative_Direction/THINKLAB_Tatali_Vilasita_Penthouse_Balcony.jpg",
   /* THINKLAB - Botswana */
   "img/kibo/Creative_Direction/THINKLAB_Botswana_Lodge_Villa_Bedroom.jpg",
   "img/kibo/Creative_Direction/THINKLAB_Botswana_Lodge_Villa_Bathroom.jpg",

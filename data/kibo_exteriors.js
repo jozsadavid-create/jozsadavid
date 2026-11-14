@@ -24,6 +24,7 @@ var KIBO_EXTERIORS = [
   "img/kibo/Exteriors/THINKLAB_BOMAX-FigTree03.jpg",
   "img/kibo/Exteriors/THINKLAB_BOMAX-FigTree04.jpg",
   "img/kibo/Exteriors/THINKLAB_BOMAX-FigTree06.jpg",
+  "img/kibo/Exteriors/THINKLAB_Esther-Mahlangu.jpg",
   /* CAN */
   /* SOMEWHERE */
   "img/kibo/Exteriors/SOMEWHERE_BIG_NAL_Biopunk.jpg",
@@ -43,6 +44,7 @@ var KIBO_EXTERIORS = [
   /* fill */
   "img/kibo/Exteriors/BP_Stadium.jpg",
   "img/kibo/Exteriors/THINKLAB_WJTL_Tower.jpg",
+  "img/kibo/Exteriors/TLG_Tatali_TLl_Waterfront.jpg",
   "img/kibo/Exteriors/CAN_Pannonhalma.jpg",
   "img/kibo/Exteriors/CAN_Szentpeterfa_Autumn.jpg",
   "img/kibo/Exteriors/CAN_Szentpeterfa_Winter.jpg",
@@ -51,7 +53,6 @@ var KIBO_EXTERIORS = [
   "img/kibo/Exteriors/SITESPECIFIC_VASSCO_Sk8.jpg",
   "img/kibo/Exteriors/BEYOUNDVISUALS_PunkosDFurdo.jpg",
   "img/kibo/Exteriors/FISCHER18_Facade.jpg",
-  "img/kibo/Exteriors/THINKLAB_Esther-Mahlangu.jpg",
   "img/kibo/Exteriors/THINKLAB_Antartica.jpg",
   "img/kibo/Exteriors/THINKLAB_Crete.jpg",
   /* close */
