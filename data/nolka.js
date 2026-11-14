@@ -21,6 +21,7 @@ var NOLKA_DATA = {
       "Junior_KSES.jpg",
       "Fake_Stork-Real_Stork.jpg",
       "Kruger_Snowy-Egret.jpg",
+      "Natrix_Tessellata.jpg",
       "Blue_Kingfisher_Thorn.jpg",
       "Cardinal_Woodpecker_in_the_Thorns.jpg",
       "Ground_Hornbill.jpg",
@@ -91,6 +92,7 @@ var NOLKA_DATA = {
       "First_Light.jpg",
       "Disconnected_at_Sunset.jpg",
       "KayanGirl_Longneck.jpg",
+      "Creppy_Reka02.jpg",
       "Hay_Bale_Portrait.jpg",
       "Reka_Marfy-forest.jpg",
       "Young_Dancers_Cape_Town.jpg",
@@ -119,6 +121,7 @@ var NOLKA_DATA = {
       "Yarik.jpg",
       "Sistrushka.jpg",
       "Mamushka.jpg",
+      "Selfie01.jpg",
     ]
   },
 
@@ -164,6 +167,7 @@ var NOLKA_DATA = {
       "Copenhagen_building_curves.jpg",
       "Shadows_on_the_Orange_Wall.jpg",
       "One_Passenger.jpg",
+      "BP_Airport.jpg",
       "Red_Beret_Descending.jpg",
       "Full_Speed_Underground.jpg",
       /* — Urban street (moved back) — */
@@ -203,6 +207,7 @@ var NOLKA_DATA = {
       "teaser02.jpg",
       "teaser03.jpg",
       "teaser05.jpg"
+      "Wales_in_Thailand.jpg"
     ]
   }
 
